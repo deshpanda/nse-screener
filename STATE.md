@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10 (v13, v14 dead; 14 tested, 13 dead, v4 survives; v7 fetch ~40% = last live candidate).
+> Last updated: 2026-07-10 (methodology audit passed: v4 delist-audited and intact; v13 revived as combo candidate for paper phase; v10 claim scoped; v7 fetch ~42%).
 
 ## 1. Mission & the deal
 
@@ -32,6 +32,16 @@ names in code/docs/site (local untracked config files are fine).
 - **Incumbent wins ties**: a challenger replaces the champion only by
   beating it on the pre-registered criteria in BOTH windows.
 - **Benchmark is Nifty buy-and-hold (NIFTYBEES)**, costs 0.25%/side.
+- **Event studies need TWO nulls** (learned in the 2026-07-10 audit): vs
+  the index (the capital question) AND vs the average investable stock
+  (the information question). In 2023-26 the avg S&P stock did -1.8%/63d
+  vs SPY — cap-weight concentration made "vs SPY" nearly unbeatable for
+  any stock-picker; scope claims accordingly.
+- **Audit the survivor hardest**: v4's 24 OOS "delists" were audited
+  name-by-name (7 renames, 16 EQ→BE series migrations returning ~97d
+  later at -5% avg gap, 1 merger). Realistic haircut keeps OOS edge +59.
+  A naive 50% haircut would flip the verdict — the audit, not the
+  assumption, settles it.
 
 ## 3. Scoreboard (as of 2026-07-10)
 
@@ -47,10 +57,10 @@ names in code/docs/site (local untracked config files are fine).
 | v7 | earnings momentum (SUE) overlay on v4 | **IN FLIGHT** | data fetch running; runner ready (`python -m backtest.v7`) |
 | v8 | US large-cap momentum (v4 recipe on point-in-time S&P 500) | DEAD | OOS 2016-22 all variants -40..-100pt vs SPY; the 200DMA regime HURTS in the US (V-recovery whipsaw) — regime filters don't port across market cultures |
 | v9 | US insider cluster buys (Form 4, 2-day disclosure, openinsider) | DEAD | IS 2023-26 mean/median excess NEGATIVE (all variants); OOS 2016-22 shows the documented 6-month drift (+3.4 mean at 126d hold, 60% win) — the edge EXISTED and decayed once insider-tracking became a retail commodity. 78,300 filings ingested (us/insiders.py) |
-| v10 | 13F guru-cloning (15 pre-2016-famous funds, EDGAR, new positions ≥1%) | DEAD | IS mean +1.8 but MEDIAN -1.3 (typical clone-trade loses; mean saved by rare tails). 538 filings/28k positions ingested (us/thirteenf.py). Long-hold OOS echo (+3.2 at 126d) same as v9 |
+| v10 | 13F guru-cloning (15 pre-2016-famous funds, EDGAR, new positions ≥1%) | DEAD for capital; skill EXISTS | vs avg-stock null (+3.6 mean) funds genuinely pick above-average stocks — but stock-picking itself lost to cap-weighted SPY 2023-26. IS median -1.3 vs SPY. 538 filings/28k positions (us/thirteenf.py) |
 | v11 | Senate trades (community snapshot 2012-2020, +45d disclosure lag) | DEAD | mean/median excess negative even historically; raw win 68% vs excess win 47% = the bull-market illusion these services sell. Data ends Dec 2020 |
 | v12 | short-horizon news-pop reaction, entry×hold grid, both markets | DEAD | US: all cells negative both windows (pops FADE). India IS: no positive-median cell, net ≈ 0. India OOS 2017-22: real drift existed (net +0.7-0.9%, 53-57% win) — decayed to nothing by 2023 |
-| v13 | India low-volatility sleeve (naive 252d realized vol, bottom-20) | DEAD | IS: DD WORSE than Nifty (-18.6 vs -14.5), edge -5. OOS: smooth (DD -16 vs -29, corr(v4) 0.37) but -35pt edge. Published low-vol index results don't replicate under honest universe/costs — naive low-vol harvests illiquidity. Quality variant pre-declared, awaits v7 data |
+| v13 | India low-volatility sleeve (naive 252d realized vol, bottom-20) | DEAD standalone; ALIVE as combo candidate | Standalone criteria failed. BUT audit follow-up: 70/30 v4/lowvol beats pure v4 Sharpe BOTH windows (1.27/1.06 vs 1.24/0.97), OOS DD -23.8 vs -33.5. Result came from an exploratory peek → needs formal combo pre-registration + confirmation in PAPER phase (untouched data). Quality variant still awaits v7 data |
 | v14 | India VIX-augmented regime on v4 (F&O data as info only) | DEAD (incumbent stands) | VIX<25 + DMA = identical to v4 IS (redundant); OOS -24pt (VIX stays high post-crash exactly when re-entry pays). vix<20 OOS -79pt. High fear = high forward returns in India. data: ingest/vix.py |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
