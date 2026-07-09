@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10 (v10, v11, v12 verdicts recorded; v7 fetch ~35%; smart-money question closed).
+> Last updated: 2026-07-10 (v13, v14 dead; 14 tested, 13 dead, v4 survives; v7 fetch ~40% = last live candidate).
 
 ## 1. Mission & the deal
 
@@ -50,6 +50,8 @@ names in code/docs/site (local untracked config files are fine).
 | v10 | 13F guru-cloning (15 pre-2016-famous funds, EDGAR, new positions ≥1%) | DEAD | IS mean +1.8 but MEDIAN -1.3 (typical clone-trade loses; mean saved by rare tails). 538 filings/28k positions ingested (us/thirteenf.py). Long-hold OOS echo (+3.2 at 126d) same as v9 |
 | v11 | Senate trades (community snapshot 2012-2020, +45d disclosure lag) | DEAD | mean/median excess negative even historically; raw win 68% vs excess win 47% = the bull-market illusion these services sell. Data ends Dec 2020 |
 | v12 | short-horizon news-pop reaction, entry×hold grid, both markets | DEAD | US: all cells negative both windows (pops FADE). India IS: no positive-median cell, net ≈ 0. India OOS 2017-22: real drift existed (net +0.7-0.9%, 53-57% win) — decayed to nothing by 2023 |
+| v13 | India low-volatility sleeve (naive 252d realized vol, bottom-20) | DEAD | IS: DD WORSE than Nifty (-18.6 vs -14.5), edge -5. OOS: smooth (DD -16 vs -29, corr(v4) 0.37) but -35pt edge. Published low-vol index results don't replicate under honest universe/costs — naive low-vol harvests illiquidity. Quality variant pre-declared, awaits v7 data |
+| v14 | India VIX-augmented regime on v4 (F&O data as info only) | DEAD (incumbent stands) | VIX<25 + DMA = identical to v4 IS (redundant); OOS -24pt (VIX stays high post-crash exactly when re-entry pays). vix<20 OOS -79pt. High fear = high forward returns in India. data: ingest/vix.py |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
