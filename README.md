@@ -11,6 +11,9 @@ after costs.** Scoreboard so far (see PROTOCOL_V3.md for the method):
 | v1 | trend template, buy near highs, fixed 8% stop | dead — lost money outright |
 | v2 | VCP breakout + ATR stops + breadth regime | dead — +34pt in-sample, **-64pt out-of-sample** (curve-fit) |
 | v3 | delivery-accumulation clusters (pre-registered) | dead — -9.2pt in-sample, no plateau in grid |
+| v4 | **monthly 12-1 momentum + 200-DMA regime** | **PASS — +100pt IS / +77pt OOS, in paper phase (paper/log.csv)** |
+| v5 | follow sticky-institution bulk/block buys | dead — -18.7pt in-sample, grid uniformly negative |
+| v6 | US "obvious rally" joining (us/PROTOCOL_V6.md) | dead — 927 events, ~0 excess vs SPY, 56% win rate |
 
 ## Data (all free, all NSE public)
 
