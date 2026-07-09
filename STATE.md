@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10 (v8 verdict recorded; v7 fetch in flight).
+> Last updated: 2026-07-10 (v9 verdict recorded; v7 fetch in flight; v10 queued).
 
 ## 1. Mission & the deal
 
@@ -46,6 +46,7 @@ names in code/docs/site (local untracked config files are fine).
 | v6 | US "obvious rally" joining (event study) | DEAD | 927 events: mean excess ≈0, win rate 56%, worst -62%. MU itself fired 5 signals, 2 lost |
 | v7 | earnings momentum (SUE) overlay on v4 | **IN FLIGHT** | data fetch running; runner ready (`python -m backtest.v7`) |
 | v8 | US large-cap momentum (v4 recipe on point-in-time S&P 500) | DEAD | OOS 2016-22 all variants -40..-100pt vs SPY; the 200DMA regime HURTS in the US (V-recovery whipsaw) — regime filters don't port across market cultures |
+| v9 | US insider cluster buys (Form 4, 2-day disclosure, openinsider) | DEAD | IS 2023-26 mean/median excess NEGATIVE (all variants); OOS 2016-22 shows the documented 6-month drift (+3.4 mean at 126d hold, 60% win) — the edge EXISTED and decayed once insider-tracking became a retail commodity. 78,300 filings ingested (us/insiders.py) |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
@@ -155,6 +156,10 @@ membership (`us/data/sp500_hist.csv`, fja05680 dataset), yfinance,
 3. After ~Sep/Oct 2026: paper-vs-backtest review → real-money decision
    (size such that total loss is survivable; full sizing context lives
    outside the repo).
-4. Parked ideas: FIP smoothness (promising OOS, failed IS — needs fresh
+4. Queued: v10 = 13F guru-cloning event study (EDGAR access verified;
+   45-day lag, prior very low after v9's fresher signal died — run for
+   completeness of the "follow smart money" question). Congressional
+   trades: free datasets dead (403), parked.
+5. Parked ideas: FIP smoothness (promising OOS, failed IS — needs fresh
    pre-registration on NEW data only), quarterly shareholding-pattern
-   ingestion (v5 phase 2), US momentum port, weekly regime checks.
+   ingestion (v5 phase 2), weekly regime checks.
