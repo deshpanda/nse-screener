@@ -16,7 +16,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 Georgia,'Times New Roman',serif}
 h1,h2,h3,.sans{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 main{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-section{padding:48px 0;border-bottom:1px solid var(--line)}
+section{padding:48px 0;border-bottom:1px solid var(--line);scroll-margin-top:64px}
 h1{font-size:clamp(30px,6vw,52px);line-height:1.15;margin:.2em 0}
 h2{font-size:clamp(24px,4vw,34px);margin-top:0}
 h3{font-size:20px;color:var(--blue)}
@@ -47,6 +47,8 @@ th{color:var(--mut);font-weight:600}
 .pill.dead{background:#3d1d20;color:var(--red)} .pill.pass{background:#12331b;color:var(--green)} .pill.paper{background:#3a2e12;color:var(--gold)}
 dfn{font-style:normal;border-bottom:1px dashed var(--gold);cursor:help;position:relative}
 #tip{position:fixed;z-index:50;max-width:300px;background:#010409;border:1px solid var(--gold);border-radius:8px;padding:10px 12px;font:14px/1.5 -apple-system,sans-serif;color:var(--ink);display:none;pointer-events:none}
+#ctip{position:fixed;z-index:50;background:#010409;border:1px solid var(--blue);border-radius:8px;padding:8px 12px;font:13px/1.6 -apple-system,sans-serif;color:var(--ink);display:none;pointer-events:none;white-space:nowrap}
+.widget svg{cursor:crosshair;touch-action:pan-y}
 nav{position:sticky;top:0;z-index:40;background:rgba(13,17,23,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
 nav .in{max-width:var(--maxw);margin:0 auto;padding:10px 20px;display:flex;gap:16px;overflow-x:auto;font:600 13px -apple-system,sans-serif;white-space:nowrap}
 nav a{color:var(--mut);text-decoration:none} nav a:hover{color:var(--ink)}
@@ -68,7 +70,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 </style>
 </head>
 <body>
-<div id="tip"></div>
+<div id="tip"></div><div id="ctip"></div>
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
@@ -83,6 +85,8 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
 runs on the real numbers.</p>
+<p class="sans small mut">A project by <b style="color:var(--ink)">the Author</b> — who wanted profits —
+and his AI research partner, who wanted proof. The tension between those two is the story.</p>
 <div class="statrow">
 <div class="stat"><b>7</b><span class="mut small">strategies tested</span></div>
 <div class="stat"><b class="red">6</b><span class="mut small">failed honestly</span></div>
@@ -276,8 +280,9 @@ activity" in an app is mostly machines churning.</p>
 <section id="rallies">
 <div class="kicker">Chapter 6 · v6</div>
 <h2>"But this rally is OBVIOUS" — the guaranteed-profit test</h2>
-<p>One of us was sure of this one (real conversation): <i>"When Trump praised Dell, I bought the same day — +80% in a
-month. Micron with the AI wave — +60%. These are guaranteed. No such stock ever went nowhere."</i></p>
+<p>The Author was sure of this one — his real words, preserved: <i>"When Trump praised Dell, I bought the same day —
++80% in a month. Micron with the AI wave — +60%. These are guaranteed. No such stock ever went nowhere."</i>
+The research partner disagreed. Rather than argue, we built the test that would settle it.</p>
 <p>Feel the pull of that logic. Now watch what happens when you're forced to count <i>every</i> case instead of the
 ones memory kept. We defined an "obvious rally" mechanically — an S&amp;P 500 stock jumping ≥7% in a day on 3× normal
 volume, already in an uptrend (exactly the Dell/Micron shape) — and enumerated <b>all 927 such events over ten years</b>,
@@ -386,6 +391,7 @@ They're the point.</p>
 
 <footer>
 Built from a real research log · <a href="https://github.com/deshpanda/nse-screener">github.com/deshpanda/nse-screener</a><br>
+Research &amp; stubborn questions: <b>the Author</b> · engineering, statistics &amp; stubborn answers: his AI research partner (Claude)<br>
 Nothing on this page is investment advice. Every backtest number is net of estimated costs; live results will differ.<br>
 The market owes nobody anything.
 </footer>
@@ -402,13 +408,53 @@ document.addEventListener('pointerover', e=>{
   tip.style.left = Math.min(innerWidth-310, Math.max(8, r.left)) + 'px';
   tip.style.top = (r.bottom + 8) + 'px';
 });
-document.addEventListener('click', e=>{ if(!e.target.closest('dfn')) tip.style.display='none'; });
+document.addEventListener('click', e=>{
+  const d = e.target.closest('dfn');
+  if(!d){ tip.style.display='none'; return; }
+  tip.textContent = d.dataset.d; tip.style.display='block';   // tap on touch devices
+  const r = d.getBoundingClientRect();
+  tip.style.left = Math.min(innerWidth-310, Math.max(8, r.left)) + 'px';
+  tip.style.top = (r.bottom + 8) + 'px';
+});
 
 /* ---------- helpers ---------- */
 const $$ = id => document.getElementById(id);
 const fmt = n => n>=1e7 ? '₹'+(n/1e7).toFixed(2)+' Cr' : n>=1e5 ? '₹'+(n/1e5).toFixed(1)+' L' : '₹'+Math.round(n).toLocaleString('en-IN');
 function line(pts, color, w=2, dash=''){ return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="${w}" ${dash?`stroke-dasharray="${dash}"`:''}/>`; }
 function scaler(vals, y0, y1){ const mn=Math.min(...vals), mx=Math.max(...vals); return v=>y1-(v-mn)/(mx-mn||1)*(y1-y0); }
+
+/* ---------- chart hover: crosshair + value readout ----------
+   Each chart registers state in HST after every redraw:
+   {n, x(i)→svgX, inv(svgX)→i, top, bot, read(i)→html}          */
+const HST = {}, ctip = $$('ctip');
+function hoverify(svgId){
+  const svg = $$(svgId);
+  svg.addEventListener('pointermove', ev=>{
+    const g = HST[svgId]; if(!g) return;
+    const r = svg.getBoundingClientRect();
+    const vw = svg.viewBox.baseVal.width;
+    const px = (ev.clientX - r.left) * (vw / r.width);
+    let i = Math.round(g.inv(px));
+    if(i<0||i>=g.n){ ctip.style.display='none'; return; }
+    let gl = svg.querySelector('.guide');
+    if(!gl){
+      gl = document.createElementNS('http://www.w3.org/2000/svg','line');
+      gl.setAttribute('class','guide'); gl.setAttribute('stroke','#e6edf3');
+      gl.setAttribute('stroke-dasharray','3,3'); gl.setAttribute('opacity','.55');
+      svg.appendChild(gl);
+    }
+    gl.setAttribute('x1',g.x(i)); gl.setAttribute('x2',g.x(i));
+    gl.setAttribute('y1',g.top); gl.setAttribute('y2',g.bot);
+    ctip.innerHTML = g.read(i); ctip.style.display='block';
+    const tw = ctip.offsetWidth||200;
+    ctip.style.left = Math.min(innerWidth - tw - 10, ev.clientX + 14) + 'px';
+    ctip.style.top  = (ev.clientY + 18) + 'px';
+  });
+  svg.addEventListener('pointerleave', ()=>{
+    ctip.style.display='none';
+    const gl = svg.querySelector('.guide'); if(gl) gl.remove();
+  });
+}
 
 /* ---------- W1: SIP compounder ---------- */
 function sip(){
@@ -427,8 +473,13 @@ function sip(){
     `<text x="${W-12}" y="${sy(value.at(-1))-8}" fill="#3fb950" font-size="15" font-weight="700" text-anchor="end" font-family="sans-serif">${fmt(value.at(-1))}</text>`+
     `<text x="${W-12}" y="${sy(invested.at(-1))+18}" fill="#8b949e" font-size="13" text-anchor="end" font-family="sans-serif">you put in ${fmt(invested.at(-1))}</text>`;
   $$('sipOut').innerHTML = `You invest <b>${fmt(invested.at(-1))}</b> → it becomes <b class="green">${fmt(value.at(-1))}</b>. The gap (${fmt(value.at(-1)-invested.at(-1))}) is compounding — earned while you slept.`;
+  HST.sipChart = {n:value.length, x, inv:px=>(px-P)/(W-P-12)*(value.length-1),
+    top:16, bot:H-28,
+    read:i=>`<b>Year ${Math.ceil((i+1)/12)}, month ${i%12+1}</b><br>
+      <span style="color:#3fb950">●</span> value: <b>${fmt(value[i])}</b><br>
+      <span style="color:#8b949e">●</span> you put in: ${fmt(invested[i])}`};
 }
-['sipAmt','sipYrs','sipRet'].forEach(id=>$$(id).addEventListener('input',sip)); sip();
+['sipAmt','sipYrs','sipRet'].forEach(id=>$$(id).addEventListener('input',sip)); sip(); hoverify('sipChart');
 
 /* ---------- W2: split illusion ---------- */
 (function(){
@@ -449,8 +500,13 @@ function sip(){
       `<text x="${P}" y="16" fill="#8b949e" font-size="12" font-family="sans-serif">${adj?'back-adjusted price (economic reality)':'raw closing price (what the file says)'}</text>`;
     $$('splitLabel').textContent = adj ? 'Showing: ADJUSTED — the shareholder\'s actual experience' : 'Showing: RAW prices — what a naive backtest sees';
     $$('splitBtn').textContent = adj ? 'Show raw prices again' : 'Apply corporate-action adjustment';
+    HST.splitChart = {n:vals.length, x, inv:px=>(px-P)/(W-P-14)*(vals.length-1),
+      top:18, bot:H-30,
+      read:i=>`<b>Day ${i+1}${i===9?' — bonus record date next':''}${i===10?' — 2:1 bonus applied':''}</b><br>
+        close: <b>₹${Math.round(vals[i]).toLocaleString('en-IN')}</b>
+        ${adj&&i<10?'<br><span style="color:#8b949e">(raw was ₹'+Math.round(raw[i]).toLocaleString('en-IN')+')</span>':''}`};
   }
-  $$('splitBtn').onclick=()=>{adj=!adj;draw();}; draw();
+  $$('splitBtn').onclick=()=>{adj=!adj;draw();}; draw(); hoverify('splitChart');
 })();
 
 /* ---------- W3: VCP anatomy ---------- */
@@ -500,8 +556,14 @@ function drawSweep(key){
   $$('sweepChart').innerHTML=out;
   $$('sweepVerdict').innerHTML=s.verdict;
   $$('btnV2').className = key==='v2'?'':'alt'; $$('btnV4').className = key==='v4'?'':'alt';
+  const sign=v=>(v>0?'+':'')+v.toFixed(1);
+  HST.sweepChart = {n:n, x:i=>P+i*bw+bw/2, inv:px=>Math.floor((px-P)/bw),
+    top:24, bot:sy(Math.min(0,mn)),
+    read:i=>`<b>${s.names[i]}</b><br>
+      <span style="color:#58a6ff">●</span> in-sample edge: <b>${sign(s.is[i])} pts</b><br>
+      <span style="color:#d29922">●</span> out-of-sample: <b style="color:${s.oos[i]>0?'#3fb950':'#f85149'}">${sign(s.oos[i])} pts</b>`};
 }
-$$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4'); drawSweep('v2');
+$$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4'); drawSweep('v2'); hoverify('sweepChart');
 
 /* ---------- W5: stop-loss simulator ---------- */
 (function(){
@@ -565,6 +627,11 @@ $$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4')
   out+=`<text x="${x(0)+6}" y="30" fill="#8b949e" font-size="12" font-family="sans-serif">break-even</text>`;
   out+=`<text x="${P}" y="${H-8}" fill="#8b949e" font-size="12" font-family="sans-serif">one-month return after joining the rally → (hover bars)</text>`;
   $$('histChart').innerHTML=out;
+  HST.histChart = {n:86, x:b=>x(b-42)+colw/2, inv:px=>Math.floor((px-P)/((W-P-14)/86)),
+    top:20, bot:H-34,
+    read:i=>{const b=(i-42)-((i-42)%bw+bw)%bw; const c=bins[Math.max(-40,Math.min(40,b))]||0;
+      return `<b>${b}% to ${b+bw}%</b> next-month return<br>${c} of 927 rallies landed here`;}};
+  hoverify('histChart');
   const wins=raw.filter(r=>r>0).length;
   $$('histNote').innerHTML=`<b>${raw.length} real events.</b> ${wins} made money (${Math.round(100*wins/raw.length)}%), ${raw.length-wins} lost. Mean edge over the index: <b>≈0</b>. The +40% tail exists — that's the Dell you remember. So does the −40% tail — those are the ones nobody tweets about.`;
 })();
@@ -594,8 +661,13 @@ $$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4')
     const cash=d.n_pos.filter(n=>n===0).length;
     $$('v4Stats').innerHTML=`Over ${d.dates.length} real months: <b class="green">${cagr.toFixed(1)}% per year</b> vs Nifty's ${ncagr.toFixed(1)}% — with ${cash} months safely in cash during sick markets. Same rules, no edits, straight through COVID and two corrections.`;
     $$('logBtn').textContent = log?'Switch to normal scale':'Switch to log scale';
+    HST.v4Chart = {n:d.dates.length, x, inv:px=>(px-P)/(W-P-12)*(d.dates.length-1),
+      top:20, bot:H-46,
+      read:i=>`<b>${d.dates[i]}</b> ${d.n_pos[i]===0?'· <span style="color:#d29922">IN CASH</span>':'· '+d.n_pos[i]+' stocks held'}<br>
+        <span style="color:#3fb950">●</span> v4: ₹1 → <b>₹${d.equity[i].toFixed(2)}</b><br>
+        <span style="color:#8b949e">●</span> Nifty: ₹1 → ₹${d.nifty[i].toFixed(2)}`};
   }
-  $$('logBtn').onclick=()=>{log=!log;draw();}; draw();
+  $$('logBtn').onclick=()=>{log=!log;draw();}; draw(); hoverify('v4Chart');
 })();
 
 /* ---------- glossary ---------- */
