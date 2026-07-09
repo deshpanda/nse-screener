@@ -16,7 +16,8 @@ from backtest import features
 
 def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
              turnover_floor: float = 500.0, regime_filter: bool = False,
-             cost: float = 0.0025) -> dict:
+             cost: float = 0.0025, vol_target: float = 0.0,
+             vol_lookback: int = 63, fip_pool: int = 0) -> dict:
     close, open_ = p["close"], p["open"]
     dates = close.index
     month_ends = close.groupby(dates.to_period("M")).apply(
@@ -24,6 +25,13 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
     month_ends = [d for d in month_ends if d >= dates[252]]
 
     mom = close.shift(skip) / close.shift(252) - 1
+    daily = close.pct_change()
+    if fip_pool:
+        # FIP smoothness: ID = sign(12-1 ret) × (%down − %up days) over the
+        # formation year; lower = smoother = stronger continuation
+        updays = (daily > 0).rolling(252).mean()
+        downdays = (daily < 0).rolling(252).mean()
+        fip = np.sign(mom) * (downdays - updays)
     liquid = p["turnover_lacs"].rolling(20).median() >= turnover_floor
     ok_universe = liquid.copy()
     ok_universe[[c for c in close.columns if c not in ctx["stocks"]]] = False
@@ -40,7 +48,20 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
             new = []                                 # cash this month
         else:
             m = mom.loc[t][ok_universe.loc[t]].dropna()
-            new = list(m.nlargest(top_n).index)
+            if fip_pool:
+                pool = m.nlargest(fip_pool).index
+                new = list(fip.loc[t, pool].nsmallest(top_n).index)
+            else:
+                new = list(m.nlargest(top_n).index)
+
+        # volatility scaling: exposure = min(1, target/realized), rest cash
+        expo = 1.0
+        if vol_target and new:
+            t_loc = dates.get_loc(t)
+            win = daily.iloc[t_loc - vol_lookback:t_loc + 1][new]
+            pvol = win.mean(axis=1).std() * np.sqrt(252)
+            if pvol > 0:
+                expo = min(1.0, vol_target / pvol)
 
         # month return per held name: next-open → next month-end close
         rets = []
@@ -58,7 +79,7 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
         churn = (len(set(new) - set(holdings)) / max(1, len(new))
                  if new else (1.0 if holdings else 0.0))
         gross = float(np.mean(rets)) if rets else 0.0
-        net = gross - churn * 2 * cost
+        net = expo * (gross - churn * 2 * cost)
         equity *= 1 + net
         rows.append({"date": t1, "ret": net, "equity": equity,
                      "n": len(new), "churn": round(churn, 2)})
@@ -82,6 +103,9 @@ def metrics(series: pd.Series) -> dict:
 def report(name: str, r: dict) -> dict:
     s, b = metrics(r["eq"]["equity"]), metrics(r["bench"])
     edge = s["total_pct"] - b["total_pct"]
+    mr = r["eq"]["ret"]
+    s["sharpe"] = round(float(np.sqrt(12) * mr.mean() / mr.std()), 2) \
+        if mr.std() > 0 else 0.0
     best_month_share = (r["eq"]["ret"].max()
                         / max(1e-9, r["eq"]["ret"].clip(lower=0).sum()))
     out = {"variant": name, **{f"s_{k}": v for k, v in s.items()},
