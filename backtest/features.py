@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 import config
-from ingest import bhavcopy, corporate_actions, etf_list
+from ingest import bhavcopy, corporate_actions, deals_hist, etf_list
 
 
 def _panel(start: str | None, end: str | None) -> dict:
@@ -138,4 +138,33 @@ def build_v3(start: str | None = None, end: str | None = None,
     signal = (fresh & ctx["liquid"].fillna(False)
               & (close > ctx["ma200"])
               & (ctx["rs_pctile"] >= rs_floor))
+    return _result(p, ctx, signal)
+
+
+def build_v5(start: str | None = None, end: str | None = None,
+             sticky_re: str = config.V5_STICKY_RE,
+             min_vol_share: float = 0.0, rs_floor: float = 0.0,
+             bulk_only: bool = False) -> dict:
+    """v5: sticky-institution bulk/block buy events. PROTOCOL_V5.md."""
+    p = _panel(start, end)
+    ctx = _context(p)
+    close = p["close"]
+
+    d = deals_hist.load_all()
+    if bulk_only:
+        d = d[d["kind"] == "bulk"]
+    d = d[d["client_name"].str.upper()
+           .str.contains(sticky_re, na=False, regex=True)].copy()
+    d["net"] = d["qty"].where(d["buy_sell"].str.upper().str.startswith("B"),
+                              -d["qty"])
+    net = (d.groupby(["date", "symbol"])["net"].sum()
+             .unstack().reindex(index=close.index, columns=close.columns))
+    event = net > 0
+    if min_vol_share > 0:
+        event = event & (net >= min_vol_share * p["volume"])
+
+    signal = (event.fillna(False) & ctx["liquid"].fillna(False)
+              & (close > ctx["ma200"]))
+    if rs_floor > 0:
+        signal &= ctx["rs_pctile"] >= rs_floor
     return _result(p, ctx, signal)

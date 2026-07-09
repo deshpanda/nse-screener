@@ -30,6 +30,9 @@ def main(start: str | None = None, end: str | None = None,
     if strategy == "v3":
         config.BT_COOLDOWN = config.V3_COOLDOWN
         f = features.build_v3(start, end)
+    elif strategy == "v5":
+        config.BT_COOLDOWN = config.V3_COOLDOWN   # same 20d cooldown
+        f = features.build_v5(start, end)
     else:
         f = features.build(start, end)
     r = engine.run(f)
@@ -75,6 +78,6 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--start", default=None)   # panel start (warmup included)
     p.add_argument("--end", default=None)
-    p.add_argument("--strategy", default="v2", choices=("v2", "v3"))
+    p.add_argument("--strategy", default="v2", choices=("v2", "v3", "v5"))
     a = p.parse_args()
     main(a.start, a.end, a.strategy)

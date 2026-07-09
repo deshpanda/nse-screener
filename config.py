@@ -41,3 +41,6 @@ V3_CLUSTER = 3            # accumulation days required…
 V3_WINDOW = 20            # …within this many trading days
 V3_RS_FLOOR = 60          # RS percentile context filter
 V3_COOLDOWN = 20          # re-entry cooldown (engine BT_COOLDOWN for v3 runs)
+
+# --- v5: sticky-institution deal following (PROTOCOL_V5.md) ---
+V5_STICKY_RE = "MUTUAL FUND|LIFE INSURANCE|PENSION|PROVIDENT|SOVEREIGN"
