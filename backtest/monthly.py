@@ -18,9 +18,11 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
              turnover_floor: float = 500.0, regime_filter: bool = False,
              cost: float = 0.0025, vol_target: float = 0.0,
              vol_lookback: int = 63, fip_pool: int = 0,
-             select_fn=None) -> dict:
+             select_fn=None, regime_series: pd.Series | None = None) -> dict:
     """select_fn(t, ranked_momentum_series) → list of symbols, overrides
-    the default top-N pick. Used by v7 for earnings-based selection."""
+    the default top-N pick. Used by v7 for earnings-based selection.
+    regime_series: optional date-indexed bool; True = may hold positions.
+    Overrides the internal bench>200DMA rule (v14 VIX regimes)."""
     close, open_ = p["close"], p["open"]
     dates = close.index
     month_ends = close.groupby(dates.to_period("M")).apply(
@@ -47,7 +49,11 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
         t, t1 = month_ends[i], month_ends[i + 1]
         nxt = dates[dates.get_loc(t) + 1]           # first session after t
 
-        if regime_filter and ctx["bench"].loc[t] < bench200.loc[t]:
+        regime_off = (not bool(regime_series.reindex([t]).ffill().iloc[0])
+                      if regime_series is not None
+                      else (regime_filter
+                            and ctx["bench"].loc[t] < bench200.loc[t]))
+        if regime_off:
             new = []                                 # cash this month
         else:
             m = mom.loc[t][ok_universe.loc[t]].dropna()
