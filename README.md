@@ -1,41 +1,55 @@
 # nse-screener
 
-EOD momentum screener for NSE equities. Free public data only.
-Pipeline: ingest NSE bhavcopy (OHLCV + delivery %), bulk/block deals, FII/DII flows
-→ store as parquet → run Minervini-style trend template + RS rank + VCP proxy
-+ institutional-footprint overlays → daily ranked shortlist.
+NSE equities research platform: EOD data pipeline, momentum screener, and
+a backtesting harness with pre-registered validation.
 
-**This screens candidates. It does not tell you what to buy.**
-Nothing goes live until it beats Nifty in a backtest after costs.
+**Nothing trades until a strategy beats Nifty buy-and-hold out-of-sample,
+after costs.** Scoreboard so far (see PROTOCOL_V3.md for the method):
+
+| strategy | idea | verdict |
+|---|---|---|
+| v1 | trend template, buy near highs, fixed 8% stop | dead — lost money outright |
+| v2 | VCP breakout + ATR stops + breadth regime | dead — +34pt in-sample, **-64pt out-of-sample** (curve-fit) |
+| v3 | delivery-accumulation clusters (pre-registered) | dead — -9.2pt in-sample, no plateau in grid |
+
+## Data (all free, all NSE public)
+
+- bhavcopy 2016→present: OHLCV + delivery qty/% (legacy cm format pre-2020,
+  sec_bhavdata_full after; delivery for 2016-19 merged from MTO archives)
+- corporate actions with back-adjustment: splits/bonuses from the equities
+  AND mf segments (ETF splits live in mf), abbreviated-wording parser, plus
+  a price-ratio detector for events the feed misses entirely
+- bulk/block deals, FII/DII flows, ETF list (excluded from stock universes)
 
 ## Setup
 
 ```bash
 pip install -r requirements.txt
-python backfill.py --days 420        # ~2 min per 100 days, be patient with NSE
-python daily.py                      # run every evening after ~7pm IST
-python -m screener.screen            # writes data/shortlist_YYYY-MM-DD.csv
+python backfill.py --start 2016-01-01          # ~2h, NSE rate-limited
+python -m ingest.mto                            # 2016-19 delivery + merge
+python daily.py                                 # cron ~19:30 IST weekdays
+python -m screener.screen                       # daily ranked shortlist
+python -m backtest.run --strategy v3 --start 2022-01-01
 ```
-
-## Notes
-
-- NSE blocks non-browser user agents and rate-limits aggressively. The client
-  sends browser headers, warms up a session cookie, retries, and sleeps between
-  requests. If you get 403s, increase SLEEP_SECS in config.py or run later at night.
-- Bhavcopy (`sec_bhavdata_full`) is published on trading days only; 404 = holiday,
-  the backfill skips silently.
-- Data lands in `data/` as parquet partitioned by date. Delete a date dir to re-pull.
-- FII/DII endpoint returns aggregate cash-market flows only (no stock-level data —
-  that granularity does not exist publicly).
 
 ## Layout
 
 ```
-ingest/nse.py        shared NSE HTTP session
-ingest/bhavcopy.py   OHLCV + delivery qty/% per symbol
-ingest/bulk_deals.py bulk + block deals
-ingest/fii_dii.py    aggregate FII/DII buy/sell
-backfill.py          historical pull
-daily.py             today's pull (cron this)
-screener/screen.py   trend template + RS + VCP proxy + overlays
+ingest/      NSE HTTP client, bhavcopy (2 formats), MTO delivery,
+             corporate actions, bulk/block deals, FII/DII, ETF list
+screener/    daily shortlist: trend template + RS + VCP proxy + footprints
+backtest/    point-in-time features (no lookahead, no survivorship bias),
+             event-driven engine (ATR stops, risk sizing, cooldown),
+             run.py with --strategy/--start/--end
+PROTOCOL_V3.md  pre-registration template: spec frozen before first run
 ```
+
+## Hard-won gotchas
+
+- Unadjusted splits look like -90% crashes; the NIFTYBEES 10:1 split (Dec
+  2019) lives in the mf CA segment and silently broke the benchmark.
+- `bool_frame.shift(1).fillna(False)` goes object dtype where `~True == -2`
+  — always `shift(1, fill_value=False)`.
+- ETFs trade in the EQ series; a "stock" screen will happily buy silver.
+- In-sample sensitivity spikes (one lucky knob, neighbors negative) predict
+  out-of-sample inversion. Demand plateaus.
