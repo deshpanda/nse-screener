@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 cron.log
 .claude/
+CLAUDE.md
