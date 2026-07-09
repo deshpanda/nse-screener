@@ -17,7 +17,10 @@ from backtest import features
 def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
              turnover_floor: float = 500.0, regime_filter: bool = False,
              cost: float = 0.0025, vol_target: float = 0.0,
-             vol_lookback: int = 63, fip_pool: int = 0) -> dict:
+             vol_lookback: int = 63, fip_pool: int = 0,
+             select_fn=None) -> dict:
+    """select_fn(t, ranked_momentum_series) → list of symbols, overrides
+    the default top-N pick. Used by v7 for earnings-based selection."""
     close, open_ = p["close"], p["open"]
     dates = close.index
     month_ends = close.groupby(dates.to_period("M")).apply(
@@ -48,7 +51,9 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
             new = []                                 # cash this month
         else:
             m = mom.loc[t][ok_universe.loc[t]].dropna()
-            if fip_pool:
+            if select_fn is not None:
+                new = select_fn(t, m)
+            elif fip_pool:
                 pool = m.nlargest(fip_pool).index
                 new = list(fip.loc[t, pool].nsmallest(top_n).index)
             else:
