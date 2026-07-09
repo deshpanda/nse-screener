@@ -145,17 +145,26 @@ def parse_xbrl(content: bytes, q_end: pd.Timestamp) -> dict | None:
             ctx_period[cid] = (start, end)
 
     def grab(tags):
+        # NSE convention: context 'OneD' = current-quarter duration. Most
+        # legacy INDAS files REFERENCE it without declaring it, so the
+        # convention comes first; declared-period matching is the fallback
+        # (modern integrated filings declare contexts properly).
+        fallback = None
         for el in root.iter():
             tag = el.tag.split("}")[-1]
             if tag in tags and el.text:
-                per = ctx_period.get(el.get("contextRef"), (None, None))
+                cref = el.get("contextRef")
+                try:
+                    val = float(el.text)
+                except (ValueError, TypeError):
+                    continue
+                if cref == "OneD":
+                    return val
+                per = ctx_period.get(cref, (None, None))
                 if per[1] and pd.Timestamp(per[1]) == q_end and per[0] \
                         and (q_end - pd.Timestamp(per[0])).days < 100:
-                    try:
-                        return float(el.text)
-                    except ValueError:
-                        continue
-        return None
+                    fallback = val
+        return fallback
 
     np_ = grab(PROFIT_TAGS)
     if np_ is None:
