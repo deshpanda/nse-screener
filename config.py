@@ -33,3 +33,11 @@ BT_BREADTH_MIN = 0.40     # new entries only if ≥40% of universe above its 200
 BT_COST_PCT = 0.0025      # per side: STT + charges + slippage (delivery brokerage 0)
 BT_START_CASH = 1_000_000
 BT_BENCH = "NIFTYBEES"    # tradable Nifty proxy, present in bhavcopy
+BT_COOLDOWN = 0           # trading days before re-entering an exited symbol
+
+# --- v3: delivery-accumulation (PROTOCOL_V3.md; do not tune post-hoc) ---
+V3_SPIKE_MULT = 2.0       # deliv_qty > mult × trailing 60d median
+V3_CLUSTER = 3            # accumulation days required…
+V3_WINDOW = 20            # …within this many trading days
+V3_RS_FLOOR = 60          # RS percentile context filter
+V3_COOLDOWN = 20          # re-entry cooldown (engine BT_COOLDOWN for v3 runs)

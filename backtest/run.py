@@ -25,8 +25,13 @@ def metrics(eq: pd.Series) -> dict:
             "sharpe": round(sharpe, 2)}
 
 
-def main(start: str | None = None, end: str | None = None) -> None:
-    f = features.build(start, end)
+def main(start: str | None = None, end: str | None = None,
+         strategy: str = "v2") -> None:
+    if strategy == "v3":
+        config.BT_COOLDOWN = config.V3_COOLDOWN
+        f = features.build_v3(start, end)
+    else:
+        f = features.build(start, end)
     r = engine.run(f)
 
     t = r.trades
@@ -70,5 +75,6 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--start", default=None)   # panel start (warmup included)
     p.add_argument("--end", default=None)
+    p.add_argument("--strategy", default="v2", choices=("v2", "v3"))
     a = p.parse_args()
-    main(a.start, a.end)
+    main(a.start, a.end, a.strategy)

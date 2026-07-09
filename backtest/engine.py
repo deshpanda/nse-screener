@@ -45,6 +45,7 @@ def run(f: dict) -> Result:
     start = max(251, 201)          # RS needs 250 lags; regime needs 200
     cash = float(config.BT_START_CASH)
     positions: dict[str, Position] = {}
+    last_exit: dict[str, int] = {}     # symbol → date index of last exit
     trades, curve = [], []
     cost = config.BT_COST_PCT
 
@@ -78,6 +79,7 @@ def run(f: dict) -> Result:
             if po <= p.stop:               # gapped below the stop overnight
                 book(p, p.shares, po, d, "stop_gap")
                 del positions[sym]
+                last_exit[sym] = i
                 continue
             if not p.scaled and ph >= p.target:
                 half = p.shares // 2
@@ -88,10 +90,12 @@ def run(f: dict) -> Result:
             if pc <= p.stop:               # close-based stop: noise-resistant
                 book(p, p.shares, pc, d, "stop")
                 del positions[sym]
+                last_exit[sym] = i
                 continue
             if pc < ma50.get(sym, float("nan")):
                 book(p, p.shares, pc, d, "trail_ma50")
                 del positions[sym]
+                last_exit[sym] = i
 
         # --- entries at day-d open from day-(d-1) breakout signals ---
         prev = dates[i - 1]
@@ -105,6 +109,8 @@ def run(f: dict) -> Result:
                 atr = f["atr"].loc[prev].get(sym)
                 if sym in positions or pd.isna(o.get(sym)) or pd.isna(atr):
                     continue
+                if i - last_exit.get(sym, -10**9) <= config.BT_COOLDOWN:
+                    continue               # churn guard: no instant re-entry
                 entry = o[sym]
                 risk_per_share = config.BT_ATR_MULT * atr
                 if risk_per_share <= 0:
