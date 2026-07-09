@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eleven Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing twelve trading strategies on real market data — eleven failures, one survivor, zero rupees lost.">
+<title>Thirteen Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing fourteen trading strategies on real market data — thirteen failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -80,7 +80,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Eleven ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Thirteen ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
@@ -88,8 +88,8 @@ runs on the real numbers.</p>
 <p class="sans small mut">A project by <b style="color:var(--ink)">the Author</b> — who wanted profits —
 and his AI research partner, who wanted proof. The tension between those two is the story.</p>
 <div class="statrow">
-<div class="stat"><b>12</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">11</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>14</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">13</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -162,6 +162,8 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td>v10</td><td>Clone famous hedge funds' 13F filings</td><td><span class="pill dead">DEAD</span> typical clone-trade loses; rare tails flatter the average</td></tr>
 <tr><td>v11</td><td>Follow US senators' trades (the Quiver pitch)</td><td><span class="pill dead">DEAD</span> never worked, even historically</td></tr>
 <tr><td>v12</td><td>Buy big news-pops, sell in 1–5 days (both markets)</td><td><span class="pill dead">DEAD</span> US pops fade; India's drift died in 2023</td></tr>
+<tr><td>v13</td><td>Own the 20 calmest (low-volatility) stocks</td><td><span class="pill dead">DEAD</span> standalone — but see the audit box below</td></tr>
+<tr><td>v14</td><td>Add an options-market fear gauge (India VIX) to v4</td><td><span class="pill dead">DEAD</span> fear is already in the price trend; avoiding fear avoids profits</td></tr>
 </table>
 </section>
 
@@ -391,7 +393,7 @@ allows: India's same-evening bulk deals (v5), US insiders' 2-day Form 4 filings 
 <tr><th>Footprint</th><th>You learn about it after</th><th>Verdict</th></tr>
 <tr><td>India bulk/block deals</td><td>same evening</td><td class="red">dead — repriced by next open</td></tr>
 <tr><td>US insider purchases</td><td>2 days</td><td class="red">dead since ~2023 (see below)</td></tr>
-<tr><td>Hedge-fund 13F holdings</td><td>up to 45 days</td><td class="red">dead — median clone-trade loses</td></tr>
+<tr><td>Hedge-fund 13F holdings</td><td>up to 45 days</td><td class="red">dead for your wallet — see the audit box for the twist</td></tr>
 <tr><td>US Senate trades</td><td>~45 days</td><td class="red">dead — never worked at all</td></tr>
 </table>
 <p class="mut small">The senator data held a beautiful trap worth naming: 68% of their followed trades
@@ -426,6 +428,27 @@ you — a guru, an app, your own clever idea at 2 AM — walk it through these s
 <li class="ok"><b>Would the losers' version look the same?</b> For every Dell there were dozens of forgotten non-Dells. Demand the full enumeration, not the highlight reel.</li>
 <li class="ok"><b>Does the seller profit whether you win or lose?</b> Courses, signals, subscriptions — the surest edge in markets is selling shovels.</li>
 </ul>
+<div class="card">
+<h3>The audit — when the Author challenged the machine</h3>
+<p>After thirteen verdicts, the Author asked the right question: <i>"are our constraints and intervals even
+correct to judge?"</i> A full re-audit followed, and it changed things — which is exactly what should happen
+when someone checks the referee:</p>
+<p><b>One benchmark was unfair.</b> In 2023–26 the <i>average</i> S&amp;P 500 stock lost to the index by ~2%
+a quarter (a handful of giants carried everything), so "beat SPY" was nearly impossible for any stock-picker.
+Re-tested against the average-stock null: insiders still showed zero skill — but the famous hedge funds
+genuinely pick above-average stocks (+3.6 points). Their skill is real; <b>indexing beat skill itself</b>.
+The verdict for your wallet stands, the insult to the gurus is retracted.</p>
+<p><b>One question was asked wrongly.</b> Low-volatility stocks (v13) failed as a standalone strategy — but a
+defensive asset should be judged inside a portfolio. A 70/30 momentum/low-vol blend beat pure momentum on
+risk-adjusted return in both eras and cut the worst drawdown from -33.5% to -23.8%. Because we found this
+<i>after</i> peeking at the data, it earns only a paper-trial spot, not instant belief. Honesty has rules.</p>
+<p><b>And the survivor got audited hardest.</b> v4's backtest assumed vanished stocks (delistings) exit at
+their last price. Under a hostile 50%-loss assumption its out-of-sample pass would FLIP to a fail — so we
+audited all 24 vanishings by name: 7 renames, 16 temporary exchange-surveillance moves that returned ~3
+months later at an average -5%, one merger. Real cost: ~5 points, not 141. <b>The pass stands on verified
+events, not assumptions.</b> If a backtest seller ever shows you a shiny curve, ask what happens to stocks
+that disappear. Watch their face.</p>
+</div>
 <blockquote>"It was never my thinking that made the big money. It was my sitting." — the century-old line from
 <i>Reminiscences of a Stock Operator</i> that our data keeps re-proving.</blockquote>
 <p>This project continues — the paper log updates monthly, an earnings-momentum test (v7) is running as this page
