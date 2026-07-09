@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10, during the v7 XBRL fetch.
+> Last updated: 2026-07-10 (v8 verdict recorded; v7 fetch in flight).
 
 ## 1. Mission & the deal
 
@@ -45,10 +45,14 @@ names in code/docs/site (local untracked config files are fine).
 | v5 | follow sticky-institution bulk/block buys T+1 | DEAD | IS -18.7pt; ALL variants negative; disclosure lag = market front-runs you |
 | v6 | US "obvious rally" joining (event study) | DEAD | 927 events: mean excess ≈0, win rate 56%, worst -62%. MU itself fired 5 signals, 2 lost |
 | v7 | earnings momentum (SUE) overlay on v4 | **IN FLIGHT** | data fetch running; runner ready (`python -m backtest.v7`) |
+| v8 | US large-cap momentum (v4 recipe on point-in-time S&P 500) | DEAD | OOS 2016-22 all variants -40..-100pt vs SPY; the 200DMA regime HURTS in the US (V-recovery whipsaw) — regime filters don't port across market cultures |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
-harvests a slow behavioral bias, not information.
+harvests a slow behavioral bias, not information. And v8 showed the bias
+is market-specific: US large caps (institution-dominated, buy-the-dip
+culture) don't pay naive momentum, and India-fit parameters (200DMA
+regime) actively hurt there. Edges are local.
 
 ## 4. Current status & pending
 
