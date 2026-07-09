@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10 (v9 verdict recorded; v7 fetch in flight; v10 queued).
+> Last updated: 2026-07-10 (v10, v11, v12 verdicts recorded; v7 fetch ~35%; smart-money question closed).
 
 ## 1. Mission & the deal
 
@@ -47,13 +47,20 @@ names in code/docs/site (local untracked config files are fine).
 | v7 | earnings momentum (SUE) overlay on v4 | **IN FLIGHT** | data fetch running; runner ready (`python -m backtest.v7`) |
 | v8 | US large-cap momentum (v4 recipe on point-in-time S&P 500) | DEAD | OOS 2016-22 all variants -40..-100pt vs SPY; the 200DMA regime HURTS in the US (V-recovery whipsaw) — regime filters don't port across market cultures |
 | v9 | US insider cluster buys (Form 4, 2-day disclosure, openinsider) | DEAD | IS 2023-26 mean/median excess NEGATIVE (all variants); OOS 2016-22 shows the documented 6-month drift (+3.4 mean at 126d hold, 60% win) — the edge EXISTED and decayed once insider-tracking became a retail commodity. 78,300 filings ingested (us/insiders.py) |
+| v10 | 13F guru-cloning (15 pre-2016-famous funds, EDGAR, new positions ≥1%) | DEAD | IS mean +1.8 but MEDIAN -1.3 (typical clone-trade loses; mean saved by rare tails). 538 filings/28k positions ingested (us/thirteenf.py). Long-hold OOS echo (+3.2 at 126d) same as v9 |
+| v11 | Senate trades (community snapshot 2012-2020, +45d disclosure lag) | DEAD | mean/median excess negative even historically; raw win 68% vs excess win 47% = the bull-market illusion these services sell. Data ends Dec 2020 |
+| v12 | short-horizon news-pop reaction, entry×hold grid, both markets | DEAD | US: all cells negative both windows (pops FADE). India IS: no positive-median cell, net ≈ 0. India OOS 2017-22: real drift existed (net +0.7-0.9%, 53-57% win) — decayed to nothing by 2023 |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
-harvests a slow behavioral bias, not information. And v8 showed the bias
-is market-specific: US large caps (institution-dominated, buy-the-dip
-culture) don't pay naive momentum, and India-fit parameters (200DMA
-regime) actively hurt there. Edges are local.
+harvests a slow behavioral bias, not information. v8 showed edges are
+local (US large caps don't pay naive momentum; India-fit regime params
+hurt there). And v9/v10/v12 independently show the SAME alpha-decay
+signature: edges that were real in 2016-2022 (insider drift, India
+post-pop drift, slow 13F diffusion) are measurably gone in 2023-2026 —
+killed by commoditized data apps and the discount-broker retail boom.
+"Follow smart money" is now closed at all four disclosure speeds:
+same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
 
 ## 4. Current status & pending
 
