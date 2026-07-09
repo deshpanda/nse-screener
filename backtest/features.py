@@ -81,7 +81,10 @@ def build(start: str | None = None, end: str | None = None) -> dict:
     bench = close[config.BT_BENCH]
     # regime = index uptrend AND healthy breadth. 2025 proved the index alone
     # lies: Nifty held its 200-DMA while the momentum universe collapsed.
-    breadth = (close > ma200).sum(axis=1) / ma200.notna().sum(axis=1)
+    # Breadth is measured over stocks only — ETF columns don't belong in it.
+    stocks = [s for s in close.columns if s not in etf_list.symbols()]
+    breadth = ((close[stocks] > ma200[stocks]).sum(axis=1)
+               / ma200[stocks].notna().sum(axis=1))
     regime = ((bench > bench.rolling(200).mean())
               & (breadth >= config.BT_BREADTH_MIN))
 
