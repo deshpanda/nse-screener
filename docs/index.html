@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Seven Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing eight trading strategies on real market data — seven failures, one survivor, zero rupees lost.">
+<title>Eleven Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing twelve trading strategies on real market data — eleven failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -74,13 +74,13 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#survivor">The Survivor</a><a href="#uslesson">The US Test</a><a href="#method">The Method</a><a href="#glossary">Glossary</a>
+<a href="#survivor">The Survivor</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Seven ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Eleven ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
@@ -88,8 +88,8 @@ runs on the real numbers.</p>
 <p class="sans small mut">A project by <b style="color:var(--ink)">the Author</b> — who wanted profits —
 and his AI research partner, who wanted proof. The tension between those two is the story.</p>
 <div class="statrow">
-<div class="stat"><b>8</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">7</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>12</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">11</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -158,6 +158,10 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td>v5</td><td>Copy mutual funds' & insurers' disclosed bulk purchases</td><td><span class="pill dead">DEAD</span> the market front-runs you</td></tr>
 <tr><td>v6</td><td>Join "obvious" rallies (the Trump-tweet / AI-wave trade)</td><td><span class="pill dead">DEAD</span> coin-flip, not guaranteed</td></tr>
 <tr><td>v8</td><td>The winning Indian recipe, ported to US large caps</td><td><span class="pill dead">DEAD</span> edges are local — see Chapter 7½</td></tr>
+<tr><td>v9</td><td>Copy US insiders' own buys (2-day disclosure)</td><td><span class="pill dead">DEAD</span> worked until ~2023, then commoditized</td></tr>
+<tr><td>v10</td><td>Clone famous hedge funds' 13F filings</td><td><span class="pill dead">DEAD</span> typical clone-trade loses; rare tails flatter the average</td></tr>
+<tr><td>v11</td><td>Follow US senators' trades (the Quiver pitch)</td><td><span class="pill dead">DEAD</span> never worked, even historically</td></tr>
+<tr><td>v12</td><td>Buy big news-pops, sell in 1–5 days (both markets)</td><td><span class="pill dead">DEAD</span> US pops fade; India's drift died in 2023</td></tr>
 </table>
 </section>
 
@@ -374,6 +378,38 @@ in the US, whose crashes V-recover so fast that stepping aside means missing the
 copy-paste a strategy across markets any more than you can copy-paste it from a YouTube video.</p>
 <p class="mut small">This also quietly answers "isn't the US market easier?" — the question that started
 this whole project. With identical discipline: no. Harder.</p>
+</section>
+
+<!-- ---------------- CHAPTER 7.75 ---------------- -->
+<section id="autopsy">
+<div class="kicker">Chapter 7¾ · v9–v12</div>
+<h2>The smart-money autopsy — and the law of dying edges</h2>
+<p>"Follow the smart money" deserved a full trial, so we gave it one at every disclosure speed the law
+allows: India's same-evening bulk deals (v5), US insiders' 2-day Form 4 filings (v9), famous hedge funds'
+45-day 13F filings (v10), and US senators' 45-day STOCK Act disclosures (v11). Four bodies:</p>
+<table>
+<tr><th>Footprint</th><th>You learn about it after</th><th>Verdict</th></tr>
+<tr><td>India bulk/block deals</td><td>same evening</td><td class="red">dead — repriced by next open</td></tr>
+<tr><td>US insider purchases</td><td>2 days</td><td class="red">dead since ~2023 (see below)</td></tr>
+<tr><td>Hedge-fund 13F holdings</td><td>up to 45 days</td><td class="red">dead — median clone-trade loses</td></tr>
+<tr><td>US Senate trades</td><td>~45 days</td><td class="red">dead — never worked at all</td></tr>
+</table>
+<p class="mut small">The senator data held a beautiful trap worth naming: 68% of their followed trades
+"made money" — in a market where everything made money. Against the index: a coin flip. Subscription
+services sell you the first number and hope you never compute the second.</p>
+<div class="card">
+<h3>The most important discovery of the whole project</h3>
+<p>Three of these tests showed the <b>same time signature, in independent datasets</b>: insider-cluster
+drift, hedge-fund-position diffusion, and India's buy-the-news-pop drift were all genuinely profitable in
+2016–2022 — and all measurably dead in 2023–2026. What changed? Free tracking apps, zero-commission
+brokers, and a million retail algorithms arrived. <b>Edges don't just exist or not exist — they get eaten,
+and the more visible the signal, the faster the meal.</b> If you learned a trick from a video, an app, or
+a friend's hot streak, you are looking at the fossil of an edge. The market that paid it is gone.</p>
+</div>
+<p>This also answered a question one of us kept asking: <i>"what about buying the obvious news pop and
+selling a day or two later?"</i> Tested at every entry and exit combination a retail trader can actually
+execute (v12): in the US, pops <b>fade</b> — the chasers are the exit liquidity. In India it truly worked
+once — +0.8% net per event, until 2023. Then everyone got the same idea.</p>
 </section>
 
 <!-- ---------------- CHAPTER 8 ---------------- -->
