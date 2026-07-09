@@ -18,7 +18,8 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
              turnover_floor: float = 500.0, regime_filter: bool = False,
              cost: float = 0.0025, vol_target: float = 0.0,
              vol_lookback: int = 63, fip_pool: int = 0,
-             select_fn=None, regime_series: pd.Series | None = None) -> dict:
+             select_fn=None, regime_series: pd.Series | None = None,
+             delist_haircut: float = 1.0) -> dict:
     """select_fn(t, ranked_momentum_series) → list of symbols, overrides
     the default top-N pick. Used by v7 for earnings-based selection.
     regime_series: optional date-indexed bool; True = may hold positions.
@@ -44,7 +45,7 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
     bench200 = ctx["bench"].rolling(200).mean()
 
     equity, rows, holdings = 1.0, [], []
-    delist_exits = 0
+    delist_exits, delist_log = 0, []
     for i in range(len(month_ends) - 1):
         t, t1 = month_ends[i], month_ends[i + 1]
         nxt = dates[dates.get_loc(t) + 1]           # first session after t
@@ -85,7 +86,10 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
                 continue
             if path.index[-1] < t1 - pd.Timedelta(days=7):
                 delist_exits += 1                    # vanished mid-month
-            rets.append(path.iloc[-1] / po - 1)
+                delist_log.append({"symbol": s, "last": path.index[-1]})
+                rets.append(path.iloc[-1] * delist_haircut / po - 1)
+            else:
+                rets.append(path.iloc[-1] / po - 1)
 
         churn = (len(set(new) - set(holdings)) / max(1, len(new))
                  if new else (1.0 if holdings else 0.0))
@@ -99,7 +103,8 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
     eq = pd.DataFrame(rows).set_index("date")
     bench = ctx["bench"].loc[eq.index]
     bench = bench / bench.iloc[0]
-    return {"eq": eq, "bench": bench, "delist_exits": delist_exits}
+    return {"eq": eq, "bench": bench, "delist_exits": delist_exits,
+            "delist_log": delist_log}
 
 
 def metrics(series: pd.Series) -> dict:
