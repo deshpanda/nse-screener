@@ -90,6 +90,11 @@ def snapshot() -> None:
         "holdings": holdings, "lowvol_sleeve": lowvol,
         "niftybees": round(float(bench.loc[t]), 2),
     }])
+    try:  # v20 dataset under construction: monthly pledge snapshot
+        from ingest.sectors import capture_pledge_snapshot
+        capture_pledge_snapshot()
+    except Exception as e:
+        print(f"pledge snapshot skipped: {e}")
     LOG.parent.mkdir(exist_ok=True)
     header = not LOG.exists()
     row.to_csv(LOG, mode="a", header=header, index=False)
