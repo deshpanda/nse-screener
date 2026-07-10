@@ -86,6 +86,11 @@ same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
   `screener.paper_log`; daily 19:30 IST cron runs `daily.py` + screener.
   Decision pending after ~2-3 clean months: deploy small real money
   (sizing details are a private conversation, not a repo topic).
+- **Live Trial on the site**: docs/ has a section reading paper/log.csv
+  + paper/status.json from raw.githubusercontent at view time. The
+  month-end snapshot AUTO-COMMITS AND PUSHES paper/ (best-effort, offline
+  safe); daily.py pushes a status refresh only on regime flips. Site thus
+  self-updates with zero manual steps.
 - **Public site**: docs/ on GitHub Pages
   (deshpanda.github.io/nse-screener), self-contained, charts run on real
   exported data (`docs/data.js`, regenerate via the export script in the
