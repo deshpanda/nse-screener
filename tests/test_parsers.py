@@ -41,6 +41,12 @@ XBRL_ONED = b"""<?xml version="1.0"?>
   <in:BasicEarningsLossPerShare contextRef="OneD">2.5</in:BasicEarningsLossPerShare>
 </xbrl>"""
 
+XBRL_BANKING = b"""<?xml version="1.0"?>
+<xbrl xmlns="http://www.xbrl.org/2003/instance"
+      xmlns:in="http://taxonomy/in-bank">
+  <in:ProfitLossForThePeriod contextRef="OneD">74164800000</in:ProfitLossForThePeriod>
+</xbrl>"""
+
 XBRL_DECLARED = b"""<?xml version="1.0"?>
 <xbrl xmlns="http://www.xbrl.org/2003/instance"
       xmlns:in="http://taxonomy/in">
@@ -68,6 +74,12 @@ class TestXBRL(unittest.TestCase):
 
     def test_garbage_returns_none(self):
         self.assertIsNone(parse_xbrl(b"not xml at all", pd.Timestamp("2024-03-31")))
+
+    def test_banking_taxonomy_the_period(self):
+        """Banks file 'ProfitLossForThePeriod' — one extra word, 18% parse
+        rate before the fix. HDFC Bank Q3 FY20 real value."""
+        out = parse_xbrl(XBRL_BANKING, pd.Timestamp("2019-12-31"))
+        self.assertEqual(out["net_profit"], 74164800000.0)
 
 
 if __name__ == "__main__":

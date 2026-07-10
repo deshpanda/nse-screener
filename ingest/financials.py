@@ -35,7 +35,9 @@ INTG_FROM = date(2024, 12, 1)
 LIST_OUT = config.DATA_DIR / "fr_list.parquet"
 XBRL_DIR = config.DATA_DIR / "fr_xbrl"
 
-PROFIT_TAGS = ("ProfitLossForPeriod", "ProfitLossAfterTaxForThePeriod",
+PROFIT_TAGS = ("ProfitLossForPeriod", "ProfitLossForThePeriod",   # banking
+               "ProfitLossAfterTaxForThePeriod",
+               "ProfitLossFromOrdinaryActivitiesAfterTax",        # banking
                "NetProfitLossForThePeriod")
 EPS_TAGS = ("BasicEarningsLossPerShareFromContinuingOperations",
             "BasicEarningsLossPerShare")
