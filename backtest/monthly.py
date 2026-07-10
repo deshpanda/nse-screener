@@ -19,16 +19,20 @@ def simulate(p: dict, ctx: dict, top_n: int = 20, skip: int = 21,
              cost: float = 0.0025, vol_target: float = 0.0,
              vol_lookback: int = 63, fip_pool: int = 0,
              select_fn=None, regime_series: pd.Series | None = None,
-             delist_haircut: float = 1.0) -> dict:
+             delist_haircut: float = 1.0,
+             rebalance_every: int | None = None) -> dict:
     """select_fn(t, ranked_momentum_series) → list of symbols, overrides
     the default top-N pick. Used by v7 for earnings-based selection.
     regime_series: optional date-indexed bool; True = may hold positions.
     Overrides the internal bench>200DMA rule (v14 VIX regimes)."""
     close, open_ = p["close"], p["open"]
     dates = close.index
-    month_ends = close.groupby(dates.to_period("M")).apply(
-        lambda g: g.index[-1])
-    month_ends = [d for d in month_ends if d >= dates[252]]
+    if rebalance_every:                      # v4.2: every k sessions
+        month_ends = list(dates[252::rebalance_every])
+    else:
+        month_ends = close.groupby(dates.to_period("M")).apply(
+            lambda g: g.index[-1])
+        month_ends = [d for d in month_ends if d >= dates[252]]
 
     mom = close.shift(skip) / close.shift(252) - 1
     daily = close.pct_change()
