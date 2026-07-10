@@ -85,8 +85,6 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
 runs on the real numbers.</p>
-<p class="sans small mut">A project by <b style="color:var(--ink)">the Author</b> — who wanted profits —
-and his AI research partner, who wanted proof. The tension between those two is the story.</p>
 <div class="statrow">
 <div class="stat"><b>17</b><span class="mut small">strategies tested</span></div>
 <div class="stat"><b class="red">16</b><span class="mut small">failed honestly</span></div>
@@ -291,9 +289,9 @@ activity" in an app is mostly machines churning.</p>
 <section id="rallies">
 <div class="kicker">Chapter 6 · v6</div>
 <h2>"But this rally is OBVIOUS" — the guaranteed-profit test</h2>
-<p>The Author was sure of this one — his real words, preserved: <i>"When Trump praised Dell, I bought the same day —
+<p>The Author was sure of this one — his words at the time: <i>"When Trump praised Dell, I bought the same day —
 +80% in a month. Micron with the AI wave — +60%. These are guaranteed. No such stock ever went nowhere."</i>
-The research partner disagreed. Rather than argue, we built the test that would settle it.</p>
+Instead of arguing, we built the test.</p>
 <p>Feel the pull of that logic. Now watch what happens when you're forced to count <i>every</i> case instead of the
 ones memory kept. We defined an "obvious rally" mechanically — an S&amp;P 500 stock jumping ≥7% in a day on 3× normal
 volume, already in an uptrend (exactly the Dell/Micron shape) — and enumerated <b>all 927 such events over ten years</b>,
@@ -394,7 +392,7 @@ misbehaves, that gets published too. <a href="https://github.com/deshpanda/nse-s
 <h2>Epilogue: we tried the winner in America. It died.</h2>
 <p>If momentum is human nature, it should work everywhere — so we ran v4's exact recipe on ten years of
 US data (S&amp;P 500, membership as it existed each day). Out-of-sample, <b class="red">every variant lost to
-simply holding the index, by 40 to 100 points.</b> Same rules that print in India, roadkill in New York.</p>
+simply holding the index, by 40 to 100 points.</b> The same rules that work in India lost badly in New York.</p>
 <p>Two lessons worth the price. First, <b>edges are local</b>: India's market is retail-heavy and slow to
 reprice; US large caps are the most institutionally arbitraged assets on earth — naive momentum there was
 crowded out years ago. Second, the market-health circuit-breaker that saves v4 in India actively <i>hurt</i>
@@ -451,7 +449,7 @@ you — a guru, an app, your own clever idea at 2 AM — walk it through these s
 <li class="ok"><b>Does the seller profit whether you win or lose?</b> Courses, signals, subscriptions — the surest edge in markets is selling shovels.</li>
 </ul>
 <div class="card">
-<h3>The audit — when the Author challenged the machine</h3>
+<h3>The audit — checking our own referee</h3>
 <p>After thirteen verdicts, the Author asked the right question: <i>"are our constraints and intervals even
 correct to judge?"</i> A full re-audit followed, and it changed things — which is exactly what should happen
 when someone checks the referee:</p>
@@ -476,8 +474,8 @@ number. A single backtest figure is an estimate; only patterns across windows, v
 their last price. Under a hostile 50%-loss assumption its out-of-sample pass would FLIP to a fail — so we
 audited all 24 vanishings by name: 7 renames, 16 temporary exchange-surveillance moves that returned ~3
 months later at an average -5%, one merger. Real cost: ~5 points, not 141. <b>The pass stands on verified
-events, not assumptions.</b> If a backtest seller ever shows you a shiny curve, ask what happens to stocks
-that disappear. Watch their face.</p>
+events, not assumptions.</b> If anyone shows you a backtest, ask what happens to stocks that disappear from it. The answer is
+usually "nothing good," and rarely volunteered.</p>
 </div>
 <blockquote>"It was never my thinking that made the big money. It was my sitting." — the century-old line from
 <i>Reminiscences of a Stock Operator</i> that our data keeps re-proving.</blockquote>
@@ -507,7 +505,7 @@ anything that price momentum hadn't already noticed — by the time profits acce
 knows.</p>
 <p class="big"><b>Final score: seventeen strategies, sixteen deaths, one survivor</b> — boring monthly
 momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
-The sixteen corpses were not wasted work. They are the reason we trust the one that lived.</p><p><b>Postscript — the judge got sterner, and the champion got stronger.</b> After the Author asked whether
+The sixteen failures were not wasted work — they are the reason the one survivor can be trusted.</p><p><b>Postscript — sterner tests, same verdict.</b> After the Author asked whether
 our judging itself was sound, the gate gained three new instruments from the professional literature: rolling-window
 consistency, a penalty for how many strategies we tried (the deflated Sharpe ratio), and a measure of whether our
 own selection process overfits. Verdicts under the sterner judge: the survivor's edge is <b>~99.5% likely to be
@@ -529,7 +527,6 @@ where this strategy will look broken and won't be. Whether we sit through them i
 Built from a real research log · <a href="https://github.com/deshpanda/nse-screener">github.com/deshpanda/nse-screener</a><br>
 Research &amp; stubborn questions: <b>the Author</b> · engineering, statistics &amp; stubborn answers: his AI research partner<br>
 Nothing on this page is investment advice. Every backtest number is net of estimated costs; live results will differ.<br>
-The market owes nobody anything.
 </footer>
 
 <script src="data.js"></script>

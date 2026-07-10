@@ -1,58 +1,65 @@
 # nse-screener
 
-NSE equities research platform: EOD data pipeline, momentum screener, and
-a backtesting harness with pre-registered validation.
+Systematic-trading research platform for Indian (NSE) and US equities:
+EOD data pipelines, pre-registered backtests, and a validation harness
+(walk-forward consistency, deflated Sharpe, PBO). Every strategy verdict
+is git-timestamped: protocol committed before the first run, no post-hoc
+parameter rescue.
 
-**Nothing trades until a strategy beats Nifty buy-and-hold out-of-sample,
-after costs.** Scoreboard so far (see PROTOCOL_V3.md for the method):
+**Start here → [STATE.md](STATE.md)** — the single source of truth:
+full scoreboard (18 strategies tested, 17 dead, 1 in paper trial),
+method rules, data traps, pending decisions.
 
-| strategy | idea | verdict |
-|---|---|---|
-| v1 | trend template, buy near highs, fixed 8% stop | dead — lost money outright |
-| v2 | VCP breakout + ATR stops + breadth regime | dead — +34pt in-sample, **-64pt out-of-sample** (curve-fit) |
-| v3 | delivery-accumulation clusters (pre-registered) | dead — -9.2pt in-sample, no plateau in grid |
-| v4 | **monthly 12-1 momentum + 200-DMA regime** | **PASS — +100pt IS / +77pt OOS, in paper phase (paper/log.csv)** |
-| v5 | follow sticky-institution bulk/block buys | dead — -18.7pt in-sample, grid uniformly negative |
-| v6 | US "obvious rally" joining (us/PROTOCOL_V6.md) | dead — 927 events, ~0 excess vs SPY, 56% win rate |
+**The story, interactive →** https://deshpanda.github.io/nse-screener/
+(every chart runs on the real backtest data; the live paper-trial
+section reads `paper/log.csv` straight from this repo).
 
-## Data (all free, all NSE public)
+## The one survivor
 
-- bhavcopy 2016→present: OHLCV + delivery qty/% (legacy cm format pre-2020,
-  sec_bhavdata_full after; delivery for 2016-19 merged from MTO archives)
-- corporate actions with back-adjustment: splits/bonuses from the equities
-  AND mf segments (ETF splits live in mf), abbreviated-wording parser, plus
-  a price-ratio detector for events the feed misses entirely
-- bulk/block deals, FII/DII flows, ETF list (excluded from stock universes)
+v4: top-20 by 12-1 momentum among liquid NSE stocks, equal weight,
+monthly rebalance, 100% cash when Nifty < its 200-DMA. IS +100pt /
+OOS +116pt vs Nifty after costs; deflated Sharpe 0.995 at 40-trial
+penalty; survived 10 direct challengers. Now in a public paper trial
+(`paper/log.csv`, append-only) before any capital.
+
+## Data (all free, all public sources)
+
+- NSE bhavcopy 2016→present (two formats), delivery merged from MTO
+  archives, symbol renames canonicalized (1,041 mappings)
+- Corporate actions (equities + mf segments) with back-adjustment and
+  an implied-split detector for feed gaps
+- 43,421 quarterly results parsed from XBRL, keyed to broadcast
+  timestamps (banking taxonomy handled)
+- 151,787 named bulk/block deals; India VIX; corporate announcements
+- US: point-in-time S&P 500 membership + prices; Form 4 insider
+  purchases; 13F holdings for 15 funds; Senate trades snapshot
 
 ## Setup
 
 ```bash
 pip install -r requirements.txt
-python backfill.py --start 2016-01-01          # ~2h, NSE rate-limited
-python -m ingest.mto                            # 2016-19 delivery + merge
-python daily.py                                 # cron ~19:30 IST weekdays
-python -m screener.screen                       # daily ranked shortlist
-python -m backtest.run --strategy v3 --start 2022-01-01
+python backfill.py --start 2016-01-01        # NSE rate-limited; hours
+python -m ingest.mto                         # 2016-19 delivery
+python -m ingest.renames                     # symbol-change master
+python daily.py                              # cron ~19:30 IST weekdays
+python -m backtest.run --strategy v2|v3|v5   # daily-engine strategies
+python -m backtest.monthly                   # v4 family
+python -m backtest.validate                  # DSR / PBO / consistency
+python -m unittest discover tests
 ```
 
 ## Layout
 
 ```
-ingest/      NSE HTTP client, bhavcopy (2 formats), MTO delivery,
-             corporate actions, bulk/block deals, FII/DII, ETF list
-screener/    daily shortlist: trend template + RS + VCP proxy + footprints
-backtest/    point-in-time features (no lookahead, no survivorship bias),
-             event-driven engine (ATR stops, risk sizing, cooldown),
-             run.py with --strategy/--start/--end
-PROTOCOL_V3.md  pre-registration template: spec frozen before first run
+ingest/     NSE + EDGAR + misc ingestion (see module docstrings for
+            the API quirks each one works around)
+screener/   daily shortlist, monthly portfolio, paper-trial logger
+backtest/   point-in-time features, daily + monthly engines, event
+            studies, validation harness
+us/         US-market studies (momentum, insiders, 13F, senate, events)
+docs/       the public site (GitHub Pages)
+PROTOCOL_*  pre-registrations — each committed BEFORE its first run
+paper/      append-only paper-trial log + machine-readable status
 ```
 
-## Hard-won gotchas
-
-- Unadjusted splits look like -90% crashes; the NIFTYBEES 10:1 split (Dec
-  2019) lives in the mf CA segment and silently broke the benchmark.
-- `bool_frame.shift(1).fillna(False)` goes object dtype where `~True == -2`
-  — always `shift(1, fill_value=False)`.
-- ETFs trade in the EQ series; a "stock" screen will happily buy silver.
-- In-sample sensitivity spikes (one lucky knob, neighbors negative) predict
-  out-of-sample inversion. Demand plateaus.
+Nothing in this repository is investment advice.
