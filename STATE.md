@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10 (methodology audit passed: v4 delist-audited and intact; v13 revived as combo candidate for paper phase; v10 claim scoped; v7 fetch ~42%).
+> Last updated: 2026-07-10 evening (v7 DEAD, incumbent stands; campaign concluded: 15 tested / 14 dead / v4 survives; next events: paper log Jul 31, go-live review ~Oct).
 
 ## 1. Mission & the deal
 
@@ -54,7 +54,7 @@ names in code/docs/site (local untracked config files are fine).
 | v4.1 | vol-scaling / FIP smoothness on v4 | DEAD (incumbent stands) | vol-scaling OOS edge -23 (dilutes Indian momentum); FIP great OOS (Sharpe 1.23) but worse IS — mixed → incumbent |
 | v5 | follow sticky-institution bulk/block buys T+1 | DEAD | IS -18.7pt; ALL variants negative; disclosure lag = market front-runs you |
 | v6 | US "obvious rally" joining (event study) | DEAD | 927 events: mean excess ≈0, win rate 56%, worst -62%. MU itself fired 5 signals, 2 lost |
-| v7 | earnings momentum (SUE) overlay on v4 | **IN FLIGHT** | data fetch running; runner ready (`python -m backtest.v7`) |
+| v7 | earnings momentum (SUE overlay on v4; 43,421 point-in-time filings, 99.4% coverage incl. banking-taxonomy fix) | DEAD (incumbent stands) | Overlay beat v4 IS on ALL criteria (Sharpe 1.34/1.24, DD -10.1/-11.9, edge +118/+100) but lost OOS 2020-22 (1.42/1.66, +45/+83) — mixed → incumbent rule. Standalone: -22 vs Nifty OOS, corr(v4)=0.80. Earnings momentum is REAL (beats Nifty both windows, grid plateau) but subtracts from pure momentum. v13-quality also dead standalone |
 | v8 | US large-cap momentum (v4 recipe on point-in-time S&P 500) | DEAD | OOS 2016-22 all variants -40..-100pt vs SPY; the 200DMA regime HURTS in the US (V-recovery whipsaw) — regime filters don't port across market cultures |
 | v9 | US insider cluster buys (Form 4, 2-day disclosure, openinsider) | DEAD | IS 2023-26 mean/median excess NEGATIVE (all variants); OOS 2016-22 shows the documented 6-month drift (+3.4 mean at 126d hold, 60% win) — the edge EXISTED and decayed once insider-tracking became a retail commodity. 78,300 filings ingested (us/insiders.py) |
 | v10 | 13F guru-cloning (15 pre-2016-famous funds, EDGAR, new positions ≥1%) | DEAD for capital; skill EXISTS | vs avg-stock null (+3.6 mean) funds genuinely pick above-average stocks — but stock-picking itself lost to cap-weighted SPY 2023-26. IS median -1.3 vs SPY. 538 filings/28k positions (us/thirteenf.py) |
@@ -76,15 +76,10 @@ same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
 
 ## 4. Current status & pending
 
-- **XBRL fundamentals fetch** (43,421 filings, ~96% parse rate) running
-  in background; restartable via `python -m ingest.financials xbrl`
-  (checkpoint: `data/fr_xbrl/parsed.parquet`, every 500). On completion:
-  audit the ~4% failures (bank taxonomy risk — check failures aren't
-  concentrated in banks), then run `python -m backtest.v7`.
-  v7 criteria: PROTOCOL_V7.md — overlay must beat v4-regime both windows
-  (Sharpe AND maxDD AND edge); standalone can qualify as second sleeve
-  if it passes vs Nifty AND monthly corr with v4 < 0.6. OOS window is
-  only 2020-2022 (XBRL exists from ~2018) — pass = weaker evidence, say so.
+- **Research campaign CONCLUDED 2026-07-10**: 15 strategies tested, 14
+  dead, v4 the sole survivor. Fundamentals dataset complete (43,421
+  filings, 99.4%; banking taxonomy = ProfitLossForThePeriod). No further
+  hypotheses queued except v13.1 combo confirmation (paper phase).
 - **v4 paper phase**: `paper/log.csv` (append-only), entry #1 =
   2026-07-08 regime OFF/CASH. Cron: last day of month 23:00 IST runs
   `screener.paper_log`; daily 19:30 IST cron runs `daily.py` + screener.
