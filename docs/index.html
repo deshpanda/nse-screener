@@ -805,13 +805,16 @@ $$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4')
     const st = await (await fetch(RAW+'status.json',{cache:'no-store'})).json();
     const niftyChg = st.nifty_start ? (100*(st.nifty_now/st.nifty_start-1)).toFixed(1) : '0.0';
     $$('ltCards').innerHTML =
-      `<div class="stat"><b class="${st.regime==='ON'?'green':'gold'}">${st.regime}</b><span class="mut small">regime (as of ${st.asof})</span></div>`+
-      `<div class="stat"><b style="font-size:17px;line-height:2.2">${st.stance}</b><span class="mut small">current stance</span></div>`+
-      `<div class="stat"><b>${st.entries}</b><span class="mut small">decisions logged</span></div>`+
-      `<div class="stat"><b>${niftyChg}%</b><span class="mut small">Nifty since trial start</span></div>`;
+      `<div class="stat"><b class="${st.regime==='ON'?'green':'gold'}">${st.regime}</b><span class="mut small"><dfn data-d="Is the overall market healthy? ON = Nifty is above its own 200-day average price (uptrend, strategy may hold stocks). OFF = below it (sick market, strategy holds cash and waits).">regime</dfn> (as of ${st.asof})</span></div>`+
+      `<div class="stat"><b style="font-size:17px;line-height:2.2">${st.stance}</b><span class="mut small">current stance <dfn data-d="'Circuit-breaker open' means the safety rule has tripped: the market is below its 200-day average, so the strategy refuses to hold any stocks until the market heals. Sitting out IS the strategy working, not failing.">?</dfn></span></div>`+
+      `<div class="stat"><b>${st.entries}</b><span class="mut small"><dfn data-d="Once per month-end the machine writes down what the strategy would hold — a list of stocks, or the word CASH. Each written line is one decision. They can never be edited afterwards.">decisions logged</dfn></span></div>`+
+      `<div class="stat"><b>${niftyChg}%</b><span class="mut small"><dfn data-d="How much the overall Indian market (via NIFTYBEES, the Nifty-50 fund) has moved since the trial began. This is the do-nothing benchmark the strategy must eventually beat.">Nifty since trial start</dfn></span></div>`;
     const csv = await (await fetch(RAW+'log.csv',{cache:'no-store'})).text();
     const lines = csv.trim().split('\n').slice(1);
-    let rows = '<table><tr><th>as of</th><th>regime</th><th>momentum sleeve</th><th>low-vol sleeve</th><th>NIFTYBEES</th></tr>';
+    let rows = '<table><tr><th>as of</th><th><dfn data-d="ON = market above its 200-day average (may hold stocks); OFF = below it (hold cash).">regime</dfn></th>'+
+      '<th><dfn data-d="The main strategy (v4): own the 20 strongest stocks of the past 12 months, re-checked monthly. A sleeve = one compartment of a portfolio.">momentum sleeve</dfn></th>'+
+      '<th><dfn data-d="A second, experimental compartment: the 20 calmest (least volatile) stocks. Being watch-tested as a stabilizer alongside momentum — not yet earning real capital.">low-vol sleeve</dfn></th>'+
+      '<th><dfn data-d="Price of the Nifty-50 exchange-traded fund — one share that owns India\'s 50 biggest companies. Our benchmark: what doing nothing earns.">NIFTYBEES</dfn></th></tr>';
     for(const ln of lines){
       const f = ln.split(',');
       const hold = f[2]==='CASH' ? '<span class="gold">CASH</span>' : (f[2].split(';').length+' stocks');
@@ -819,7 +822,8 @@ $$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4')
       rows += `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${hold}</td><td>${lv}</td><td>₹${f[4]}</td></tr>`;
     }
     $$('ltTable').innerHTML = rows+'</table>';
-    $$('ltNote').textContent = `Last updated ${st.updated}. The strategy decides only at month-ends; between decisions there is nothing to record — and "CASH" is a decision.`;
+    $$('ltNote').innerHTML = `Last updated ${st.updated}. The strategy decides only at month-ends; between decisions there is nothing to record — and <dfn data-d="Holding zero stocks, on purpose. When the market is sick, the best position is none: you keep your money and wait. Most beginners never realise refusing to play is a move.">"CASH" is a decision</dfn>.`;
+    buildGlossary();
   }catch(e){
     $$('ltTable').innerHTML = 'Could not load the live log (network/CORS). It lives here: github.com/deshpanda/nse-screener → paper/log.csv';
     $$('ltCards').innerHTML = '';
@@ -827,11 +831,12 @@ $$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4')
 })();
 
 /* ---------- glossary ---------- */
-(function(){
+function buildGlossary(){
   const terms={};
-  document.querySelectorAll('dfn').forEach(d=>{ const t=d.textContent.trim(); if(!terms[t]&&d.dataset.d) terms[t]=d.dataset.d; });
+  document.querySelectorAll('dfn').forEach(d=>{ const t=d.textContent.trim(); if(!terms[t]&&d.dataset.d&&t.length>1) terms[t]=d.dataset.d; });
   $$('glossList').innerHTML = Object.entries(terms).map(([t,def])=>`<div class="card" style="margin:0"><b class="gold">${t}</b><br><span class="mut">${def}</span></div>`).join('');
-})();
+}
+buildGlossary();
 </script>
 </body>
 </html>
