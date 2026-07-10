@@ -5,3 +5,4 @@ __pycache__/
 cron.log
 .claude/
 CLAUDE.md
+health.log
