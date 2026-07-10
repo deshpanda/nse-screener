@@ -4,7 +4,8 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
+> Last updated: 2026-07-11b (Tier0 rename-merge live: v4 OOS edge +77->+116 fidelity gain. v18 dead. v17 announcements fetch in flight ~2h. 18 tested / 17 dead / v4 survives)
+> Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
 
@@ -66,6 +67,8 @@ names in code/docs/site (local untracked config files are fine).
 
 | v15 | PEAD India (event-time, broadcast-timestamped, 43k announcements) | DEAD | IS median -0.04 + OOS qtr-concentration 34%. Two-null diagnostic: NEGATIVE-surprise events also beat Nifty +2.2 IS = universe tilt, not information. Surprise-specific spread: +3.8 OOS -> +0.8 IS (alpha decay again) |
 | v16 | residual momentum (Blitz; beta-stripped 12-1 t-stat) + 52w-high grid | DEAD | delivered "half the vol" (DD -3.8/-14.1, OOS Sharpe 1.02>0.97) but NOT the returns: edge -14/-13 vs Nifty both windows. 52w-high: -73 OOS. Incumbent survives 10th challenge |
+
+| v18 | smart-buyer track records (score 18,644 named counterparties point-in-time, follow proven) | DEAD | Skill signal is REAL relative to the deal pool (+1..+6) but the pool is toxic: avg disclosed net-buy deal = -0.4 IS / -6.0 OOS vs Nifty. Best-of-a-bad-pool ~ breakeven gross. Final word on follow-the-institutions |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
