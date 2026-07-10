@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thirteen Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing fourteen trading strategies on real market data — thirteen failures, one survivor, zero rupees lost.">
+<title>Fourteen Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing fifteen trading strategies on real market data — fourteen failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -74,13 +74,13 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#survivor">The Survivor</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#glossary">Glossary</a>
+<a href="#survivor">The Survivor</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Thirteen ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Fourteen ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
@@ -88,8 +88,8 @@ runs on the real numbers.</p>
 <p class="sans small mut">A project by <b style="color:var(--ink)">the Author</b> — who wanted profits —
 and his AI research partner, who wanted proof. The tension between those two is the story.</p>
 <div class="statrow">
-<div class="stat"><b>14</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">13</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>15</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">14</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -164,6 +164,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td>v12</td><td>Buy big news-pops, sell in 1–5 days (both markets)</td><td><span class="pill dead">DEAD</span> US pops fade; India's drift died in 2023</td></tr>
 <tr><td>v13</td><td>Own the 20 calmest (low-volatility) stocks</td><td><span class="pill dead">DEAD</span> standalone — but see the audit box below</td></tr>
 <tr><td>v14</td><td>Add an options-market fear gauge (India VIX) to v4</td><td><span class="pill dead">DEAD</span> fear is already in the price trend; avoiding fear avoids profits</td></tr>
+<tr><td>v7</td><td>Add real quarterly-earnings data to the momentum winner</td><td><span class="pill dead">DEAD</span> the final challenger — see the last chapter</td></tr>
 </table>
 </section>
 
@@ -455,6 +456,29 @@ that disappear. Watch their face.</p>
 is written, and every protocol, verdict and line of code lives in the
 <a href="https://github.com/deshpanda/nse-screener">open repo</a>. The failures will stay on this page permanently.
 They're the point.</p>
+</section>
+
+<!-- ---------------- CHAPTER 9 ---------------- -->
+<section id="finale">
+<div class="kicker">Chapter 9 · v7, the final challenger</div>
+<h2>The last idea standing, and why the champion kept its title</h2>
+<p>One hypothesis outranked all others on paper: <b>earnings momentum</b> — pick from the strongest stocks
+the ones whose actual quarterly profits are accelerating. It's the half of the classic playbooks nobody
+retail ever tests, because it needs something almost nobody has: ten years of quarterly results stamped
+with the exact moment each number became public. We built that dataset from 43,421 regulatory filings —
+including fixing a one-word difference in how banks report profit that silently broke a fifth of the
+market's data.</p>
+<p>The result was the closest fight of the project. In the design years, earnings-filtered momentum beat
+plain momentum on every measure. In the held-out years, plain momentum won just as clearly. One window
+each — and our pre-committed rule for exactly this case says: <b>the incumbent keeps the title.</b>
+A tie broken by discretion after seeing results isn't a tie; it's a leak.</p>
+<p>The consolation finding is real, though: earnings-filtered momentum beat the index in <i>both</i>
+windows, across every settings variant. The information in earnings is genuine. It just doesn't add
+anything that price momentum hadn't already noticed — by the time profits accelerate, the price usually
+knows.</p>
+<p class="big"><b>Final score: fifteen strategies, fourteen deaths, one survivor</b> — boring monthly
+momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
+The fourteen corpses were not wasted work. They are the reason we trust the one that lived.</p>
 </section>
 
 <!-- ---------------- GLOSSARY ---------------- -->
