@@ -50,8 +50,11 @@ def sue_frame(dates: pd.DatetimeIndex, trailing: int = 8,
 
 
 def run() -> None:
+    # OOS panel starts 2019: momentum warmup consumes it, entries begin
+    # 2020-01 — the registered 2020-22 window, same months for ALL variants
     for label, start, end in (("IN-SAMPLE 2023-26", "2022-01-01", None),
-                              ("OUT-OF-SAMPLE 2020-22", None, "2022-12-31")):
+                              ("OUT-OF-SAMPLE 2020-22", "2019-01-01",
+                               "2022-12-31")):
         print(f"\n=== {label} ===")
         p = features._panel(start, end)
         ctx = features._context(p)
