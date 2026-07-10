@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fourteen Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing fifteen trading strategies on real market data — fourteen failures, one survivor, zero rupees lost.">
+<title>Fifteen Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing sixteen trading strategies on real market data — fifteen failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -80,7 +80,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Fourteen ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Fifteen ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
@@ -88,8 +88,8 @@ runs on the real numbers.</p>
 <p class="sans small mut">A project by <b style="color:var(--ink)">the Author</b> — who wanted profits —
 and his AI research partner, who wanted proof. The tension between those two is the story.</p>
 <div class="statrow">
-<div class="stat"><b>15</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">14</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>16</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">15</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -165,6 +165,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td>v13</td><td>Own the 20 calmest (low-volatility) stocks</td><td><span class="pill dead">DEAD</span> standalone — but see the audit box below</td></tr>
 <tr><td>v14</td><td>Add an options-market fear gauge (India VIX) to v4</td><td><span class="pill dead">DEAD</span> fear is already in the price trend; avoiding fear avoids profits</td></tr>
 <tr><td>v7</td><td>Add real quarterly-earnings data to the momentum winner</td><td><span class="pill dead">DEAD</span> the final challenger — see the last chapter</td></tr>
+<tr><td>v4.2</td><td>Review the winner weekly / fortnightly / quarterly instead of monthly</td><td><span class="pill dead">DEAD</span> weekly = death by churn; monthly sits on the plateau</td></tr>
 </table>
 </section>
 
@@ -443,6 +444,14 @@ The verdict for your wallet stands, the insult to the gurus is retracted.</p>
 defensive asset should be judged inside a portfolio. A 70/30 momentum/low-vol blend beat pure momentum on
 risk-adjusted return in both eras and cut the worst drawdown from -33.5% to -23.8%. Because we found this
 <i>after</i> peeking at the data, it earns only a paper-trial spot, not instant belief. Honesty has rules.</p>
+<p><b>One more knob, one more corpse — and a lesson about decimals.</b> The Author asked whether the
+monthly review was sacred: <i>"it's not compulsory to hold a stock for a month, right?"</i> Right — so we swept
+the review cadence from weekly to quarterly. Weekly checking turned the champion into a corpse (-82 points
+out-of-sample: the 12-month signal barely moves in a week, so frequent review just buys trading costs and
+whipsaw — the quant version of checking your portfolio too often). Quarterly naps through crashes. Monthly
+sits on the plateau. And the humbling bonus: the SAME monthly cadence anchored to different calendar days
+swung the in-sample result by ±70 points — pure date luck. That is why no verdict here ever rested on one
+number. A single backtest figure is an estimate; only patterns across windows, variants and anchors count.</p>
 <p><b>And the survivor got audited hardest.</b> v4's backtest assumed vanished stocks (delistings) exit at
 their last price. Under a hostile 50%-loss assumption its out-of-sample pass would FLIP to a fail — so we
 audited all 24 vanishings by name: 7 renames, 16 temporary exchange-surveillance moves that returned ~3
