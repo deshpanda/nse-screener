@@ -118,6 +118,8 @@ def adjust(df: pd.DataFrame) -> pd.DataFrame:
     if not OUT.exists():
         raise SystemExit("No corporate_actions.parquet — run the CA backfill.")
     ca = pd.read_parquet(OUT)
+    from ingest import renames
+    ca["symbol"] = renames.canonical(ca["symbol"])
     ca["factor"] = ca["subject"].map(factor)
     ca = ca[(ca["factor"] != 1.0) & (ca["factor"] > 0)]
 

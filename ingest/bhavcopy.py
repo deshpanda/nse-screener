@@ -52,4 +52,8 @@ def load_all() -> pd.DataFrame:
     files = sorted((config.DATA_DIR / "bhav").glob("*.parquet"))
     if not files:
         raise SystemExit("No bhavcopy data. Run backfill.py first.")
-    return pd.concat(map(pd.read_parquet, files), ignore_index=True)
+    df = pd.concat(map(pd.read_parquet, files), ignore_index=True)
+    # canonicalize renamed tickers so histories merge (Tier 0 hygiene)
+    from ingest import renames
+    df["symbol"] = renames.canonical(df["symbol"])
+    return df.drop_duplicates(subset=["date", "symbol"], keep="last")
