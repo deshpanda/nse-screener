@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-11b (Tier0 rename-merge live: v4 OOS edge +77->+116 fidelity gain. v18 dead. v17 announcements fetch in flight ~2h. 18 tested / 17 dead / v4 survives)
+> Last updated: 2026-07-11c (sequence complete: Tier0 fidelity gain, v17 dead, v18 dead. 19 tested / 18 dead / v4 survives. Research queue empty; remaining items: sector-momentum + pledge-screen [need data fetches], v13.1 paper confirmation)
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
@@ -69,6 +69,8 @@ names in code/docs/site (local untracked config files are fine).
 | v16 | residual momentum (Blitz; beta-stripped 12-1 t-stat) + 52w-high grid | DEAD | delivered "half the vol" (DD -3.8/-14.1, OOS Sharpe 1.02>0.97) but NOT the returns: edge -14/-13 vs Nifty both windows. 52w-high: -73 OOS. Incumbent survives 10th challenge |
 
 | v18 | smart-buyer track records (score 18,644 named counterparties point-in-time, follow proven) | DEAD | Skill signal is REAL relative to the deal pool (+1..+6) but the pool is toxic: avg disclosed net-buy deal = -0.4 IS / -6.0 OOS vs Nifty. Best-of-a-bad-pool ~ breakeven gross. Final word on follow-the-institutions |
+
+| v17 | corporate-event studies: buybacks + order wins (3.7k + 3.5k announcements, timestamped, two-null design) | DEAD | All medians negative both windows; events underperform even the random-announcement baseline IS (vs_baseline -0.6..-2.8). Indian buybacks are not undervaluation signals. The all-announcements null (+2.4 IS) caught the activity-tilt that single-benchmark tests would credit as edge |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
