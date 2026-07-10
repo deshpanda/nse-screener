@@ -97,6 +97,9 @@ same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
   `screener.paper_log`; daily 19:30 IST cron runs `daily.py` + screener.
   Decision pending after ~2-3 clean months: deploy small real money
   (sizing details are a private conversation, not a repo topic).
+- **Watchdog**: scripts/health.py every 4 waking hours (cron :15 8-23),
+  macOS notification + health.log on any failure — panel staleness, cron
+  silence/tracebacks, missed month-end snapshots, broken git publish.
 - **Live Trial on the site**: docs/ has a section reading paper/log.csv
   + paper/status.json from raw.githubusercontent at view time. The
   month-end snapshot AUTO-COMMITS AND PUSHES paper/ (best-effort, offline
