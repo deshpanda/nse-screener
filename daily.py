@@ -8,6 +8,12 @@ from ingest import bhavcopy, bulk_deals, corporate_actions, fii_dii
 
 def main() -> None:
     d = date.today()
+    # self-healing: also backfill the trailing week, so a slept-through
+    # cron slot never leaves a hole in the panel
+    for back in range(7, 0, -1):
+        prev = d - timedelta(days=back)
+        if prev.weekday() < 5:
+            bhavcopy.store(prev)
     ok = bhavcopy.store(d)
     print(f"bhavcopy {d}: {'ok' if ok else 'not available yet (or holiday)'}")
     bulk_deals.store(d)
