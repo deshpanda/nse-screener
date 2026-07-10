@@ -169,6 +169,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td>v17</td><td>Buy on buyback / big-order announcements</td><td><span class="pill dead">DEAD</span> did worse than a random announcement</td></tr>
 <tr><td>v18</td><td>Score every named big buyer by their track record; follow the proven</td><td><span class="pill dead">DEAD</span> skill is real — but visible deals are bad entry points for everyone</td></tr>
 <tr><td>v19</td><td>Ride the hottest sectors, pick the strongest stocks inside them</td><td><span class="pill dead">DEAD</span> one lucky setting shone; its neighbors collapsed — we don't promote lucky settings</td></tr>
+<tr><td>v20</td><td>Avoid stocks whose founders have pawned their own shares (pledge screen)</td><td><span class="pill paper">DATASET GROWING</span> can't be tested honestly yet — see the finale</td></tr>
 </table>
 </section>
 
@@ -508,7 +509,19 @@ anything that price momentum hadn't already noticed — by the time profits acce
 knows.</p>
 <p class="big"><b>Final score: twenty strategies, nineteen deaths, one survivor</b> — boring monthly
 momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
-The sixteen failures were not wasted work — they are the reason the one survivor can be trusted.</p><p><b>Postscript — sterner tests, same verdict.</b> After the Author asked whether
+The sixteen failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
+<h3>The experiment we refused to fake — and what we're doing instead</h3>
+<p>One idea remains genuinely promising: avoid companies whose founders have
+<dfn data-d="Promoters (founders/controlling owners) can borrow money using their own shares as collateral. If the stock falls, lenders force-sell those shares, pushing it down further — a cascade. High pledge = hidden fragility.">pledged</dfn>
+their own shares — a documented fragility with a real mechanism. The problem: the exchange only publishes
+<i>today's</i> pledge levels. Testing today's data against the past would smuggle in hindsight — the worst
+pledge disasters are exactly the companies that no longer exist to be tested. Most backtest sellers would
+run it anyway. We refused.</p>
+<p>Instead, the machine now records the full pledge snapshot every month, permanently. In a year, we will
+own a point-in-time pledge history that exists nowhere else for free — and then the experiment runs
+honestly, on data we grew ourselves. Some datasets can't be downloaded. They have to be farmed.</p>
+</div>
+<p><b>Postscript — sterner tests, same verdict.</b> After the Author asked whether
 our judging itself was sound, the gate gained three new instruments from the professional literature: rolling-window
 consistency, a penalty for how many strategies we tried (the deflated Sharpe ratio), and a measure of whether our
 own selection process overfits. Verdicts under the sterner judge: the survivor's edge is <b>~99.5% likely to be

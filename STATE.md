@@ -178,6 +178,17 @@ US: `us/data/prices.parquet` — 598 tickers, point-in-time S&P 500
 membership (`us/data/sp500_hist.csv`, fja05680 dataset), yfinance,
 84% coverage (delisted tickers missing — flatters results, disclosed).
 
+
+Pledge dataset (v20, under construction): NSE publishes only the CURRENT
+promoter-pledge snapshot (corporate-pledgedata API; ~1,530 companies).
+The monthly paper-log run captures it to `data/pledge/<date>.parquet`
+(first: 2026-07-10). Plan: after >=12 monthly snapshots, pre-register the
+pledge screen properly — join snapshots point-in-time to v4 formations,
+test "exclude promoter-pledge > 25%" as a v4 challenger. Until then any
+pledge backtest would be lookahead + survivorship and is refused. The
+snapshots also serve as raw material for future risk screens (pledge
+DELTAS month-over-month may matter more than levels).
+
 ## 6. Backtest engines
 
 - `backtest/features.py` — point-in-time panel + shared context
