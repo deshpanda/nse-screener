@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-11d (v19 dead — grid knife-edge refused; v20 deferred, pledge snapshots accumulating. 20 tested / 19 dead / v4 survives. Research queue EMPTY. Next events: Jul 31 paper entry #2, v13.1 paper confirmation, go-live review ~Oct)
+> Last updated: 2026-07-11d (v19 dead — grid knife-edge refused; v20 deferred, pledge snapshots accumulating. 21 tested / 20 dead / v4 survives (count corrected 2026-07-11: earlier tallies drifted by omitting v13/v14). Research queue EMPTY. Next events: Jul 31 paper entry #2, v13.1 paper confirmation, go-live review ~Oct)
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
