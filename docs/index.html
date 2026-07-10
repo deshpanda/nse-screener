@@ -67,12 +67,13 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 .check{list-style:none;padding:0} .check li{padding:10px 0 10px 34px;position:relative;border-bottom:1px dashed var(--line)}
 .check li::before{content:"✕";position:absolute;left:4px;color:var(--red);font-weight:700}
 .check li.ok::before{content:"✓";color:var(--green)}
+.tablewrap{overflow-x:auto} .tablewrap table{min-width:560px}
 </style>
 </head>
 <body>
 <div id="tip"></div><div id="ctip"></div>
 <nav><div class="in">
-<a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a>
+<a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a><a href="#thedata">The Data</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
 <a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
@@ -199,6 +200,32 @@ everywhere, including the delisted dead.</p>
 <p><b>Trap 3 — lookahead.</b> Using any information before the market actually had it. Sounds obvious; happens
 constantly. Example: quarterly profits "belong" to March but are announced in May — use them in April and your
 backtest is psychic. We keyed every fundamental number to its exact announcement timestamp.</p>
+</section>
+
+<!-- ---------------- THE DATA ---------------- -->
+<section id="thedata">
+<div class="kicker">Under the hood</div>
+<h2>The data all of this runs on</h2>
+<p>Every claim on this page traces back to datasets built from free, public sources — mostly the exchange's
+own archives, which publish far more than most people realise. Nothing was bought. The collection code is in
+the open repo; a nightly job keeps it all current. What a decade of it looks like:</p>
+<div class="tablewrap"><table>
+<tr><th>Dataset</th><th>Size</th><th>What it is, in plain words</th></tr>
+<tr><td><b>Daily prices + delivery</b></td><td>2,670+ trading days × ~2,400 stocks</td><td>Every NSE stock's daily open/high/low/close, volume — and what % of trades were
+<dfn data-d="Shares actually transferred to the buyer's account (held overnight) vs. bought-and-sold within the day. High delivery = real accumulation, not day-trading churn.">taken as delivery</dfn>.
+2016→today, split-adjusted, renamed tickers merged (1,041 mappings).</td></tr>
+<tr><td><b>Corporate actions</b></td><td>800+ splits &amp; bonuses</td><td>Every event that changes a share's price without changing anyone's wealth. Without these, a 10:1 split looks like a -90% crash (Chapter 3). Includes 87 events the official feed missed, detected from price ratios.</td></tr>
+<tr><td><b>Quarterly results</b></td><td>43,421 filings</td><td>Ten years of company profits parsed from regulatory XBRL filings — each keyed to the exact second it was announced, so a backtest can never "know" a number before the market did.</td></tr>
+<tr><td><b>Named big trades</b></td><td>151,787 deals</td><td>Every bulk/block deal on NSE since 2016 — with the buyer's and seller's names. The raw material for the smart-money autopsy (Chapter 7¾).</td></tr>
+<tr><td><b>Corporate announcements</b></td><td>32,000+ kept (of ~1.3M scanned)</td><td>Buybacks, order wins, and a random control sample — timestamped. The control sample is what caught the activity-tilt illusion.</td></tr>
+<tr><td><b>Fear gauge</b></td><td>2,604 days of India VIX</td><td>The options market's daily estimate of coming turbulence. Tested as information (v14); no derivatives traded.</td></tr>
+<tr><td><b>US market</b></td><td>598 tickers + point-in-time S&amp;P 500 membership</td><td>Plus 78,300 insider purchase filings, 538 hedge-fund 13F filings, and a Senate-trades archive — the American half of the smart-money autopsy.</td></tr>
+<tr><td><b>Pledge snapshots</b></td><td>growing monthly</td><td>The dataset being farmed (see the finale) — promoter share-pledge levels, captured every month until enough history exists to test honestly.</td></tr>
+</table></div>
+<p class="small mut">Collection order matters more than volume: prices needed two different archive formats stitched
+together; delivery data lived in a third archive; results filings needed a parser that survives three regulatory
+format changes; and roughly 40% of all engineering time went to making the data <i>honest</i> rather than merely
+available. If you build on raw downloads without that work, Chapter 3 is what happens to you.</p>
 </section>
 
 <!-- ---------------- CHAPTER 4 ---------------- -->
