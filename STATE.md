@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-11c (sequence complete: Tier0 fidelity gain, v17 dead, v18 dead. 19 tested / 18 dead / v4 survives. Research queue empty; remaining items: sector-momentum + pledge-screen [need data fetches], v13.1 paper confirmation)
+> Last updated: 2026-07-11d (v19 dead — grid knife-edge refused; v20 deferred, pledge snapshots accumulating. 20 tested / 19 dead / v4 survives. Research queue EMPTY. Next events: Jul 31 paper entry #2, v13.1 paper confirmation, go-live review ~Oct)
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
@@ -71,6 +71,9 @@ names in code/docs/site (local untracked config files are fine).
 | v18 | smart-buyer track records (score 18,644 named counterparties point-in-time, follow proven) | DEAD | Skill signal is REAL relative to the deal pool (+1..+6) but the pool is toxic: avg disclosed net-buy deal = -0.4 IS / -6.0 OOS vs Nifty. Best-of-a-bad-pool ~ breakeven gross. Final word on follow-the-institutions |
 
 | v17 | corporate-event studies: buybacks + order wins (3.7k + 3.5k announcements, timestamped, two-null design) | DEAD | All medians negative both windows; events underperform even the random-announcement baseline IS (vs_baseline -0.6..-2.8). Indian buybacks are not undervaluation signals. The all-announcements null (+2.4 IS) caught the activity-tilt that single-benchmark tests would credit as edge |
+
+| v19 | sector momentum (top-3 sectors by median member 12-1, then stock momentum) | DEAD | Declared spec fails vs incumbent both windows (OOS edge +13 vs +116). Grid violently unstable: adjacent cell (top-5) shows +196 OOS — a knife-edge cell we refuse to promote, exactly what PBO 0.48 predicted. Sector map = today's snapshot (disclosed) |
+| v20 | promoter-pledge negative screen | DEFERRED | No free point-in-time pledge history (API = current snapshot; backtest would be lookahead + survivorship). Monthly cron now captures snapshots (data/pledge/) — our own dataset accumulates; revisit >=12 months |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
