@@ -20,6 +20,11 @@ def main() -> None:
     fii_dii.store(d)
     # keep the CA file fresh: re-pull a trailing+leading window and merge
     corporate_actions.store(d - timedelta(days=30), d + timedelta(days=60))
+    try:  # publish regime flips to the public status file (site reads it)
+        from screener.paper_log import refresh_status
+        refresh_status()
+    except Exception as e:
+        print(f"status refresh skipped: {e}")
     print("done")
 
 

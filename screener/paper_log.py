@@ -9,6 +9,8 @@ and equal-weight entry prices. The log is append-only history — the whole
 point is that it can't be rewritten after the fact.
 """
 import argparse
+import json
+import subprocess
 from pathlib import Path
 
 import pandas as pd
@@ -16,7 +18,45 @@ import pandas as pd
 import config
 from backtest import features
 
-LOG = Path(__file__).resolve().parent.parent / "paper" / "log.csv"
+PAPER = Path(__file__).resolve().parent.parent / "paper"
+LOG = PAPER / "log.csv"
+STATUS = PAPER / "status.json"
+
+
+def _push(msg: str) -> None:
+    """Best-effort publish of paper/ to the public repo (site reads it)."""
+    root = PAPER.parent
+    try:
+        subprocess.run(["git", "add", "paper"], cwd=root, check=True,
+                       capture_output=True)
+        dirty = subprocess.run(["git", "status", "--porcelain", "paper"],
+                               cwd=root, capture_output=True, text=True)
+        if not dirty.stdout.strip():
+            return
+        subprocess.run(["git", "commit", "-q", "-m", msg], cwd=root,
+                       check=True, capture_output=True)
+        subprocess.run(["git", "push", "-q", "origin", "main"], cwd=root,
+                       check=True, capture_output=True, timeout=120)
+        print("→ published to repo (site will reflect it)")
+    except Exception as e:                    # offline is fine; next run carries it
+        print(f"→ publish skipped ({type(e).__name__})")
+
+
+def build_status(regime_on: bool, t, bench_now: float,
+                 n_holdings: int, n_lowvol: int,
+                 stance: str | None = None) -> None:
+    log = pd.read_csv(LOG) if LOG.exists() else pd.DataFrame()
+    STATUS.write_text(json.dumps({
+        "updated": str(pd.Timestamp.now().date()),
+        "asof": str(t.date()),
+        "regime": "ON" if regime_on else "OFF",
+        "stance": stance or (f"{n_holdings} stocks held" if regime_on
+                             else "100% cash — circuit-breaker open"),
+        "lowvol_names": n_lowvol,
+        "entries": int(len(log)),
+        "nifty_start": float(log["niftybees"].iloc[0]) if len(log) else None,
+        "nifty_now": bench_now,
+    }, indent=1))
 
 
 def snapshot() -> None:
@@ -55,6 +95,29 @@ def snapshot() -> None:
     row.to_csv(LOG, mode="a", header=header, index=False)
     print(row.to_string(index=False))
     print(f"→ appended to {LOG}")
+    build_status(regime_on, t, round(float(bench.loc[t]), 2),
+                 0 if holdings == "CASH" else holdings.count(";") + 1,
+                 lowvol.count(";") + 1)
+    _push(f"paper log: {t.date()}")
+
+
+def refresh_status() -> None:
+    """Daily hook: republish status ONLY when the regime flips — watchers
+    see stance changes within a day without daily commit noise."""
+    prev = json.loads(STATUS.read_text()) if STATUS.exists() else {}
+    p = features._panel(None, None)
+    ctx = features._context(p)
+    t = p["close"].index[-1]
+    bench = ctx["bench"]
+    regime_on = bool(bench.loc[t] >= bench.rolling(200).mean().loc[t])
+    if prev.get("regime") == ("ON" if regime_on else "OFF"):
+        return
+    build_status(regime_on, t, round(float(bench.loc[t]), 2), 0,
+                 prev.get("lowvol_names") or 0,
+                 stance=("regime flipped ON — portfolio forms at next "
+                         "month-end" if regime_on else
+                         "regime flipped OFF — exits at next month-end"))
+    _push(f"regime change: {'ON' if regime_on else 'OFF'} as of {t.date()}")
 
 
 def report() -> None:

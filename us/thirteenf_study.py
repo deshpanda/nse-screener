@@ -26,8 +26,9 @@ def ticker_map() -> dict:
     f = DATA / "company_tickers.json"
     if not f.exists():
         r = requests.get("https://www.sec.gov/files/company_tickers.json",
-                         headers={"User-Agent": "research deshpanda@users.noreply.github.com"},
+                         headers={"User-Agent": "research contact@deshpanda.dev"},
                          timeout=60)
+        r.raise_for_status()
         f.write_bytes(r.content)
     j = pd.read_json(f, orient="index")
     j["n"] = j["title"].map(norm)
