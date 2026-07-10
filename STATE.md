@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-10 evening (v7 DEAD, incumbent stands; campaign concluded: 15 tested / 14 dead / v4 survives; next events: paper log Jul 31, go-live review ~Oct).
+> Last updated: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
 
@@ -63,6 +63,9 @@ names in code/docs/site (local untracked config files are fine).
 | v13 | India low-volatility sleeve (naive 252d realized vol, bottom-20) | DEAD standalone; ALIVE as combo candidate | Standalone criteria failed. BUT audit follow-up: 70/30 v4/lowvol beats pure v4 Sharpe BOTH windows (1.27/1.06 vs 1.24/0.97), OOS DD -23.8 vs -33.5. Result came from an exploratory peek → needs formal combo pre-registration + confirmation in PAPER phase (untouched data). Quality variant still awaits v7 data |
 | v4.2 | rebalance-cadence sweep on v4 (k in 5/10/21/42/63 sessions) | DEAD (incumbent stands) | weekly OOS edge -82 (churn+costs); fortnightly flips sign OOS; quarterly DDs balloon to -44. Monthly = plateau top. Anchor-day luck swings IS edge +-70pt over 43 rebalances - treat single backtest numbers as estimates, trust cross-window patterns |
 | v14 | India VIX-augmented regime on v4 (F&O data as info only) | DEAD (incumbent stands) | VIX<25 + DMA = identical to v4 IS (redundant); OOS -24pt (VIX stays high post-crash exactly when re-entry pays). vix<20 OOS -79pt. High fear = high forward returns in India. data: ingest/vix.py |
+
+| v15 | PEAD India (event-time, broadcast-timestamped, 43k announcements) | DEAD | IS median -0.04 + OOS qtr-concentration 34%. Two-null diagnostic: NEGATIVE-surprise events also beat Nifty +2.2 IS = universe tilt, not information. Surprise-specific spread: +3.8 OOS -> +0.8 IS (alpha decay again) |
+| v16 | residual momentum (Blitz; beta-stripped 12-1 t-stat) + 52w-high grid | DEAD | delivered "half the vol" (DD -3.8/-14.1, OOS Sharpe 1.02>0.97) but NOT the returns: edge -14/-13 vs Nifty both windows. 52w-high: -73 OOS. Incumbent survives 10th challenge |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
