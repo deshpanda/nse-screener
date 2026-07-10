@@ -74,7 +74,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#survivor">The Survivor</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
+<a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
@@ -366,6 +366,24 @@ second button), profits spread across dozens of stocks and years.</p>
 live signals logged publicly in the repo before a single rupee moves. Its very first live instruction, July 2026:
 <i>"market below the 200-day line — hold cash."</i> The first thing the winning strategy ever did was refuse to trade.
 Sit with that.</p>
+</section>
+
+<!-- ---------------- LIVE TRIAL ---------------- -->
+<section id="livetrial">
+<div class="kicker">Live · updates automatically from the repo</div>
+<h2>The paper trial, in public</h2>
+<p>The survivor is now proving itself in the open. Every month-end, the machine records what the strategy
+would hold — into an append-only log in the public repository, where history can't be quietly rewritten.
+This section reads that log <i>live</i>. No numbers are typed into this page by hand.</p>
+<div class="statrow" id="ltCards"><div class="stat"><b>…</b><span class="mut small">loading from repo</span></div></div>
+<div class="widget">
+<div class="wtitle">Month-end decisions logged so far</div>
+<div id="ltTable" class="sans small">loading…</div>
+<p class="small mut" id="ltNote"></p>
+</div>
+<p class="small mut">Verdict standard, fixed in advance: after ≥3 month-end decisions, live behavior must match
+the backtest's simulation — then, and only then, does real (small) money enter the discussion. If the trial
+misbehaves, that gets published too. <a href="https://github.com/deshpanda/nse-screener/blob/main/paper/log.csv">Raw log ↗</a></p>
 </section>
 
 <!-- ---------------- CHAPTER 7.5 ---------------- -->
@@ -777,6 +795,35 @@ $$('btnV2').onclick=()=>drawSweep('v2'); $$('btnV4').onclick=()=>drawSweep('v4')
         <span style="color:#8b949e">●</span> Nifty: ₹1 → ₹${d.nifty[i].toFixed(2)}`};
   }
   $$('logBtn').onclick=()=>{log=!log;draw();}; draw(); hoverify('v4Chart');
+})();
+
+
+/* ---------- live paper trial (reads the public repo) ---------- */
+(async function(){
+  const RAW='https://raw.githubusercontent.com/deshpanda/nse-screener/main/paper/';
+  try{
+    const st = await (await fetch(RAW+'status.json',{cache:'no-store'})).json();
+    const niftyChg = st.nifty_start ? (100*(st.nifty_now/st.nifty_start-1)).toFixed(1) : '0.0';
+    $$('ltCards').innerHTML =
+      `<div class="stat"><b class="${st.regime==='ON'?'green':'gold'}">${st.regime}</b><span class="mut small">regime (as of ${st.asof})</span></div>`+
+      `<div class="stat"><b style="font-size:17px;line-height:2.2">${st.stance}</b><span class="mut small">current stance</span></div>`+
+      `<div class="stat"><b>${st.entries}</b><span class="mut small">decisions logged</span></div>`+
+      `<div class="stat"><b>${niftyChg}%</b><span class="mut small">Nifty since trial start</span></div>`;
+    const csv = await (await fetch(RAW+'log.csv',{cache:'no-store'})).text();
+    const lines = csv.trim().split('\n').slice(1);
+    let rows = '<table><tr><th>as of</th><th>regime</th><th>momentum sleeve</th><th>low-vol sleeve</th><th>NIFTYBEES</th></tr>';
+    for(const ln of lines){
+      const f = ln.split(',');
+      const hold = f[2]==='CASH' ? '<span class="gold">CASH</span>' : (f[2].split(';').length+' stocks');
+      const lv = f[3] ? f[3].split(';').length+' stocks' : '—';
+      rows += `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${hold}</td><td>${lv}</td><td>₹${f[4]}</td></tr>`;
+    }
+    $$('ltTable').innerHTML = rows+'</table>';
+    $$('ltNote').textContent = `Last updated ${st.updated}. The strategy decides only at month-ends; between decisions there is nothing to record — and "CASH" is a decision.`;
+  }catch(e){
+    $$('ltTable').innerHTML = 'Could not load the live log (network/CORS). It lives here: github.com/deshpanda/nse-screener → paper/log.csv';
+    $$('ltCards').innerHTML = '';
+  }
 })();
 
 /* ---------- glossary ---------- */
