@@ -14,6 +14,10 @@ method rules, data traps, pending decisions.
 (every chart runs on the real backtest data; the live paper-trial
 section reads `paper/log.csv` straight from this repo).
 
+**The full datasets →** https://github.com/deshpanda/nse-screener-data
+(~400MB of panels with a beginner-friendly guide to what each dataset
+is; small derived files remain in this repo under `data/`).
+
 ## The one survivor
 
 v4: top-20 by 12-1 momentum among liquid NSE stocks, equal weight,
