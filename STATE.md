@@ -83,6 +83,8 @@ names in code/docs/site (local untracked config files are fine).
 
 | v20.1 | pledge-CREATION events (early via PIT; 13,922 creations) | DEAD as screen | OOS toxic as theorized (-3.6 median, -7.8 at 126d, 38% win) but IS 2023-26 POSITIVE (+8.2 at 126d) — refusal signals are regime-dependent too; fails both-windows bar. Only rating-downgrades survived both eras |
 
+| v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
+
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
 harvests a slow behavioral bias, not information. v8 showed edges are
@@ -93,6 +95,11 @@ post-pop drift, slow 13F diffusion) are measurably gone in 2023-2026 —
 killed by commoditized data apps and the discount-broker retail boom.
 "Follow smart money" is now closed at all four disclosure speeds:
 same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
+
+TRADING-LIVE repo scaffolded at ~/Documents/personal-github-repos/trading-live
+(propose-first, strategies.yaml registry, one-switch TRADING_MODE; user
+must create PRIVATE GitHub repo then push; keys never in repo/chat).
+Small derived datasets now committed (DATA.md); big panels reproducible.
 
 ## 4. Current status & pending
 
