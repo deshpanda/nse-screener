@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Twenty-Four Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing twenty-five trading strategies on real market data — twenty-four failures, one survivor, zero rupees lost.">
+<title>Twenty-Five Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing twenty-six trading strategies on real market data — twenty-five failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -81,14 +81,14 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Twenty-four ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Twenty-five ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
 runs on the real numbers.</p>
 <div class="statrow">
-<div class="stat"><b>25</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">24</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>26</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">25</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -174,6 +174,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V21.md">v21</a></td><td>Follow Indian promoters buying their own stock (insider disclosures)</td><td><span class="pill dead">DEAD</span> the strongest corpse — real signal, but lottery-shaped returns failed our bar</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V20.1.md">v20.1</a></td><td>Avoid stocks when founders pledge shares (early test via disclosure events)</td><td><span class="pill dead">DEAD</span> toxic in normal years, positive in manias — refusal signals decay too</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V24.md">v24</a></td><td>A momentum recipe the Author found in the wild (a builder he follows online)</td><td><span class="pill dead">BEAT THE MARKET, LOST TO v4</span> only the 2nd strategy ever to pass the index gate — the champion's extra rules were worth ~10 points a year</td></tr>
+<tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V23.md">v23</a></td><td>Use futures-market positioning (open interest) to refine the champion</td><td><span class="pill dead">DEAD</span> crowding kills; and v4's edge turns out to live outside the F&O universe entirely</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V21.md">v22</a></td><td>Avoid stocks hit by rating downgrades / auditor exits</td><td><span class="pill dead">MIXED</span> downgrades confirmed toxic (-14.6%); auditor exits noise</td></tr>
 </table>
 </section>
@@ -550,7 +551,7 @@ testing it, and let the machine keep score. Ten more studies. Here is each one, 
 <tr><td>Follow Indian promoters buying their own stock with real money (v21)</td><td class="gold">The strongest signal of the hunt — beat the control group in BOTH eras — yet the typical trade still earned ~0; profits were a few big winners</td><td>A real edge you can't rely on monthly is still not an edge you can eat</td></tr>
 <tr><td>Avoid stocks hit by credit-rating downgrades (v22)</td><td class="green">Confirmed: −14.6% vs market the following quarter</td><td>The market's clearest messages are warnings, not tips</td></tr>
 <tr><td>Avoid stocks whose founders pledge their shares (v20.1, tested early via disclosure events)</td><td class="red">Toxic in normal years (−7.8% at 6 months), PROFITABLE in the 2023-26 mania</td><td>Even refusal signals have seasons</td></tr>
-<tr><td>Next up: does <dfn data-d="Open interest: the number of outstanding futures contracts on a stock — how many bets are currently standing. Rising price + rising open interest = fresh conviction money; rising price + falling OI = shorts giving up. We use it as information only; no derivatives are traded.">open interest</dfn> from the futures market improve the champion? (v23)</td><td><span class="pill paper">RUNNING</span></td><td>Verdict lands automatically; this row will change</td></tr>
+<tr><td>Next up: does <dfn data-d="Open interest: the number of outstanding futures contracts on a stock — how many bets are currently standing. Rising price + rising open interest = fresh conviction money; rising price + falling OI = shorts giving up. We use it as information only; no derivatives are traded.">open interest</dfn> from the futures market improve the champion? (v23)</td><td class="red">DEAD — rising open interest marks CROWDED trades (−138 vs market out-of-sample)</td><td>The accidental gem: the champion restricted to derivatives-listed large caps COLLAPSES — its edge lives in the mid-caps below the futures market\u2019s attention</td></tr>
 </table></div>
 <p>Season two's laws, earned twice each: <b>the market tells you what to refuse more reliably than what to
 buy — but even refusal has seasons.</b> The champion faced five more challengers this season under the
@@ -577,9 +578,9 @@ A tie broken by discretion after seeing results isn't a tie; it's a leak.</p>
 windows, across every settings variant. The information in earnings is genuine. It just doesn't add
 anything that price momentum hadn't already noticed — by the time profits accelerate, the price usually
 knows.</p>
-<p class="big"><b>Final score: twenty-five strategies, twenty-four deaths, one survivor</b> — boring monthly
+<p class="big"><b>Final score: twenty-six strategies, twenty-five deaths, one survivor</b> — boring monthly
 momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
-The twenty-four failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
+The twenty-five failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
 <h3>The experiment we refused to fake — and what we're doing instead</h3>
 <p>One idea remains genuinely promising: avoid companies whose founders have
 <dfn data-d="Promoters (founders/controlling owners) can borrow money using their own shares as collateral. If the stock falls, lenders force-sell those shares, pushing it down further — a cascade. High pledge = hidden fragility.">pledged</dfn>

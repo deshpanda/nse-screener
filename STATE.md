@@ -85,6 +85,8 @@ names in code/docs/site (local untracked config files are fine).
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
 
+| v23 | futures OI signals (OI-confirm overlay + basis crowding screen; committed runner backtest/oi_study.py) | DEAD both hypotheses | OI-confirm toxic (-59 IS/-138 OOS: OI growth = crowding); basis screen inert. KEY DISCOVERY: v4-restricted-to-F&O collapses (+31/-68 vs full +99/+116) — v4 alpha lives in non-F&O midcaps. Echoes v8: institutionalized names do not pay momentum |
+
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
 harvests a slow behavioral bias, not information. v8 showed edges are
