@@ -131,6 +131,60 @@ def v13q():  # PROTOCOL_V13 quality variant (needs v7 fundamentals)
     _each(run)
 
 
+def v201():  # PROTOCOL_V20.1: pledge-creation events
+    from backtest.events17 import run_kind, report as _rep
+    from backtest.pit_study import load_pit
+    from ingest import etf_list
+    p = features._panel(None, None)
+    close, open_ = p["close"], p["open"]
+    etfs = etf_list.symbols()
+    keep = [c for c in close.columns if c not in etfs or c == "NIFTYBEES"]
+    close, open_ = close[keep], open_[keep]
+    liquid = p["turnover_lacs"].rolling(20).median() >= 500
+    args = (close, open_, close["NIFTYBEES"], open_["NIFTYBEES"], liquid)
+    pit = load_pit()
+    prom = pit["personCategory"].str.contains("Promoter", na=False)
+    crea = pit[prom & (pit["acqMode"] == "Pledge Creation")]
+    revo = pit[prom & pit["acqMode"].str.contains("Revok", na=False)]
+    for label, lo, hi in (("IS 2023-26", "2023-01-01", "2027-01-01"),
+                          ("OOS 2018-22", "2018-01-01", "2023-01-01")):
+        print(f"=== {label} ===")
+        W = lambda d: d[(d["an_dt"] >= lo) & (d["an_dt"] < hi)]
+        nullp = run_kind(W(pit), *args, gap_days=0)
+        nm = nullp["excess"].mean()
+        _rep("pledge CREATION 63d", run_kind(W(crea), *args, gap_days=63), nm)
+        _rep("creation hold_21", run_kind(W(crea), *args, hold=21, gap_days=63), nm)
+        _rep("creation hold_126", run_kind(W(crea), *args, hold=126, gap_days=63), nm)
+        _rep("REVOCATION control", run_kind(W(revo), *args, gap_days=63), nm)
+
+
+def v24():  # PROTOCOL_V24: NSE-200 winner (hysteresis)
+    def run(p, ctx):
+        close = p["close"]
+        t200 = p["turnover_lacs"].rolling(20).median()
+        def mk(lb=252, hyst=True):
+            ret = close.shift(1) / close.shift(lb) - 1
+            held = []
+            def sel(t, m):
+                nonlocal held
+                uni = t200.loc[t].reindex(m.index).dropna().nlargest(200).index
+                r = ret.loc[t].reindex(uni).dropna().sort_values(ascending=False)
+                top20, top40 = list(r.index[:20]), set(r.index[:40])
+                if hyst:
+                    keep = [x for x in held if x in top40]
+                    held = (keep + [x for x in top20 if x not in keep])[:20]
+                else:
+                    held = top20
+                return held
+            return sel
+        monthly.report("v4-regime", monthly.simulate(p, ctx, regime_filter=True))
+        monthly.report("v24 12m hyst", monthly.simulate(p, ctx, select_fn=mk()))
+        monthly.report("v24 6m", monthly.simulate(p, ctx, select_fn=mk(lb=126)))
+        monthly.report("v24 +regime", monthly.simulate(p, ctx, regime_filter=True, select_fn=mk()))
+        monthly.report("v24 no-hyst", monthly.simulate(p, ctx, select_fn=mk(hyst=False)))
+    _each(run)
+
+
 if __name__ == "__main__":
     {"v41": v41, "v14": v14, "v16": v16, "v19": v19,
-     "v13q": v13q}[sys.argv[1]]()
+     "v13q": v13q, "v201": v201, "v24": v24}[sys.argv[1]]()
