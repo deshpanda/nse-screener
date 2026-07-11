@@ -136,7 +136,11 @@ data that unlocks currently-impossible tests. Ranked:
    stock futures OI changes, PCR, IV from F&O bhavcopy archives.
    Sentiment features with documented literature.
 6. **Sector indices OHLC** (NSE inds) — proper sector benchmarks.
-7. Processing wins on existing data: canonicalize fr_xbrl symbols
+3b. DONE (partial): index members via Wayback — 13 point-in-time
+   snapshots (Nifty50: 10 spanning 2016-2025; Nifty500: 3 of 2020-22) in
+   data/index_members/. Too sparse for inclusion event-studies; usable
+   for coarse universe checks. Full press-release parse deferred.
+7. Processing wins on existing data: DONE canonicalize fr_xbrl symbols
    (renames — small fidelity fix for v7/v15 reruns); close-location-value
    + gap features from OHLC; delivery-value vs free-float normalization;
    earnings-calendar extraction from board-meeting announcements
