@@ -147,7 +147,25 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
   verdicts land). v7 verdict should become its next chapter.
 
 
-## Research queue (updated 2026-07-11: DATA-FIRST phase, user-directed)
+## Research queue — CLOSED OUT 2026-07-11 night (all items resolved)
+
+- v22.1 rating detection: BLOCKED-DOCUMENTED — direction lives in PDF
+  attachments (~14k files); free-text exhausted (avg 80 boilerplate
+  chars). The -14.6 OOS finding stands as knowledge; certification
+  requires a future PDF-parsing project. Personal hygiene rule stands.
+- Shareholding patterns: ingester live (ingest/shareholding.py, 90
+  quarters/symbol, broadcast-timestamped) — backfill running (~1,800
+  symbols). Ownership-trend hypothesis: pre-register only AFTER format
+  review, never after outcome peeks.
+- Reproducibility pass: DONE — backtest/runners.py commits v4.1/v14/
+  v16/v19/v13-quality runners.
+- Sector indices: ingest/indices.py committed; backfill CHAINED after
+  shareholding completes (same host).
+- Full constituent history: BLOCKED-DOCUMENTED — niftyindices.com
+  unreachable/PDF-based; Wayback partial (13 snapshots) remains the
+  standing answer.
+
+## OLD queue (historical record)
 
 Strategy launches paused (paper trial pending). Focus: gather/process
 data that unlocks currently-impossible tests. Ranked:
