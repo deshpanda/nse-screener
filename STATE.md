@@ -149,7 +149,19 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
 
 ## Research queue — CLOSED OUT 2026-07-11 night (all items resolved)
 
-- v22.1 rating detection: BLOCKED-DOCUMENTED — direction lives in PDF
+- SHAREHOLDING DONE: 1,877 symbols × ~90 quarters, broadcast-timestamped
+  (data/shareholding/). Format review then possible ownership-trend
+  pre-registration = next research season's opener.
+- v22.1 UNBLOCK IN FLIGHT: ingest/ratings.py — 3-phase PDF pipeline
+  (urls scan → liquid-universe PDF download → direction regex), chained
+  overnight after indices. When parsed.parquet lands: rerun v22 with
+  true directions, certify screen if bar met.
+- CONSTITUENTS synthetic path (queued idea): shares_out ≈ NP/EPS from
+  fr_xbrl → mcap = close × shares → point-in-time mcap ranks →
+  approximate index membership, calibrated vs 13 Wayback snapshots.
+- All studies now have committed runners (runners.py incl v20.1, v24);
+  site scoreboard: every row links protocol + code (27 code links).
+- OLD NOTE superseded: v22.1 rating detection was BLOCKED-DOCUMENTED — direction lives in PDF
   attachments (~14k files); free-text exhausted (avg 80 boilerplate
   chars). The -14.6 OOS finding stands as knowledge; certification
   requires a future PDF-parsing project. Personal hygiene rule stands.
