@@ -225,7 +225,7 @@ the open repo; a nightly job keeps it all current. What a decade of it looks lik
 <tr><td><b>US market</b></td><td>598 tickers + point-in-time S&amp;P 500 membership</td><td>Plus 78,300 insider purchase filings, 538 hedge-fund 13F filings, and a Senate-trades archive — the American half of the smart-money autopsy.</td></tr>
 <tr><td><b>Insider disclosures (India)</b></td><td>290,913 filings</td><td>Every insider transaction since 2017 with who, how (market buy vs ESOP), value, and timestamp — including 29,657 pledge creation/revocation events. Powered v21 and v20.1.</td></tr>
 <tr><td><b>All announcements</b></td><td>1.26M classified</td><td>Every corporate announcement since 2016 with its category — the haystack from which rating downgrades and auditor exits were pulled (v22).</td></tr>
-<tr><td><b>Stock futures</b></td><td>decade, downloading</td><td>Daily open interest and futures pricing per stock — the derivatives market's positioning, used as information only (v23, pending).</td></tr>
+<tr><td><b>Stock futures</b></td><td>decade, downloading</td><td>Daily <dfn data-d="Open interest: how many futures contracts are outstanding on a stock — a gauge of how much betting money is positioned, and in which direction it's building.">open interest</dfn> and futures pricing per stock — the derivatives market's positioning, used as information only (v23, pending).</td></tr>
 <tr><td><b>Index membership</b></td><td>13 snapshots</td><td>Point-in-time Nifty constituent lists recovered from the Internet Archive — partial but honest.</td></tr>
 <tr><td><b>Pledge snapshots</b></td><td>growing monthly</td><td>The dataset being farmed (see the finale) — promoter share-pledge levels, captured every month until enough history exists to test honestly.</td></tr>
 </table></div>
@@ -535,16 +535,27 @@ They're the point.</p>
 <div class="kicker">Chapters 10+ · the data-first turn</div>
 <h2>Season two: when strategies ran out, we went digging</h2>
 <p>After the first wave of verdicts, the bottleneck stopped being ideas — it was questions our data couldn't
-answer. So the project pivoted: gather what nobody else bothers to collect, then let pre-registered tests
-loose on it. That season produced the scoreboard's newest rows: low-vol and sector rotation (dead), the
-earnings challenger that beat the champion in one era and lost in the other (incumbent rules), Indian
-insider buys (the strongest corpse — real signal, lottery-shaped), and the refusal-signal family: rating
-downgrades (confirmed toxic), auditor exits (noise), founder share-pledging (toxic in normal markets,
-profitable in manias — even avoidance decays).</p>
-<p>Season two's law, earned twice over: <b>the market tells you what to refuse more reliably than what to
-buy — but even refusal has seasons.</b> And a standing rule was added to the machine: any new dataset used
-anywhere gets a row in the data table above, same day. If you can't see the data, you shouldn't trust the
-verdict.</p>
+answer. So the project pivoted: build datasets almost nobody bothers to collect, write down each hypothesis
+and its pass criteria <dfn data-d="Pre-registration: committing the exact rules, test windows, and success criteria to the public repository BEFORE running the test — so results can't quietly bend the rules. Every protocol here is git-timestamped.">before</dfn>
+testing it, and let the machine keep score. Ten more studies. Here is each one, its result, and what it taught:</p>
+<div class="tablewrap"><table>
+<tr><th>What we tried</th><th>Result</th><th>The takeaway</th></tr>
+<tr><td>Judge the champion harder — penalise it for every strategy we ever tried (deflated Sharpe), test whether our own variant-picking overfits</td><td class="green">v4 survived: 99.5% likely real. But picking the "best-looking" variant of any family = coin flip</td><td>Never promote the shiniest settings; keep the pre-declared ones</td></tr>
+<tr><td>Buy right after earnings surprises, using exact announcement timestamps (v15)</td><td class="red">Typical trade earned ~0; even BAD-news stocks "gained" — the lift was small-caps drifting, not information</td><td>Every event study needs a boring-control group</td></tr>
+<tr><td>Momentum with the market's movement subtracted out (v16)</td><td class="red">Half the turbulence, none of the outperformance</td><td>In India, the market-linked part of momentum IS the paying part</td></tr>
+<tr><td>Buy on buyback and big-order announcements (v17)</td><td class="red">Did worse than a random announcement</td><td>Indian buybacks aren't the undervaluation signal US textbooks describe</td></tr>
+<tr><td>Score all 18,644 named big buyers by their own track records; copy the proven ones (v18)</td><td class="red">Skill exists (+6 vs the average deal) — but the average disclosed deal LOSES to the index</td><td>Visible trades are bad entry points, no matter whose they are</td></tr>
+<tr><td>Ride the hottest sectors (v19)</td><td class="red">Declared settings failed; one neighbouring setting looked spectacular</td><td>We refuse lucky settings — that refusal is the whole method</td></tr>
+<tr><td>Follow Indian promoters buying their own stock with real money (v21)</td><td class="gold">The strongest signal of the hunt — beat the control group in BOTH eras — yet the typical trade still earned ~0; profits were a few big winners</td><td>A real edge you can't rely on monthly is still not an edge you can eat</td></tr>
+<tr><td>Avoid stocks hit by credit-rating downgrades (v22)</td><td class="green">Confirmed: −14.6% vs market the following quarter</td><td>The market's clearest messages are warnings, not tips</td></tr>
+<tr><td>Avoid stocks whose founders pledge their shares (v20.1, tested early via disclosure events)</td><td class="red">Toxic in normal years (−7.8% at 6 months), PROFITABLE in the 2023-26 mania</td><td>Even refusal signals have seasons</td></tr>
+<tr><td>Next up: does <dfn data-d="Open interest: the number of outstanding futures contracts on a stock — how many bets are currently standing. Rising price + rising open interest = fresh conviction money; rising price + falling OI = shorts giving up. We use it as information only; no derivatives are traded.">open interest</dfn> from the futures market improve the champion? (v23)</td><td><span class="pill paper">RUNNING</span></td><td>Verdict lands automatically; this row will change</td></tr>
+</table></div>
+<p>Season two's laws, earned twice each: <b>the market tells you what to refuse more reliably than what to
+buy — but even refusal has seasons.</b> The champion faced five more challengers this season under the
+<dfn data-d="The incumbent rule: a challenger replaces the current champion only by beating it on every pre-agreed measure in BOTH test eras. Ties and mixed results go to the champion — because 'it won in the era I prefer' is how self-deception starts.">incumbent rule</dfn>
+and kept its title every time. And a standing rule joined the machine: any new dataset used anywhere gets a
+row in the data table above, same day. If you can't see the data, you shouldn't trust the verdict.</p>
 </section>
 
 <!-- ---------------- CHAPTER 9 ---------------- -->
