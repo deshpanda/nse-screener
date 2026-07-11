@@ -101,6 +101,22 @@ TRADING-LIVE repo scaffolded at ~/Documents/personal-github-repos/trading-live
 must create PRIVATE GitHub repo then push; keys never in repo/chat).
 Small derived datasets now committed (DATA.md); big panels reproducible.
 
+NEXT-SESSION QUEUE (2026-07-11 late, context-limited deferrals):
+1. v23 verdict when futures backfill notification fires (runner MUST be
+   committed script per reproducibility rule).
+2. DATA REPO: owner approved separate public repo nse-screener-data for
+   the big panels (~430MB). Owner must CREATE it on deshpanda first; then
+   push panels + rewrite site data-section hyperlinks: dataset name →
+   data repo path, keep ingest-script links as-is; remove committed
+   small parquets from nse-screener? NO — keep small ones, move only big.
+3. v24 full chapter + Season-2 row (currently only scoreboard row!) —
+   include how-we-found-it story, hysteresis insight, maybe a chart.
+   OWNER RULE: be generous with chapters + visuals henceforth.
+4. Site dfn/count audit after v24 chapter (rules now in CLAUDE.md §7).
+5. v24 hysteresis idea: candidate v4 refinement — fresh pre-registration
+   on future data only (FIP rule applies).
+6. trading-live pushed (private); SETUP.md has full Kite guide.
+
 ## 4. Current status & pending
 
 - **Research campaign CONCLUDED 2026-07-10**: 15 strategies tested, 14
