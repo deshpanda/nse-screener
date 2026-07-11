@@ -7,7 +7,7 @@ is git-timestamped: protocol committed before the first run, no post-hoc
 parameter rescue.
 
 **Start here → [STATE.md](STATE.md)** — the single source of truth:
-full scoreboard (18 strategies tested, 17 dead, 1 in paper trial),
+full scoreboard (26 strategies tested, 25 dead, 1 in paper trial),
 method rules, data traps, pending decisions.
 
 **The story, interactive →** https://deshpanda.github.io/nse-screener/
