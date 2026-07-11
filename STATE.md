@@ -38,6 +38,9 @@ names in code/docs/site (local untracked config files are fine).
   (the information question). In 2023-26 the avg S&P stock did -1.8%/63d
   vs SPY — cap-weight concentration made "vs SPY" nearly unbeatable for
   any stock-picker; scope claims accordingly.
+- **New-data rule (2026-07-11, owner-directed)**: any dataset used by
+  any study gets, SAME DAY: a row in the site's data section, an entry
+  in STATE §5, and its ingest module documented. No invisible inputs.
 - **Audit the survivor hardest**: v4's 24 OOS "delists" were audited
   name-by-name (7 renames, 16 EQ→BE series migrations returning ~97d
   later at -5% avg gap, 1 merger). Realistic haircut keeps OOS edge +59.
@@ -77,6 +80,8 @@ names in code/docs/site (local untracked config files are fine).
 
 | v21 | India insider MARKET purchases (PIT, 290,913 disclosures, 40k market buys) | DEAD by the letter; STRONGEST corpse | IS passes all (+4.6/+1.6 net, beats both nulls). OOS: means strong (+2.0..+4.9 vs null, BOTH windows — unique since v4) but median -1.0 + conc 33%>30% → fail. Insider skew: few big wins. Revisit ONLY via fresh pre-registration on future data (FIP rule) |
 | v22 | announcement risk screens | rating-downgrade CONFIRMED toxic (-14.6 OOS, 28% win); IS detection thin (n=3) → v4-filter certification deferred pending better rating capture. Auditor/CFO-resign: DEAD (positive IS) |
+
+| v20.1 | pledge-CREATION events (early via PIT; 13,922 creations) | DEAD as screen | OOS toxic as theorized (-3.6 median, -7.8 at 126d, 38% win) but IS 2023-26 POSITIVE (+8.2 at 126d) — refusal signals are regime-dependent too; fails both-windows bar. Only rating-downgrades survived both eras |
 
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it

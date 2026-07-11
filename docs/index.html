@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Twenty-Two Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing twenty-three trading strategies on real market data — twenty-two failures, one survivor, zero rupees lost.">
+<title>Twenty-Three Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing twenty-four trading strategies on real market data — twenty-three failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -75,20 +75,20 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a><a href="#thedata">The Data</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
+<a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#season2">Season 2</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Twenty-two ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Twenty-three ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
 runs on the real numbers.</p>
 <div class="statrow">
-<div class="stat"><b>23</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">22</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>24</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">23</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -172,6 +172,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td>v19</td><td>Ride the hottest sectors, pick the strongest stocks inside them</td><td><span class="pill dead">DEAD</span> one lucky setting shone; its neighbors collapsed — we don't promote lucky settings</td></tr>
 <tr><td>v20</td><td>Avoid stocks whose founders have pawned their own shares (pledge screen)</td><td><span class="pill paper">DATASET GROWING</span> can't be tested honestly yet — see the finale</td></tr>
 <tr><td>v21</td><td>Follow Indian promoters buying their own stock (insider disclosures)</td><td><span class="pill dead">DEAD</span> the strongest corpse — real signal, but lottery-shaped returns failed our bar</td></tr>
+<tr><td>v20.1</td><td>Avoid stocks when founders pledge shares (early test via disclosure events)</td><td><span class="pill dead">DEAD</span> toxic in normal years, positive in manias — refusal signals decay too</td></tr>
 <tr><td>v22</td><td>Avoid stocks hit by rating downgrades / auditor exits</td><td><span class="pill dead">MIXED</span> downgrades confirmed toxic (-14.6%); auditor exits noise</td></tr>
 </table>
 </section>
@@ -222,6 +223,10 @@ the open repo; a nightly job keeps it all current. What a decade of it looks lik
 <tr><td><b>Corporate announcements</b></td><td>32,000+ kept (of ~1.3M scanned)</td><td>Buybacks, order wins, and a random control sample — timestamped. The control sample is what caught the activity-tilt illusion.</td></tr>
 <tr><td><b>Fear gauge</b></td><td>2,604 days of India VIX</td><td>The options market's daily estimate of coming turbulence. Tested as information (v14); no derivatives traded.</td></tr>
 <tr><td><b>US market</b></td><td>598 tickers + point-in-time S&amp;P 500 membership</td><td>Plus 78,300 insider purchase filings, 538 hedge-fund 13F filings, and a Senate-trades archive — the American half of the smart-money autopsy.</td></tr>
+<tr><td><b>Insider disclosures (India)</b></td><td>290,913 filings</td><td>Every insider transaction since 2017 with who, how (market buy vs ESOP), value, and timestamp — including 29,657 pledge creation/revocation events. Powered v21 and v20.1.</td></tr>
+<tr><td><b>All announcements</b></td><td>1.26M classified</td><td>Every corporate announcement since 2016 with its category — the haystack from which rating downgrades and auditor exits were pulled (v22).</td></tr>
+<tr><td><b>Stock futures</b></td><td>decade, downloading</td><td>Daily open interest and futures pricing per stock — the derivatives market's positioning, used as information only (v23, pending).</td></tr>
+<tr><td><b>Index membership</b></td><td>13 snapshots</td><td>Point-in-time Nifty constituent lists recovered from the Internet Archive — partial but honest.</td></tr>
 <tr><td><b>Pledge snapshots</b></td><td>growing monthly</td><td>The dataset being farmed (see the finale) — promoter share-pledge levels, captured every month until enough history exists to test honestly.</td></tr>
 </table></div>
 <p class="small mut">Collection order matters more than volume: prices needed two different archive formats stitched
@@ -525,6 +530,23 @@ is written, and every protocol, verdict and line of code lives in the
 They're the point.</p>
 </section>
 
+<!-- ---------------- SEASON 2 ---------------- -->
+<section id="season2">
+<div class="kicker">Chapters 10+ · the data-first turn</div>
+<h2>Season two: when strategies ran out, we went digging</h2>
+<p>After the first wave of verdicts, the bottleneck stopped being ideas — it was questions our data couldn't
+answer. So the project pivoted: gather what nobody else bothers to collect, then let pre-registered tests
+loose on it. That season produced the scoreboard's newest rows: low-vol and sector rotation (dead), the
+earnings challenger that beat the champion in one era and lost in the other (incumbent rules), Indian
+insider buys (the strongest corpse — real signal, lottery-shaped), and the refusal-signal family: rating
+downgrades (confirmed toxic), auditor exits (noise), founder share-pledging (toxic in normal markets,
+profitable in manias — even avoidance decays).</p>
+<p>Season two's law, earned twice over: <b>the market tells you what to refuse more reliably than what to
+buy — but even refusal has seasons.</b> And a standing rule was added to the machine: any new dataset used
+anywhere gets a row in the data table above, same day. If you can't see the data, you shouldn't trust the
+verdict.</p>
+</section>
+
 <!-- ---------------- CHAPTER 9 ---------------- -->
 <section id="finale">
 <div class="kicker">Chapter 9 · v7, the final challenger</div>
@@ -543,9 +565,9 @@ A tie broken by discretion after seeing results isn't a tie; it's a leak.</p>
 windows, across every settings variant. The information in earnings is genuine. It just doesn't add
 anything that price momentum hadn't already noticed — by the time profits accelerate, the price usually
 knows.</p>
-<p class="big"><b>Final score: twenty-three strategies, twenty-two deaths, one survivor</b> — boring monthly
+<p class="big"><b>Final score: twenty-four strategies, twenty-three deaths, one survivor</b> — boring monthly
 momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
-The twenty-two failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
+The twenty-three failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
 <h3>The experiment we refused to fake — and what we're doing instead</h3>
 <p>One idea remains genuinely promising: avoid companies whose founders have
 <dfn data-d="Promoters (founders/controlling owners) can borrow money using their own shares as collateral. If the stock falls, lenders force-sell those shares, pushing it down further — a cascade. High pledge = hidden fragility.">pledged</dfn>
