@@ -132,7 +132,13 @@ data that unlocks currently-impossible tests. Ranked:
 4. **Quarterly shareholding patterns** (promoter/FII/DII/public % per
    symbol) — ownership-LEVEL trends vs v5's trade-events. Per-symbol
    fetch, heavy; do after 1-3.
-5. **F&O-derived features (data only, no trading per owner's rule)** —
+5. IN FLIGHT: **F&O stock-futures backfill** (ingest/futures.py,
+   data/futstk/, 2016→now, ~3h) — OI, chg_OI, basis per stock/expiry.
+   Strategy PRIORS to formalize only after data lands (no registration
+   yet): (a) OI-confirmation on momentum ("long buildup": price up +
+   OI up), (b) futures basis (premium/discount) as crowding gauge.
+   Both must face the two-null rule and the v4 challenger bar.
+   Original item: **F&O-derived features (data only, no trading)** —
    stock futures OI changes, PCR, IV from F&O bhavcopy archives.
    Sentiment features with documented literature.
 6. **Sector indices OHLC** (NSE inds) — proper sector benchmarks.
