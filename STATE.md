@@ -112,32 +112,38 @@ same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
   verdicts land). v7 verdict should become its next chapter.
 
 
-## Research queue (proposed 2026-07-11, awaiting go)
+## Research queue (updated 2026-07-11: DATA-FIRST phase, user-directed)
 
-1. **v17 buyback/corporate-event studies**: NSE corporate-announcements
-   API (same family as CA/results; timestamps) → buyback announcements,
-   order wins → event studies. Documented anomaly, mechanism = signaling
-   + actual demand. Processing: fetch + categorize announcements 2016+.
-2. **v18 smart-buyer track records**: 151k named bulk/block deals →
-   score each of 18,644 counterparties by forward returns of their PAST
-   deals (point-in-time), follow only proven-skilled buyers. v5 followed
-   a static category; this LEARNS who is worth following. Highest
-   creativity/uniqueness; multiple-testing risk handled by pre-registered
-   scoring rule + METHOD2 lenses.
-3. **v19 conviction momentum**: delivery-share TREND (rising deliverable
-   fraction over weeks) as ranking overlay on momentum top-40 → 20.
-   Uses the delivery goldmine cross-sectionally (v3 used it as events).
-4. **Sector momentum**: needs symbol→industry master (NSE equity master
-   CSV — small fetch). Industry rotation documented in India.
-5. **Promoter-pledge negative screen**: NSE pledge disclosures → exclude
-   high-pledge names from v4 (mechanism: forced-selling cascades).
-   Processing: pledge history fetch.
-6. **Panel hygiene (pure processing)**: merge renamed-symbol histories
-   using NSE symbolchange.csv — improves EVERY backtest's fidelity and
-   kills the rename-as-delist ambiguity.
-7. **v15.1 market-revealed surprise**: earnings-day price+delivery
-   reaction as the surprise measure (vs computed SUE). Fresh hypothesis,
-   fresh pre-registration.
+Strategy launches paused (paper trial pending). Focus: gather/process
+data that unlocks currently-impossible tests. Ranked:
+
+1. **India insider (PIT/SAST) disclosures** — NSE corporates-pit API.
+   The genuinely untested family: we tested US insiders (dead post-2023
+   commoditization) but never Indian promoter/insider buys. Less
+   app-commoditized here. Unlocks v21.
+2. **Full announcements taxonomy re-fetch** — we kept only buybacks/
+   orders; re-fetch keeping ALL category labels: credit-rating changes,
+   auditor/CFO resignations, pledge invocations, open offers. Unlocks
+   mechanism-backed RISK SCREENS (rating downgrades, resignations) more
+   than return chasers.
+3. **Historical index constituents** (Nifty 50/100/500 changes from NSE
+   press archives) — fixes universe/benchmark fidelity, unlocks
+   index-inclusion event studies, enables cap-segment point-in-time work.
+4. **Quarterly shareholding patterns** (promoter/FII/DII/public % per
+   symbol) — ownership-LEVEL trends vs v5's trade-events. Per-symbol
+   fetch, heavy; do after 1-3.
+5. **F&O-derived features (data only, no trading per owner's rule)** —
+   stock futures OI changes, PCR, IV from F&O bhavcopy archives.
+   Sentiment features with documented literature.
+6. **Sector indices OHLC** (NSE inds) — proper sector benchmarks.
+7. Processing wins on existing data: canonicalize fr_xbrl symbols
+   (renames — small fidelity fix for v7/v15 reruns); close-location-value
+   + gap features from OHLC; delivery-value vs free-float normalization;
+   earnings-calendar extraction from board-meeting announcements
+   (enables pre/post-earnings conditioning).
+
+Rule unchanged: new data → pre-registered protocol BEFORE any outcome is
+computed. Data-first ≠ mine-first.
 
 ## 5. Data infrastructure (what exists, where, and the traps)
 
