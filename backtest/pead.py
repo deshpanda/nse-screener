@@ -14,6 +14,8 @@ PARSED = config.DATA_DIR / "fr_xbrl" / "parsed.parquet"
 
 def sue_events(trailing: int = 8) -> pd.DataFrame:
     fr = pd.read_parquet(PARSED).dropna(subset=["net_profit"])
+    from ingest import renames
+    fr["symbol"] = renames.canonical(fr["symbol"])
     fr = (fr.sort_values("broadcast")
             .drop_duplicates(subset=["symbol", "q_end"], keep="first")
             .sort_values(["symbol", "q_end"]))

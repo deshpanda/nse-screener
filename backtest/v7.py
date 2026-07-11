@@ -20,6 +20,8 @@ def sue_frame(dates: pd.DatetimeIndex, trailing: int = 8,
               simple_yoy: bool = False) -> pd.DataFrame:
     """date × symbol frame of the latest-announced SUE as of each date."""
     fr = pd.read_parquet(PARSED).dropna(subset=["net_profit"])
+    from ingest import renames
+    fr["symbol"] = renames.canonical(fr["symbol"])
     fr = (fr.sort_values("broadcast")
             .drop_duplicates(subset=["symbol", "q_end"], keep="first"))
     fr = fr.sort_values(["symbol", "q_end"])
