@@ -79,7 +79,7 @@ names in code/docs/site (local untracked config files are fine).
 | v20 | promoter-pledge negative screen | DEFERRED | No free point-in-time pledge history (API = current snapshot; backtest would be lookahead + survivorship). Monthly cron now captures snapshots (data/pledge/) — our own dataset accumulates; revisit >=12 months |
 
 | v21 | India insider MARKET purchases (PIT, 290,913 disclosures, 40k market buys) | DEAD by the letter; STRONGEST corpse | IS passes all (+4.6/+1.6 net, beats both nulls). OOS: means strong (+2.0..+4.9 vs null, BOTH windows — unique since v4) but median -1.0 + conc 33%>30% → fail. Insider skew: few big wins. Revisit ONLY via fresh pre-registration on future data (FIP rule) |
-| v22 | announcement risk screens | rating-downgrade CONFIRMED toxic (-14.6 OOS, 28% win); IS detection thin (n=3) → v4-filter certification deferred pending better rating capture. Auditor/CFO-resign: DEAD (positive IS) |
+| v22 | announcement risk screens | RETRACTED after v22.1: 1,043 PDF-verified downgrades show effect ~gone (IS +3.5 mean!, OOS -4.8 median only) — early -14.6 was 32-event keyword-bias. Screen NOT certified; personal hygiene rule withdrawn. CONTROLS validated method (upgrades +3 both windows — possible future pre-registration on FRESH data only). Auditor-resign: dead |
 
 | v20.1 | pledge-CREATION events (early via PIT; 13,922 creations) | DEAD as screen | OOS toxic as theorized (-3.6 median, -7.8 at 126d, 38% win) but IS 2023-26 POSITIVE (+8.2 at 126d) — refusal signals are regime-dependent too; fails both-windows bar. Only rating-downgrades survived both eras |
 

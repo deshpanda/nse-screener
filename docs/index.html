@@ -175,7 +175,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V20.1.md">v20.1</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/runners.py">code ↗</a></td><td>Avoid stocks when founders pledge shares (early test via disclosure events)</td><td><span class="pill dead">DEAD</span> toxic in normal years, positive in manias — refusal signals decay too</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V24.md">v24</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/runners.py">code ↗</a></td><td>A momentum recipe the Author found in the wild (a builder he follows online)</td><td><span class="pill dead">BEAT THE MARKET, LOST TO v4</span> only the 2nd strategy ever to pass the index gate — the champion's extra rules were worth ~10 points a year</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V23.md">v23</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/oi_study.py">code ↗</a></td><td>Use futures-market positioning (open interest) to refine the champion</td><td><span class="pill dead">DEAD</span> crowding kills; and v4's edge turns out to live outside the F&O universe entirely</td></tr>
-<tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V21.md">v22</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/pit_study.py">code ↗</a></td><td>Avoid stocks hit by rating downgrades / auditor exits</td><td><span class="pill dead">MIXED</span> downgrades confirmed toxic (-14.6%); auditor exits noise</td></tr>
+<tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V21.md">v22</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/pit_study.py">code ↗</a></td><td>Avoid stocks hit by rating downgrades / auditor exits</td><td><span class="pill dead">RETRACTED</span> with 1,043 PDF-verified downgrades the "toxic" result vanished — the tiny early sample had fooled us; we corrected ourselves in public</td></tr>
 </table>
 </section>
 
@@ -466,9 +466,9 @@ allows: India's <dfn data-d="Any single trade bigger than 0.5% of a company must
 untried smart-money feed: Indian promoters buying their own companies' stock (disclosed within days).
 It was the strongest signal of the entire hunt — the only one to beat the fair-comparison baseline in both
 eras. It still failed: the profits are lottery-shaped, a few big winners hiding a typical trade that earns
-nothing, and we require the TYPICAL trade to work. And its cousin finding is a keeper: stocks hit by a
-credit-rating downgrade went on to lose 14.6% vs the market over the next quarter. Some data is best used
-not to pick what to buy — but to know what to refuse.</p>
+nothing, and we require the TYPICAL trade to work. An early cousin finding — "downgraded stocks lose 14.6%" — looked like a keeper, until we parsed all
+1,043 actual downgrade letters from their PDFs: the effect vanished. The tiny first sample had caught only
+the loudest disasters. We print the correction as prominently as the claim, because that is the whole deal.</p>
 <p class="mut small">The senator data held a beautiful trap worth naming: 68% of their followed trades
 "made money" — in a market where everything made money. Against the index: a coin flip. Subscription
 services sell you the first number and hope you never compute the second.</p>
@@ -587,7 +587,7 @@ testing it, and let the machine keep score. Ten more studies. Here is each one, 
 <tr><td>Score all 18,644 named big buyers by their own track records; copy the proven ones (v18)</td><td class="red">Skill exists (+6 vs the average deal) — but the average disclosed deal LOSES to the index</td><td>Visible trades are bad entry points, no matter whose they are</td></tr>
 <tr><td>Ride the hottest sectors (v19)</td><td class="red">Declared settings failed; one neighbouring setting looked spectacular</td><td>We refuse lucky settings — that refusal is the whole method</td></tr>
 <tr><td>Follow Indian promoters buying their own stock with real money (v21)</td><td class="gold">The strongest signal of the hunt — beat the control group in BOTH eras — yet the typical trade still earned ~0; profits were a few big winners</td><td>A real edge you can't rely on monthly is still not an edge you can eat</td></tr>
-<tr><td>Avoid stocks hit by credit-rating downgrades (v22)</td><td class="green">Confirmed: −14.6% vs market the following quarter</td><td>The market's clearest messages are warnings, not tips</td></tr>
+<tr><td>Avoid stocks hit by credit-rating downgrades (v22, re-tested on 1,043 PDF-verified letters)</td><td class="red">RETRACTED — the early "−14.6%" was a 32-event fluke; the full sample shows downgrades largely priced in</td><td>Small samples lie confidently; we parse the PDFs and print corrections</td></tr>
 <tr><td>Avoid stocks whose founders pledge their shares (v20.1, tested early via disclosure events)</td><td class="red">Toxic in normal years (−7.8% at 6 months), PROFITABLE in the 2023-26 mania</td><td>Even refusal signals have seasons</td></tr>
 <tr><td>Next up: does <dfn data-d="Open interest: the number of outstanding futures contracts on a stock — how many bets are currently standing. Rising price + rising open interest = fresh conviction money; rising price + falling OI = shorts giving up. We use it as information only; no derivatives are traded.">open interest</dfn> from the futures market improve the champion? (v23)</td><td class="red">DEAD — rising open interest marks CROWDED trades (−138 vs market out-of-sample)</td><td>The accidental gem: the champion restricted to derivatives-listed large caps COLLAPSES — its edge lives in the mid-caps below the futures market\u2019s attention</td></tr>
 </table></div>
