@@ -103,7 +103,9 @@ TRADING-LIVE repo scaffolded at ~/Documents/personal-github-repos/trading-live
 must create PRIVATE GitHub repo then push; keys never in repo/chat).
 Small derived datasets now committed (DATA.md); big panels reproducible.
 
-NEXT-SESSION QUEUE (2026-07-11 late, context-limited deferrals):
+DONE 2026-07-11 evening: data repo pushed (github.com/deshpanda/nse-screener-data, 354MB, site rows link to it); v24 full chapter live (Chapter 11, with visual); trading-live is FUNCTIONAL (cli.py propose/live + kite adapter — personal API is FREE since 2024, Rs2000 = historical addon we don't need; Upstox = free fallback); calendar: monthly paper-checks Sep-Nov 1 + GO-LIVE REVIEW Oct 15 19:00 (private events).
+
+OLDER QUEUE (2026-07-11 late, context-limited deferrals):
 1. v23 verdict when futures backfill notification fires (runner MUST be
    committed script per reproducibility rule).
 2. DATA REPO: owner approved separate public repo nse-screener-data for
