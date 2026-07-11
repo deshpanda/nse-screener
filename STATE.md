@@ -4,7 +4,7 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-11d (v19 dead — grid knife-edge refused; v20 deferred, pledge snapshots accumulating. 21 tested / 20 dead / v4 survives (count corrected 2026-07-11: earlier tallies drifted by omitting v13/v14). Research queue EMPTY. Next events: Jul 31 paper entry #2, v13.1 paper confirmation, go-live review ~Oct)
+> Last updated: 2026-07-11 night — FINAL for this sprint. 26 tested / 25 dead / v4 survives (evidence: DSR 0.995, OOS +116 rename-corrected, habitat = non-F&O midcaps). All infra live: paper trial, watchdog, trading-live (functional, private), data repo public, site current. Queue: see NEXT ACTIONS below.
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
@@ -167,7 +167,7 @@ data that unlocks currently-impossible tests. Ranked:
 4. **Quarterly shareholding patterns** (promoter/FII/DII/public % per
    symbol) — ownership-LEVEL trends vs v5's trade-events. Per-symbol
    fetch, heavy; do after 1-3.
-5. IN FLIGHT: **F&O stock-futures backfill** (ingest/futures.py,
+5. DONE (v23 dead; habitat discovery). Was: **F&O stock-futures backfill** (ingest/futures.py,
    data/futstk/, 2016→now, ~3h) — OI, chg_OI, basis per stock/expiry.
    Strategy PRIORS to formalize only after data lands (no registration
    yet): (a) OI-confirmation on momentum ("long buildup": price up +
