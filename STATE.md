@@ -75,6 +75,9 @@ names in code/docs/site (local untracked config files are fine).
 | v19 | sector momentum (top-3 sectors by median member 12-1, then stock momentum) | DEAD | Declared spec fails vs incumbent both windows (OOS edge +13 vs +116). Grid violently unstable: adjacent cell (top-5) shows +196 OOS — a knife-edge cell we refuse to promote, exactly what PBO 0.48 predicted. Sector map = today's snapshot (disclosed) |
 | v20 | promoter-pledge negative screen | DEFERRED | No free point-in-time pledge history (API = current snapshot; backtest would be lookahead + survivorship). Monthly cron now captures snapshots (data/pledge/) — our own dataset accumulates; revisit >=12 months |
 
+| v21 | India insider MARKET purchases (PIT, 290,913 disclosures, 40k market buys) | DEAD by the letter; STRONGEST corpse | IS passes all (+4.6/+1.6 net, beats both nulls). OOS: means strong (+2.0..+4.9 vs null, BOTH windows — unique since v4) but median -1.0 + conc 33%>30% → fail. Insider skew: few big wins. Revisit ONLY via fresh pre-registration on future data (FIP rule) |
+| v22 | announcement risk screens | rating-downgrade CONFIRMED toxic (-14.6 OOS, 28% win); IS detection thin (n=3) → v4-filter certification deferred pending better rating capture. Auditor/CFO-resign: DEAD (positive IS) |
+
 Deep insight thread: every *visible* signal (patterns, disclosures,
 rallies) is already priced by the time you can act. v4 works because it
 harvests a slow behavioral bias, not information. v8 showed edges are
@@ -117,11 +120,11 @@ same-evening (v5), 2-day (v9), 45-day funds (v10), 45-day Senate (v11).
 Strategy launches paused (paper trial pending). Focus: gather/process
 data that unlocks currently-impossible tests. Ranked:
 
-1. **India insider (PIT/SAST) disclosures** — NSE corporates-pit API.
+1. DONE (v21 verdict above). BONUS: PIT feed contains 29,657 timestamped pledge CREATION/REVOCATION events since 2017 — partially unblocks v20 YEARS early (pledge-creation negative event study now pre-registrable). Original: **India insider (PIT/SAST) disclosures** — NSE corporates-pit API.
    The genuinely untested family: we tested US insiders (dead post-2023
    commoditization) but never Indian promoter/insider buys. Less
    app-commoditized here. Unlocks v21.
-2. **Full announcements taxonomy re-fetch** — we kept only buybacks/
+2. DONE (v22 above; 1.26M announcements in data/ann_full/). Follow-up: improve rating-announcement detection, then v22.1 certification run. Original: **Full announcements taxonomy re-fetch** — we kept only buybacks/
    orders; re-fetch keeping ALL category labels: credit-rating changes,
    auditor/CFO resignations, pledge invocations, open offers. Unlocks
    mechanism-backed RISK SCREENS (rating downgrades, resignations) more
