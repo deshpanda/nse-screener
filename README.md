@@ -6,6 +6,8 @@ EOD data pipelines, pre-registered backtests, and a validation harness
 is git-timestamped: protocol committed before the first run, no post-hoc
 parameter rescue.
 
+**Operating manual → [RUNBOOK.md](RUNBOOK.md)** — run everything without an AI assistant.
+
 **Start here → [STATE.md](STATE.md)** — the single source of truth:
 full scoreboard (26 strategies tested, 25 dead, 1 in paper trial),
 method rules, data traps, pending decisions.
