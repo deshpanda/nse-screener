@@ -15,9 +15,9 @@ URL = ("https://www.nseindia.com/api/historicalOR/indicesHistory"
 DIR = config.DATA_DIR / "indices"
 INDICES = ["NIFTY 50", "NIFTY BANK", "NIFTY IT", "NIFTY PHARMA",
            "NIFTY AUTO", "NIFTY FMCG", "NIFTY METAL", "NIFTY REALTY",
-           "NIFTY ENERGY", "NIFTY FIN SERVICE", "NIFTY MEDIA",
-           "NIFTY PSU BANK", "NIFTY INFRA", "NIFTY MIDCAP 100",
-           "NIFTY SMLCAP 100"]
+           "NIFTY ENERGY", "NIFTY FINANCIAL SERVICES", "NIFTY MEDIA",
+           "NIFTY PSU BANK", "NIFTY INFRASTRUCTURE", "NIFTY MIDCAP 100",
+           "NIFTY SMALLCAP 100"]
 
 
 def backfill():
