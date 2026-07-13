@@ -14,10 +14,17 @@
 > execution-day rules in trading-live SETUP.md. NEW:
 > scripts/reconcile_paper.py = the Oct-15 "review vs simulation" step;
 > run on entry #1 → CLEAN (regime + all 20 lowvol names reproduce from
-> today's panel). Earlier same day: v22 retraction published; 3 repos
-> standardized (RUNBOOK.md). NOTHING PENDING except calendar
-> (Jul 31 / monthly checks / Oct 15 go-live) and fresh-data
-> re-registrations (upgrade-drift, hysteresis, v21, FIP — 2027).
+> today's panel). PLUS: Oct-15 decision PRE-REGISTERED —
+> PROTOCOL_GOLIVE.md (3 gates: operational/behavioral/combo-corr;
+> returns explicitly NOT a gate; amendments locked after Jul 31) and
+> scripts/golive_review.py prints the verdict mechanically. Drilled on
+> a synthetic Apr–Jun log: gate 1 caught uncommitted entries, gate 2
+> fill gaps 0.2-0.3% << 1pp tol, gate 3 correctly DEFERRED (v4 in cash
+> = 0 overlapping days — the likely real October path). Earlier same
+> day: v22 retraction published; 3 repos standardized (RUNBOOK.md).
+> NOTHING PENDING except calendar (Jul 31 / monthly checks / Oct 15
+> go-live runs golive_review) and fresh-data re-registrations
+> (upgrade-drift, hysteresis, v21, FIP — 2027).
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal

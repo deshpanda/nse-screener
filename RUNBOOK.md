@@ -78,16 +78,19 @@ Paper ≥3 clean month-ends → review vs simulation → private sizing
 decision → trading-live SETUP.md (Kite app, .env) → propose-mode cycle
 → only then TRADING_MODE=live. The gate order is not negotiable.
 
-The "review vs simulation" step is a script, not a vibe:
+The decision itself is pre-registered (PROTOCOL_GOLIVE.md, frozen
+2026-07-13 before entry #2 existed) and mechanized — on Oct 15 run:
 
-    .venv/bin/python -m scripts.reconcile_paper   # every log entry must
-                                                  # recompute to the same
-                                                  # regime + names today
+    .venv/bin/python -m scripts.golive_review     # prints the verdict;
+                                                  # there is nothing to
+                                                  # interpret on the day
+    .venv/bin/python -m scripts.reconcile_paper   # supporting detail
     .venv/bin/python -m screener.paper_log --report   # paper P&L vs Nifty
 
-Both clean ⇒ the paper numbers can be trusted for the go/no-go call.
 Any DRIFT line must be explained (rename? data revision? code change?)
-before proceeding. The execution pipeline itself was drilled 2026-07-13
+before proceeding. Returns are explicitly NOT a gate — read the
+protocol's "What is explicitly NOT a gate" section before the numbers
+tempt you. The execution pipeline itself was drilled 2026-07-13
 (7 scenarios incl. partial fills, cash flips, undersized capital — see
 trading-live git log); re-run a propose-mode `cli.py rebalance` on
 go-live morning before arming anything.
