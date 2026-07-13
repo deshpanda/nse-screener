@@ -4,9 +4,19 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-13 (night). NOW 27 tested / 26 dead / v4 in
-> paper trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron). LAST ACT:
-> US ENGINE AUDIT PASSED (PROTOCOL_USAUDIT) — our monthly engine on
+> Last updated: 2026-07-14. NOW 27 tested / 26 dead / v4 in paper
+> trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron — now SELF-HEALING:
+> watchdog auto-catchup within 3 days if laptop sleeps through it,
+> PROTOCOL_GOLIVE gate-1 amendment 2026-07-14). LAST ACT: v4 AFTER-TAX
+> AUDIT (PROTOCOL_TAX) — tax drag ~6pp/yr (WORSE than the registered
+> 2-5 prediction; miss printed), edge SURVIVES both windows: +54pt IS /
+> +63pt OOS after tax (0 of 308 IS lots long-term — churn = 20% STCG).
+> Note: pre-tax edges recomputed on today's panel (+90/+135) differ
+> from scoreboard-era numbers (+100/+116) — panel evolution (implied
+> splits, longer IS window); the audit's finding is the pre/post delta.
+> New rule of thumb: pre-tax edge < ~6pp/yr = index fund in disguise.
+> Also: trading-live staleness guard (refuses >35d-old signal).
+> Earlier: US ENGINE AUDIT PASSED (PROTOCOL_USAUDIT) — our monthly engine on
 > 30y of US data tracks Ken French's momentum decile at corr 0.892
 > (353 months) and reproduces the era pattern (+9.1pp/yr pre-2009 /
 > -25.9pp 2009 crash / decay after). Both bugs found were audit-side

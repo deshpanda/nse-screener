@@ -658,6 +658,20 @@ frozen in advance ↗</a>, <a href="https://github.com/deshpanda/nse-screener/bl
 The machine that declared twenty-six strategies dead and one alive measures reality the way five decades of
 published research does. The verdicts stand on tested ground.</p>
 
+<p><b>Postscript 3 — the visitor every backtest forgets: the tax office.</b> Every edge number on this page is
+pre-tax, like every backtest you will ever be shown. But the survivor's monthly churn means almost every gain it
+realizes is <dfn data-d="Short-term capital gains: profit on listed shares held 12 months or less — taxed at 20% in India. A monthly-rebalance strategy realizes nearly ALL its gains this way.">short-term</dfn>
+(of 308 completed round-trips in the design years, the number held past twelve months was zero), taxed at 20% —
+while its opponent, buy-and-hold Nifty, pays
+<dfn data-d="Long-term capital gains: profit on listed shares held over 12 months — taxed at just 12.5% in India, and only when you finally sell. Buy-and-hold's structural tax advantage.">long-term</dfn>
+tax of 12.5%, once, years later. We rebuilt the whole backtest as a tax ledger — every lot, every fiscal year,
+loss offsets and carry-forwards per the rules (<a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_TAX.md">method
+frozen first ↗</a>, <a href="https://github.com/deshpanda/nse-screener/blob/main/backtest/tax_audit.py">code ↗</a>).
+The verdict: the tax drag is <b>~6 points a year</b> — worse than the 2–5 we predicted in the protocol, and we print
+that miss — yet the edge survives it in both eras: <b>+54 points after tax in the design years, +63 in the
+never-seen years.</b> The lesson generalizes: <b>any strategy whose pre-tax edge is under ~6 points a year is,
+for an Indian investor, a more stressful way to own an index fund.</b> Several corpses on this page died twice.</p>
+
 </section>
 
 <!-- ---------------- GLOSSARY ---------------- -->
