@@ -148,9 +148,11 @@ def main():
     res = monthly.simulate(p, ctx, top_n=20, skip=21, cost=0.0025,
                            regime_filter=False,
                            select_fn=member_top(members))
-    ours = res["eq"].resample("ME").last().pct_change().dropna()
-    ours = ours.loc["1997-01-31":]
-    ours.index = ours.index + pd.offsets.MonthEnd(0)
+    ours = res["eq"]["ret"].copy()
+    # simulate() indexes each row by t1 = the month-end the return ENDS
+    # at — French's convention already; just snap to calendar month-end
+    ours.index = pd.to_datetime(ours.index).to_period("M").to_timestamp("M")
+    ours = ours.loc["1997-01-31":].dropna()
 
     print("\n=== C. reference sanity (French's own file, our parsing) ===")
     for label, lo, hi in (("1997-2008", "1997-01", "2008-12"),
