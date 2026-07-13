@@ -30,7 +30,45 @@ def weekdays_ago(n):
     return d
 
 
+def month_end_catchup():
+    """Step 0 — self-heal: if the 23:00 month-end cron was slept through,
+    log the SAME formation (asof pinned to month-end) within the 3-day
+    window PROTOCOL_GOLIVE gate 1 permits for automated catch-up."""
+    today = date.today()
+    prev_end = today.replace(day=1) - timedelta(days=1)
+    if (today - prev_end).days > 3:
+        return                                   # window closed; humans FAIL
+    plog = ROOT / "paper" / "log.csv"
+    if plog.exists():
+        entries = {l.split(",")[0] for l in
+                   plog.read_text().strip().split("\n")[1:]}
+        if any(e[:7] == prev_end.isoformat()[:7] and int(e[8:]) >= 24
+               for e in entries):
+            return                               # month-end entry present
+    # if month-end was a trading weekday, wait (up to 2 days) for its
+    # bhav file — else we'd pin the formation to the wrong day; on day 3
+    # run regardless (holiday month-ends have no file, correctly)
+    if (prev_end.weekday() < 5
+            and not (ROOT / "data" / "bhav"
+                     / f"{prev_end.isoformat()}.parquet").exists()
+            and (today - prev_end).days < 3):
+        print(f"{datetime.now().strftime('%Y-%m-%d %H:%M')} AUTO-CATCHUP "
+              f"waiting for {prev_end} bhav before logging")
+        return
+    r = subprocess.run(
+        [str(ROOT / ".venv" / "bin" / "python"), "-c",
+         f"from screener.paper_log import snapshot; "
+         f"snapshot(asof='{prev_end.isoformat()}')"],
+        cwd=ROOT, capture_output=True, text=True, timeout=1800)
+    tag = "AUTO-CATCHUP ok" if r.returncode == 0 else "AUTO-CATCHUP FAILED"
+    print(f"{datetime.now().strftime('%Y-%m-%d %H:%M')} {tag} "
+          f"(month-end {prev_end})")
+    if r.returncode != 0:
+        check("catchup", False, r.stderr.strip()[-120:])
+
+
 def main():
+    month_end_catchup()
     # 1. price panel freshness (allow 2 trading days of lag: NSE evening
     #    publication + one slept-through cron)
     bhav = sorted((ROOT / "data" / "bhav").glob("*.parquet"))

@@ -59,11 +59,15 @@ def build_status(regime_on: bool, t, bench_now: float,
     }, indent=1))
 
 
-def snapshot() -> None:
+def snapshot(asof: str | None = None) -> None:
+    """asof pins the formation date (last trading day <= asof) so an
+    automated catch-up after a slept-through month-end cron produces the
+    IDENTICAL entry the 23:00 run would have (PROTOCOL_GOLIVE gate 1
+    amendment). Default: latest panel date, as before."""
     p = features._panel(None, None)
     ctx = features._context(p)
     close = p["close"]
-    t = close.index[-1]
+    t = close.index[close.index <= asof][-1] if asof else close.index[-1]
 
     bench = ctx["bench"]
     regime_on = bool(bench.loc[t] >= bench.rolling(200).mean().loc[t])
@@ -84,6 +88,12 @@ def snapshot() -> None:
     okv[[s for s in vol.index if s not in ctx["stocks"]]] = False
     low20 = vol[okv].dropna().nsmallest(20)
     lowvol = ";".join(f"{s}@{close.loc[t, s]:.2f}" for s in low20.index)
+
+    if LOG.exists() and str(t.date()) in {
+            l.split(",")[0] for l in
+            LOG.read_text().strip().split("\n")[1:]}:
+        print(f"entry for {t.date()} already logged — nothing to do")
+        return
 
     row = pd.DataFrame([{
         "asof": t.date(), "regime": "ON" if regime_on else "OFF",
