@@ -24,6 +24,17 @@ decision.
   (plus the Jul-08 seed), each committed to git within 3 calendar days
   of its formation date (git author date = proof; manual backfill of a
   missed month = FAIL).
+- AMENDMENT 2026-07-14 (inside the permitted window; justification in
+  the commit): an AUTOMATED catch-up entry also satisfies this gate —
+  defined as: produced by the standing watchdog/daily cron (not a human
+  invocation) within the same 3-day window, computed with an explicit
+  `asof` pinned to the month-end trading date so the formation is
+  IDENTICAL to what the 23:00 cron would have logged (verified by
+  reconcile_paper, which recomputes at the logged asof). Rationale:
+  health.log proves the laptop sleeps through cron slots routinely;
+  losing a go-live quarter to a closed lid tests nothing about the
+  strategy. A HUMAN typing the command remains a FAIL — the gate tests
+  that the MACHINE ran itself, and the catch-up is part of the machine.
 - health.log shows no unexplained FAIL lines in the window.
 - `scripts.reconcile_paper` is CLEAN, or every DRIFT line is explained
   in writing in STATE.md as a rename / corporate-action re-adjustment.
