@@ -9,7 +9,7 @@ parameter rescue.
 **Operating manual → [RUNBOOK.md](RUNBOOK.md)** — run everything without an AI assistant.
 
 **Start here → [STATE.md](STATE.md)** — the single source of truth:
-full scoreboard (26 strategies tested, 25 dead, 1 in paper trial),
+full scoreboard (27 strategies tested, 26 dead, 1 in paper trial),
 method rules, data traps, pending decisions.
 
 **The story, interactive →** https://deshpanda.github.io/nse-screener/

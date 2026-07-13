@@ -4,9 +4,14 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-13. SPRINT CLOSED: 26 tested / 25 dead / v4 in
+> Last updated: 2026-07-13 (late). NOW 27 tested / 26 dead / v4 in
 > paper trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron). LAST ACT:
-> GO-LIVE DRILL passed — trading-live cli.py exercised through 7
+> v25 promoter ownership-trend DEAD per PROTOCOL_V25 — both registered
+> priors verified (longs fail incl. E2 n=93 near-miss/OOS-worst spike;
+> decrease screen not certifiable IS, was real pre-2023). Smart-money
+> family closed at every disclosure speed. Site same-day: scoreboard +
+> Season-2 rows, shareholding data row, counts 27/26 machine-checked,
+> title now "Twenty-Six Ways". Earlier today: GO-LIVE DRILL passed — trading-live cli.py exercised through 7
 > propose-mode scenarios (fresh entry / rebalance / cash flip /
 > undersized capital / empty env); 3 bugs fixed (empty CAPITAL_INR
 > crash, silent zero-qty drop, all-or-nothing order placement),
@@ -104,6 +109,7 @@ names in code/docs/site (local untracked config files are fine).
 | v20.1 | pledge-CREATION events (early via PIT; 13,922 creations) | DEAD as screen | OOS toxic as theorized (-3.6 median, -7.8 at 126d, 38% win) but IS 2023-26 POSITIVE (+8.2 at 126d) — refusal signals are regime-dependent too; fails both-windows bar. Only rating-downgrades survived both eras |
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
+| v25 | promoter ownership-trend (quarterly shareholding, PROTOCOL_V25; v21 family, priors REGISTERED: longs fail / decrease weak-toxic) | DEAD — both priors verified. IS vs baseline null: E1 +2.0 / E4 +1.2 (< +3 bar); E2 +3.24 but n=93<100 (frozen floor; also OOS's WORST cell at -4.85 = spike signature). E3 decrease screen: IS -0.9..-1.7 (not certifiable) but OOS 2018-22 genuinely toxic (-3.7 h63, -7.1 h126) — promoter selling was real, decayed like v21/v22. Smart-money family now dead at EVERY disclosure speed (same-evening/2d/17d/45d). First protocol with outcomes predicted in advance and confirmed |
 
 | v23 | futures OI signals (OI-confirm overlay + basis crowding screen; committed runner backtest/oi_study.py) | DEAD both hypotheses | OI-confirm toxic (-59 IS/-138 OOS: OI growth = crowding); basis screen inert. KEY DISCOVERY: v4-restricted-to-F&O collapses (+31/-68 vs full +99/+116) — v4 alpha lives in non-F&O midcaps. Echoes v8: institutionalized names do not pay momentum |
 
