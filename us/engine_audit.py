@@ -105,7 +105,7 @@ def _monthly_section(text: str, section: str) -> pd.DataFrame:
 def load_french() -> tuple[pd.Series, pd.Series, pd.Series]:
     z = zipfile.ZipFile(FRENCH / "10_Portfolios_Prior_12_2_CSV.zip")
     txt = z.read(z.namelist()[0]).decode("latin-1")
-    vw = _monthly_section(txt, "Average Value Weighted Returns -- Monthly")
+    vw = _monthly_section(txt, "Value Weight Returns -- Monthly")
     ew = _monthly_section(txt, "Average Equal Weighted Returns -- Monthly")
     z = zipfile.ZipFile(FRENCH / "F-F_Research_Data_Factors_CSV.zip")
     txt = z.read(z.namelist()[0]).decode("latin-1")
