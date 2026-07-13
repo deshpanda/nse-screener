@@ -172,6 +172,29 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
 - SHAREHOLDING DONE: 1,877 symbols × ~90 quarters, broadcast-timestamped
   (data/shareholding/). Format review then possible ownership-trend
   pre-registration = next research season's opener.
+- FORMAT REVIEW DONE 2026-07-13 (registration-gating facts):
+  * 94,822 rows, quarters 2004→2026; median 51 q/symbol; 1,579 of 2,369
+    current bhav symbols covered (67%).
+  * PIT boundary: broadcast timestamps exist 2015→present (59,906 rows);
+    pre-2015 rows have NULL broadcastDate — unusable for event timing.
+    Median disclosure lag 17d after quarter end (p75 20d), 0 negative.
+  * Fields are promoter+group % and public % ONLY — the master API has
+    NO FII/DII split. "Institutional accumulation" is NOT testable with
+    this dataset; promoter-stake trend is. (FII/DII would need the
+    per-quarter detail endpoint — future ingestion if ever wanted.)
+  * 38% of rows have promoter=0 (professionally-managed cos — signal
+    undefined there). 4.3% non-quarter-end special rows; 6% Revised
+    flag; only 143 (symbol,quarter) true duplicates → dedupe keep=last.
+  * Event base-rate: QoQ promoter change is exactly 0 in 70% of
+    quarters; increases ≥0.5pp = 140–260/yr (2,017 total PIT-era) —
+    v21-scale event counts, enough for the two-null design.
+  * FAMILY WARNING for the protocol: promoter stake increases are the
+    slow (17d-lag) cousin of v21 insider market-purchases, whose OOS
+    2018-22 window is already spent (drift existed, gone in IS). Any
+    registration must declare the v21 family relation, use the
+    events17 two-null engine, and carry a LOW prior per alpha-decay law.
+  * Registrable NOW on 2015→ PIT data (this hypothesis never touched
+    any window); awaiting owner's go to write PROTOCOL_V25.
 - v22.1 UNBLOCK IN FLIGHT: ingest/ratings.py — 3-phase PDF pipeline
   (urls scan → liquid-universe PDF download → direction regex), chained
   overnight after indices. When parsed.parquet lands: rerun v22 with
