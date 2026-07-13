@@ -77,3 +77,17 @@ Every verdict's exact code is committed. Engines:
 Paper ≥3 clean month-ends → review vs simulation → private sizing
 decision → trading-live SETUP.md (Kite app, .env) → propose-mode cycle
 → only then TRADING_MODE=live. The gate order is not negotiable.
+
+The "review vs simulation" step is a script, not a vibe:
+
+    .venv/bin/python -m scripts.reconcile_paper   # every log entry must
+                                                  # recompute to the same
+                                                  # regime + names today
+    .venv/bin/python -m screener.paper_log --report   # paper P&L vs Nifty
+
+Both clean ⇒ the paper numbers can be trusted for the go/no-go call.
+Any DRIFT line must be explained (rename? data revision? code change?)
+before proceeding. The execution pipeline itself was drilled 2026-07-13
+(7 scenarios incl. partial fills, cash flips, undersized capital — see
+trading-live git log); re-run a propose-mode `cli.py rebalance` on
+go-live morning before arming anything.

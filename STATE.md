@@ -6,10 +6,16 @@
 > data source, infra change). A stale STATE.md is worse than none.
 > Last updated: 2026-07-13. SPRINT CLOSED: 26 tested / 25 dead / v4 in
 > paper trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron). LAST ACT:
-> v22 downgrade-toxicity RETRACTED via 1,043 PDF-verified directions
-> (small-sample bias) — correction published on site. All 3 repos
-> standardized for human operation (RUNBOOK.md). 15/15 sector indices.
-> Data repo synced incl. ratings. NOTHING PENDING except calendar
+> GO-LIVE DRILL passed — trading-live cli.py exercised through 7
+> propose-mode scenarios (fresh entry / rebalance / cash flip /
+> undersized capital / empty env); 3 bugs fixed (empty CAPITAL_INR
+> crash, silent zero-qty drop, all-or-nothing order placement),
+> SELLs-first ordering, new `verify` cmd (state vs broker holdings),
+> execution-day rules in trading-live SETUP.md. NEW:
+> scripts/reconcile_paper.py = the Oct-15 "review vs simulation" step;
+> run on entry #1 → CLEAN (regime + all 20 lowvol names reproduce from
+> today's panel). Earlier same day: v22 retraction published; 3 repos
+> standardized (RUNBOOK.md). NOTHING PENDING except calendar
 > (Jul 31 / monthly checks / Oct 15 go-live) and fresh-data
 > re-registrations (upgrade-drift, hysteresis, v21, FIP — 2027).
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
