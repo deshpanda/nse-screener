@@ -218,6 +218,19 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
     events17 two-null engine, and carry a LOW prior per alpha-decay law.
   * Registrable NOW on 2015→ PIT data (this hypothesis never touched
     any window); awaiting owner's go to write PROTOCOL_V25.
+    [RESOLVED: v25 registered + DEAD same day, see scoreboard.]
+- FII/DII DETAIL INGESTION (2026-07-14, in flight): endpoint
+  reverse-engineered from the site's corporate-filings.js —
+  `/api/corporate-share-holdings-equities?ndsId=<recordId>&index=
+  public-shareholder` (COL_I=category, COL_VII=shares, COL_VIII=pct;
+  57 rows/filing incl. Mutual Funds, Insurance, FPI cats, sub-totals
+  B(1)/B(2)/B(3)). Detail exists 2016+ ONLY (older quarters route to
+  legacy ShareholdingInformation*.html archives — not fetched).
+  ingest/shareholding_detail.py: phase `masters` re-stores masters
+  WITH recordId (the v25-era ingester dropped it); phase `detail` =
+  one call per (symbol, quarter), ~50k calls, per-symbol restartable,
+  data/shareholding_detail/. Institutional-accumulation study: format
+  review THEN pre-register, after backfill lands (the v25 pattern).
 - v22.1 UNBLOCK IN FLIGHT: ingest/ratings.py — 3-phase PDF pipeline
   (urls scan → liquid-universe PDF download → direction regex), chained
   overnight after indices. When parsed.parquet lands: rerun v22 with
