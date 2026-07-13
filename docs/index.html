@@ -226,6 +226,7 @@ the open repo; a nightly job keeps it all current. What a decade of it looks lik
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/announcements.py">Corporate announcements</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/announcements">data ↗</a></td><td>32,000+ kept (of ~1.3M scanned)</td><td>Buybacks, order wins, and a random control sample — timestamped. The control sample is what caught the activity-tilt illusion.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/vix.py">Fear gauge</a></b></td><td>2,604 days of India VIX</td><td>The options market's daily estimate of coming turbulence. Tested as information (v14); no derivatives traded.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/us/insiders.py">US market</a></b></td><td>598 tickers + point-in-time S&amp;P 500 membership</td><td>Plus 78,300 insider purchase filings, 538 hedge-fund 13F filings, and a Senate-trades archive — the American half of the smart-money autopsy.</td></tr>
+<tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/us/engine_audit.py">US deep history + academic reference</a></b></td><td>764 tickers to 1995; French library to 1927</td><td>Thirty years of S&amp;P member prices (surviving tickers — the bias is disclosed and unscored) plus <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French's momentum portfolios</a> — the independent yardstick our engine was audited against (see the method chapter's postscript).</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/pit.py">Insider disclosures (India)</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/pit">data ↗</a></td><td>290,913 filings</td><td>Every insider transaction since 2017 with who, how (market buy vs ESOP), value, and timestamp — including 29,657 pledge creation/revocation events. Powered v21 and v20.1.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/announcements_full.py">All announcements</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/ann_full">data ↗</a></td><td>1.26M classified</td><td>Every corporate announcement since 2016 with its category — the haystack from which rating downgrades and auditor exits were pulled (v22).</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/futures.py">Stock futures</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/futstk">data ↗</a></td><td>decade, downloading</td><td>Daily <dfn data-d="Open interest: how many futures contracts are outstanding on a stock — a gauge of how much betting money is positioned, and in which direction it's building.">open interest</dfn> and futures pricing per stock — the derivatives market's positioning, used as information only (v23, pending).</td></tr>
@@ -644,6 +645,18 @@ own selection process overfits. Verdicts under the sterner judge: the survivor's
 real</b> even after paying a statistical penalty for every attempt we had made — and, printed here so nobody can pretend otherwise later:
 <b>one in four two-year stretches loses to the index, once by 50 points.</b> Somewhere ahead there are two years
 where this strategy will look broken and won't be. Whether we sit through them is not a math question.</p>
+
+<p><b>Postscript 2 — auditing the machine itself.</b> One doubt outranks all others: what if our <i>backtesting
+engine</i> is subtly broken, and every verdict on this page inherits the bug? So we pointed the exact engine at
+thirty years of US data and checked it against the most-replicated result in finance — the momentum portfolios
+maintained by <dfn data-d="Kenneth French (Dartmouth) publishes the canonical academic portfolio data — built from CRSP, the survivorship-clean research database behind most of published finance. The reference everyone checks against.">Ken French's data library</dfn>,
+built by a completely independent pipeline from different raw data. Month by month over 353 months, our engine's
+portfolio moved with the academic benchmark at a correlation of <b>0.89</b>, and reproduced the documented plot
+beat for beat: the premium era before 2009, the famous momentum crash of 2009 (−26 points in one year), and the
+post-2010 decay (<a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_USAUDIT.md">pass criteria
+frozen in advance ↗</a>, <a href="https://github.com/deshpanda/nse-screener/blob/main/us/engine_audit.py">code ↗</a>).
+The machine that declared twenty-six strategies dead and one alive measures reality the way five decades of
+published research does. The verdicts stand on tested ground.</p>
 
 </section>
 

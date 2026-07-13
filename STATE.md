@@ -4,8 +4,15 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-13 (late). NOW 27 tested / 26 dead / v4 in
+> Last updated: 2026-07-13 (night). NOW 27 tested / 26 dead / v4 in
 > paper trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron). LAST ACT:
+> US ENGINE AUDIT PASSED (PROTOCOL_USAUDIT) — our monthly engine on
+> 30y of US data tracks Ken French's momentum decile at corr 0.892
+> (353 months) and reproduces the era pattern (+9.1pp/yr pre-2009 /
+> -25.9pp 2009 crash / decay after). Both bugs found were audit-side
+> (French section names, month labeling); ENGINE UNTOUCHED — v4's
+> verdicts stand on independently-validated machinery. Site: method
+> postscript 2 + US-deep-history data row. Earlier:
 > v25 promoter ownership-trend DEAD per PROTOCOL_V25 — both registered
 > priors verified (longs fail incl. E2 n=93 near-miss/OOS-worst spike;
 > decrease screen not certifiable IS, was real pre-2023). Smart-money
@@ -314,6 +321,16 @@ NSE client quirks: browser headers + cookie warmup on www.nseindia.com
 US: `us/data/prices.parquet` — 598 tickers, point-in-time S&P 500
 membership (`us/data/sp500_hist.csv`, fja05680 dataset), yfinance,
 84% coverage (delisted tickers missing — flatters results, disclosed).
+
+US deep history (engine audit, 2026-07-13): `us/data/prices_deep/`
+(batch-restartable) — 764 of 1,203 ever-members, 1995-06→present,
+survivors only (levels unscored per PROTOCOL_USAUDIT). Plus
+`us/data/french/` — Ken French momentum-decile + factor files
+(1927→, CRSP-based, survivorship-clean); parser spot-checked vs
+Oct-1987 / Oct-2008 / Apr-2009 known values. Trap found during the
+audit: `monthly.simulate`'s eq rows are indexed by t1 = the month-end
+a return ENDS at (French's convention) — do NOT shift labels when
+comparing to external monthly series.
 
 
 Pledge dataset (v20, under construction): NSE publishes only the CURRENT
