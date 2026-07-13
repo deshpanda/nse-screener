@@ -4,7 +4,14 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-11 night — FINAL for this sprint. 26 tested / 25 dead / v4 survives (evidence: DSR 0.995, OOS +116 rename-corrected, habitat = non-F&O midcaps). All infra live: paper trial, watchdog, trading-live (functional, private), data repo public, site current. Queue: see NEXT ACTIONS below.
+> Last updated: 2026-07-13. SPRINT CLOSED: 26 tested / 25 dead / v4 in
+> paper trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron). LAST ACT:
+> v22 downgrade-toxicity RETRACTED via 1,043 PDF-verified directions
+> (small-sample bias) — correction published on site. All 3 repos
+> standardized for human operation (RUNBOOK.md). 15/15 sector indices.
+> Data repo synced incl. ratings. NOTHING PENDING except calendar
+> (Jul 31 / monthly checks / Oct 15 go-live) and fresh-data
+> re-registrations (upgrade-drift, hysteresis, v21, FIP — 2027).
 > Prior: 2026-07-11 (METHOD2 harness live: v4 DSR 0.995/PBO 0.48-caution/74.7% rolling windows positive, worst -50pt. v15 PEAD + v16 residual-mom dead. 17 tested / 16 dead / v4 survives, evidence UPGRADED. Site update for v15/v16 pending).
 
 ## 1. Mission & the deal
