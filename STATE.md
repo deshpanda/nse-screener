@@ -4,8 +4,16 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-14. NOW 27 tested / 26 dead / v4 in paper
-> trial (entry #1 = CASH; #2 lands Jul 31 23:00 cron — now SELF-HEALING:
+> Last updated: 2026-07-14 (eve). NOW 28 tested / 27 dead / v4 in paper
+> trial. LAST ACT: v27 index-inclusion flows DEAD (n>=30 floor refused
+> 9-event lotteries that showed +10-17pp; both registered predictions
+> wrong, printed; honest re-test queued behind a future NSE
+> reconstitution-announcements dataset). Same day: synthetic
+> constituents BUILT+CALIBRATED (N500 ~90% / N50 ~84% recall, ffmcap
+> best, banking-EPS hole fixed → 99.1% coverage), PROTOCOL_V26
+> (v4+hysteresis after-tax) registered a year early, FII/DII detail
+> backfill ~40% (in flight). Title now "Twenty-Seven Ways".
+> Prior header: (entry #1 = CASH; #2 lands Jul 31 23:00 cron — SELF-HEALING:
 > watchdog auto-catchup within 3 days if laptop sleeps through it,
 > PROTOCOL_GOLIVE gate-1 amendment 2026-07-14). LAST ACT: v4 AFTER-TAX
 > AUDIT (PROTOCOL_TAX) — tax drag ~6pp/yr (WORSE than the registered
@@ -126,6 +134,7 @@ names in code/docs/site (local untracked config files are fine).
 | v20.1 | pledge-CREATION events (early via PIT; 13,922 creations) | DEAD as screen | OOS toxic as theorized (-3.6 median, -7.8 at 126d, 38% win) but IS 2023-26 POSITIVE (+8.2 at 126d) — refusal signals are regime-dependent too; fails both-windows bar. Only rating-downgrades survived both eras |
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
+| v27 | index-inclusion flows on synthetic constituents (PROTOCOL_V27; deep boundary crossings, two nulls incl. momentum-matched) | DEAD — underpowered by design and the frozen n≥30 floor did its job: IS adds looked spectacular (A50 h63 +10.3 / h126 +16.9 vs nulls ~+3-4, medians +16-18) on n=9-17 — refused as lottery evidence. OOS adds negative (both registered predictions WRONG — printed). Drops fail too (IS n<30). Structural lesson: monthly synthetic ranks + deep-crossing requirement → too few events; honest re-test needs actual NSE reconstitution announcements (future dataset, queued). Synthetic constituents dataset itself remains valid for universes/benchmarks |
 | v25 | promoter ownership-trend (quarterly shareholding, PROTOCOL_V25; v21 family, priors REGISTERED: longs fail / decrease weak-toxic) | DEAD — both priors verified. IS vs baseline null: E1 +2.0 / E4 +1.2 (< +3 bar); E2 +3.24 but n=93<100 (frozen floor; also OOS's WORST cell at -4.85 = spike signature). E3 decrease screen: IS -0.9..-1.7 (not certifiable) but OOS 2018-22 genuinely toxic (-3.7 h63, -7.1 h126) — promoter selling was real, decayed like v21/v22. Smart-money family now dead at EVERY disclosure speed (same-evening/2d/17d/45d). First protocol with outcomes predicted in advance and confirmed |
 
 | v23 | futures OI signals (OI-confirm overlay + basis crowding screen; committed runner backtest/oi_study.py) | DEAD both hypotheses | OI-confirm toxic (-59 IS/-138 OOS: OI growth = crowding); basis screen inert. KEY DISCOVERY: v4-restricted-to-F&O collapses (+31/-68 vs full +99/+116) — v4 alpha lives in non-F&O midcaps. Echoes v8: institutionalized names do not pay momentum |
@@ -428,3 +437,10 @@ DELTAS month-over-month may matter more than levels).
 5. Parked ideas: FIP smoothness (promising OOS, failed IS — needs fresh
    pre-registration on NEW data only), quarterly shareholding-pattern
    ingestion (v5 phase 2), weekly regime checks.
+6. Future dataset (queued 2026-07-14, from v27's post-mortem): NSE/NSE
+   Indices semi-annual reconstitution press releases (actual add/drop
+   announcements with dates) — the only honest way to re-test index
+   flows with real event timing and enough power. v27's synthetic
+   detection produced 9-17 IS events; announcements would give exact
+   dates AND the announce→effective window where the documented US
+   effect lived.
