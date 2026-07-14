@@ -245,8 +245,16 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
   ingest/shareholding_detail.py: phase `masters` re-stores masters
   WITH recordId (the v25-era ingester dropped it); phase `detail` =
   one call per (symbol, quarter), ~50k calls, per-symbol restartable,
-  data/shareholding_detail/. Institutional-accumulation study: format
-  review THEN pre-register, after backfill lands (the v25 pattern).
+  data/shareholding_detail/.
+  [COMPLETE 2026-07-15: 1,877/1,877 symbols, 58,800 filings, 2.46M
+  category rows, quarters 2016-01→2026-07; 6 symbols have no detail
+  on NSE's side (empty files, kept as markers). Category coverage:
+  MF rows 76,589 / FPI 86,669 / Insurance 80,319; 1,871 symbols have
+  MF data. Synced to data repo; site row shows real counts.
+  NEXT: full format review (category-label consistency across years,
+  revision handling, pct-vs-shares reconciliation vs masters) THEN
+  institutional-accumulation pre-registration — owner's go, v25
+  pattern, low prior per smart-money family record.]
 - v22.1 UNBLOCK IN FLIGHT: ingest/ratings.py — 3-phase PDF pipeline
   (urls scan → liquid-universe PDF download → direction regex), chained
   overnight after indices. When parsed.parquet lands: rerun v22 with
