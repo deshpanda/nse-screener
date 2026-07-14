@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Twenty-Seven Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing twenty-eight trading strategies on real market data — twenty-seven failures, one survivor, zero rupees lost.">
+<title>Twenty-Eight Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing twenty-nine trading strategies on real market data — twenty-eight failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -81,14 +81,14 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Twenty-seven ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Twenty-eight ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
 runs on the real numbers.</p>
 <div class="statrow">
-<div class="stat"><b>28</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">27</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>29</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">28</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -146,7 +146,7 @@ it's too late: you'll bend the rules to fit them. Every scientist knows this; al
 <i>exactly</i> a 1.5× volume filter and dies at 1.25× or 2×, that setting is a lottery ticket that already won —
 in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 </div>
-<p>Twenty-eight strategies entered this gauntlet — a twenty-ninth is pre-registered to run in 2027 (each row's full pre-registered spec and verdict lives as a protocol file in <a href='https://github.com/deshpanda/nse-screener'>the repo</a>). Here's the scoreboard we'll walk through:</p>
+<p>Twenty-nine strategies entered this gauntlet — a thirtieth is pre-registered to run in 2027 (each row's full pre-registered spec and verdict lives as a protocol file in <a href='https://github.com/deshpanda/nse-screener'>the repo</a>). Here's the scoreboard we'll walk through:</p>
 <table>
 <tr><th>#</th><th>Idea (the pitch)</th><th>Verdict</th></tr>
 <tr><td>v1 <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/run.py">code ↗</a></td><td>Buy strong stocks near their highs (Minervini-style template)</td><td><span class="pill dead">DEAD</span> lost money outright</td></tr>
@@ -179,6 +179,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V25.md">v25</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/ownership25.py">code ↗</a></td><td>Follow <dfn data-d="A company's founders/controlling family — Indian filings call them 'promoters'. Their stake in their own company is disclosed every quarter.">promoters</dfn> raising their stake in their own company (quarterly ownership trends)</td><td><span class="pill dead">DEAD</span> and predicted dead in advance — the last, slowest smart-money signal, gone like its faster cousins</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V27.md">v27</a><a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V27.1.md">.1</a><a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V27.2.md">.2</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/inclusion271.py">code ↗</a></td><td>Buy stocks about to be added to an index — forced index-fund buying, a <i>flow</i> rather than information</td><td><span class="pill dead">DEAD</span> too few honest events on synthetic data. Re-tested (v27.1) on 17,590 REAL announcement events: 47 of 48 cells dead — but Nifty-500 additions in the <dfn data-d="The 2-5 weeks between NSE announcing an index change and it taking effect — the window where index funds must do their forced buying. The one period our monthly synthetic data was blind to.">announce→effective window</dfn> cleared every bar in the decision years (n=94) — then died in its pre-registered confirmation gauntlet the same day: 74% of the profit sat in ONE quarter, failing the same lottery test that killed v21</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V26.md">v26</a></td><td>The champion with v24's anti-churn idea, judged AFTER tax (holding winners longer converts 20% tax lots into 12.5% ones)</td><td><span class="pill paper">REGISTERED · RUNS 2027</span> criteria frozen a year early, on data that doesn't exist yet — so nobody can tune it after watching the champion trade live</td></tr>
+<tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V28.md">v28</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/ownership28.py">code ↗</a></td><td>Follow institutions — mutual funds &amp; foreign investors raising their stakes, from 2.46M rows of quarterly ownership detail</td><td><span class="pill dead">DEAD</span> at every horizon, in BOTH eras, on thousands of events — the first smart-money signal that never worked even before the app era</td></tr>
 </table>
 </section>
 
@@ -589,7 +590,7 @@ believed for free.</p>
 <p>After the first wave of verdicts, the bottleneck stopped being ideas — it was questions our data couldn't
 answer. So the project pivoted: build datasets almost nobody bothers to collect, write down each hypothesis
 and its pass criteria <dfn data-d="Pre-registration: committing the exact rules, test windows, and success criteria to the public repository BEFORE running the test — so results can't quietly bend the rules. Every protocol here is git-timestamped.">before</dfn>
-testing it, and let the machine keep score. Thirteen more studies. Here is each one, its result, and what it taught:</p>
+testing it, and let the machine keep score. Fourteen more studies. Here is each one, its result, and what it taught:</p>
 <div class="tablewrap"><table>
 <tr><th>What we tried</th><th>Result</th><th>The takeaway</th></tr>
 <tr><td>Judge the champion harder — penalise it for every strategy we ever tried (deflated Sharpe), test whether our own variant-picking overfits</td><td class="green">v4 survived: 99.5% likely real. But picking the "best-looking" variant of any family = coin flip</td><td>Never promote the shiniest settings; keep the pre-declared ones</td></tr>
@@ -605,6 +606,7 @@ testing it, and let the machine keep score. Thirteen more studies. Here is each 
 <tr><td>Follow promoters quietly raising their stake, from quarterly shareholding filings (v25) \u2014 with the outcome <i>predicted in the protocol</i> before running it</td><td class="red">DEAD, as registered: buy-signals cleared no bar (the one near-miss was also the held-out era's WORST cell); promoter selling was toxic pre-2023 (\u22127 pts at 6 months), now priced in</td><td>The smart-money family is now dead at every disclosure speed \u2014 same-evening, 2-day, 17-day, 45-day. When your written-down prediction comes true, the model of the market is working; the market just doesn't pay for it</td></tr>
 <tr><td>Buy the stocks index funds will be FORCED to buy — index additions, detected via our reconstructed constituent history (v27). The first non-information hypothesis: flows, not secrets</td><td class="red">DEAD by sample-size floor — in-sample adds looked spectacular (+10 to +20 vs both control groups) on NINE events; our rules refuse 9-trade lotteries no matter how good they look. Both registered predictions wrong, printed</td><td>Deep index-boundary crossings are simply rare; an honest test needs NSE's actual reconstitution announcements — a future dataset, not a tuning knob</td></tr>
 <tr><td>The re-test (v27.1): we fetched all 1,115 NSE Indices press releases since 1998, parsed 17,590 real add/drop events with announce AND effective dates, and re-ran the flow hypothesis properly</td><td class="gold">47 of 48 cells died — the "3-month post-announcement drift" that looked alive pre-2023 is fully explained by plain momentum. But ONE cell passed the decision window: Nifty-500 additions during the announce→effective weeks (+1.8% vs control groups at −1.4%, 94 events, both eras same direction)</td><td>The first signal that isn't information — it's forced buying. Also the most marginal pass of the project (cleared the bar by 0.14 points), so it got the full confirmation treatment immediately — and failed it: the settings-plateau held (8/8) and it even survived the tax math, but 74% of its profit came from a single quarter. The lottery detector that killed v21 killed it too. Dead, hours after passing</td></tr>
+<tr><td>The final smart-money door: institutions themselves — mutual funds and foreign investors raising stakes, from the full category-level ownership detail we downloaded for every company since 2016 (v28)</td><td class="red">DEAD everywhere: 30 cells, two eras, thousands of events each, nothing beats a random-announcement control. Unlike insiders and promoters, this signal never worked — not even pre-2023</td><td>Closes the book at 0-for-6: slow actors + 17-day disclosure lag = the market was always ahead. Also the registered coin-flip prediction (a positive at 6 months) missed — printed, as always</td></tr>
 </table></div>
 <p>Season two's laws, earned twice each: <b>the market tells you what to refuse more reliably than what to
 buy — but even refusal has seasons.</b> The champion faced five more challengers this season under the
@@ -631,9 +633,9 @@ A tie broken by discretion after seeing results isn't a tie; it's a leak.</p>
 windows, across every settings variant. The information in earnings is genuine. It just doesn't add
 anything that price momentum hadn't already noticed — by the time profits accelerate, the price usually
 knows.</p>
-<p class="big"><b>Final score: twenty-eight strategies, twenty-seven deaths, one survivor</b> — boring monthly
+<p class="big"><b>Final score: twenty-nine strategies, twenty-eight deaths, one survivor</b> — boring monthly
 momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
-The twenty-seven failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
+The twenty-eight failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
 <h3>The experiment we refused to fake — and what we're doing instead</h3>
 <p>One idea remains genuinely promising: avoid companies whose founders have
 <dfn data-d="Promoters (founders/controlling owners) can borrow money using their own shares as collateral. If the stock falls, lenders force-sell those shares, pushing it down further — a cascade. High pledge = hidden fragility.">pledged</dfn>
@@ -662,7 +664,7 @@ portfolio moved with the academic benchmark at a correlation of <b>0.89</b>, and
 beat for beat: the premium era before 2009, the famous momentum crash of 2009 (−26 points in one year), and the
 post-2010 decay (<a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_USAUDIT.md">pass criteria
 frozen in advance ↗</a>, <a href="https://github.com/deshpanda/nse-screener/blob/main/us/engine_audit.py">code ↗</a>).
-The machine that declared twenty-seven strategies dead and one alive measures reality the way five decades of
+The machine that declared twenty-eight strategies dead and one alive measures reality the way five decades of
 published research does. The verdicts stand on tested ground.</p>
 
 <p><b>Postscript 3 — the visitor every backtest forgets: the tax office.</b> Every edge number on this page is
