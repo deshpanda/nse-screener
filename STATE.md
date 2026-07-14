@@ -444,3 +444,19 @@ DELTAS month-over-month may matter more than levels).
    detection produced 9-17 IS events; announcements would give exact
    dates AND the announce→effective window where the documented US
    effect lived.
+   [ACQUIRED same day: ingest/reconstitution.py —
+   niftyindices.com/press-release embeds the full archive; 1,424
+   releases 1998-09→present indexed (announce date + title + PDF),
+   1,123 reconstitution-flavored PDFs fetched (219MB,
+   data/reconstitution/). ~8 site-side broken links (soft-404 HTML
+   with 200 status — ingester detects non-PDF and skips).
+   FORMAT REVIEW: 2016+ era uniform and cleanly parseable — per-index
+   sections ("1) Nifty 50"), excluded/included blocks, tables WITH
+   NSE SYMBOL column (no name→ticker mapping needed); effective date
+   in prose + title, announce date from the listing. Pre-2007 PDFs
+   are printed-webpage archives with nav chrome — messier, but
+   predate the tradable window. Big semiannual releases titled
+   "Replacements in indices w.e.f. <date>" / "Change in Indices
+   w.e.f. <date>" (~Feb 25-28 and ~Aug-Sep 15-23 each year).
+   NEXT: parse phase + v27.1 re-registration (announce→effective
+   window, real event dates) — owner's go required.]
