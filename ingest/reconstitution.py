@@ -70,5 +70,78 @@ def fetch_pdfs() -> None:
           f"{len(list(PDF_DIR.glob('*.pdf')))} total on disk")
 
 
+SECTION = re.compile(r"^\s*\d+\)\s*((?:NIFTY|Nifty)[^\n]{0,60})\s*$",
+                     re.M)
+ROW = re.compile(r"^\s*\d+\s+(.+?)\s+([A-Z][A-Z0-9&\-]{1,15})\s*$", re.M)
+EXCL = re.compile(r"being\s+excluded", re.I)
+INCL = re.compile(r"being\s+included", re.I)
+WEF = re.compile(r"(?:w\.?e\.?f\.?|effective\s+from)\s*:?\s*"
+                 r"([A-Z][a-z]+ \d{1,2},? \d{4})")
+
+
+def _index_name(raw: str) -> str:
+    return re.sub(r"\s+", " ", raw).strip().rstrip(".").lower()
+
+
+def parse_pdf(path: Path, announce, title) -> list[dict]:
+    from pypdf import PdfReader
+    txt = "\n".join(p.extract_text() or "" for p in PdfReader(str(path)).pages)
+    m = WEF.search(title) or WEF.search(txt[:3000])
+    effective = pd.to_datetime(m.group(1).replace(",", ""),
+                               format="%B %d %Y", errors="coerce") \
+        if m else pd.NaT
+    rows = []
+    sections = list(SECTION.finditer(txt))
+    for i, sec in enumerate(sections):
+        idx = _index_name(sec.group(1))
+        seg = txt[sec.end():sections[i + 1].start()
+                  if i + 1 < len(sections) else len(txt)]
+        # split the segment at excluded/included markers; rows after each
+        marks = sorted([(m.start(), "drop") for m in EXCL.finditer(seg)]
+                       + [(m.start(), "add") for m in INCL.finditer(seg)])
+        for j, (pos, action) in enumerate(marks):
+            chunk = seg[pos:marks[j + 1][0] if j + 1 < len(marks)
+                        else len(seg)]
+            for rm in ROW.finditer(chunk):
+                name, sym = rm.group(1).strip(), rm.group(2)
+                if sym in ("NIFTY", "INDEX") or len(name) < 3:
+                    continue
+                rows.append({"announce": announce, "effective": effective,
+                             "index": idx, "action": action,
+                             "symbol": sym, "company": name,
+                             "pdf": path.name})
+    return rows
+
+
+def parse_all() -> None:
+    idx = pd.read_parquet(DIR / "index.parquet").set_index(
+        pd.read_parquet(DIR / "index.parquet")["url"]
+        .map(lambda u: Path(u).name))
+    rows, bad = [], 0
+    for f in sorted(PDF_DIR.glob("*.pdf")):
+        meta = idx.loc[f.name] if f.name in idx.index else None
+        if meta is None:
+            continue
+        if isinstance(meta, pd.DataFrame):
+            meta = meta.iloc[0]
+        try:
+            rows.extend(parse_pdf(f, meta["announce"], meta["title"]))
+        except Exception:
+            bad += 1
+    ev = pd.DataFrame(rows).drop_duplicates(
+        ["announce", "index", "action", "symbol"])
+    ev.to_parquet(DIR / "events.parquet", index=False)
+    print(f"parsed events: {len(ev)} rows from "
+          f"{ev['pdf'].nunique()} PDFs ({bad} unreadable)")
+    print(ev["action"].value_counts().to_dict())
+    core = ev[ev["index"].str.contains(
+        r"^nifty ?50$|^nifty next ?50$|^nifty ?100$|^nifty ?200$"
+        r"|^nifty ?500$|midcap ?150", regex=True)]
+    print(f"core-index events: {len(core)}")
+    print(core.assign(y=core["announce"].dt.year)
+          .groupby(["y"])["symbol"].count().to_string())
+
+
 if __name__ == "__main__":
-    {"list": scrape_list, "pdfs": fetch_pdfs}[sys.argv[1]]()
+    {"list": scrape_list, "pdfs": fetch_pdfs,
+     "parse": parse_all}[sys.argv[1]]()
