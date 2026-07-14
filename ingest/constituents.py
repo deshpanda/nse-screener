@@ -102,7 +102,7 @@ def calibrate(out: pd.DataFrame) -> None:
     for f in sorted((config.DATA_DIR / "index_members").glob("*.parquet")):
         snap = pd.read_parquet(f)
         idx, asof = snap["index"].iloc[0], str(snap["asof"].iloc[0])
-        n = 50 if "50" in idx else 500
+        n = 500 if "500" in idx else 50
         actual = set(renames.canonical(snap["symbol"].astype(str)))
         t = pd.Timestamp(asof)
         dates = out["date"].unique()

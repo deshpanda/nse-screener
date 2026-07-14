@@ -40,7 +40,9 @@ PROFIT_TAGS = ("ProfitLossForPeriod", "ProfitLossForThePeriod",   # banking
                "ProfitLossFromOrdinaryActivitiesAfterTax",        # banking
                "NetProfitLossForThePeriod")
 EPS_TAGS = ("BasicEarningsLossPerShareFromContinuingOperations",
-            "BasicEarningsLossPerShare")
+            "BasicEarningsLossPerShare",
+            "BasicEarningsPerShareAfterExtraordinaryItems",     # banking
+            "BasicEarningsPerShareBeforeExtraordinaryItems")    # banking
 REV_TAGS = ("RevenueFromOperations", "Income", "TotalIncome")
 
 
@@ -213,5 +215,39 @@ def backfill_xbrl() -> None:
           f"{100*done['net_profit'].notna().mean():.0f}% with net profit")
 
 
+def refill_eps() -> None:
+    """Re-parse EPS for filings where it came back null (banking
+    taxonomy tags added 2026-07-14: BasicEarningsPerShare*Extraordinary
+    Items). Refetches only the affected XBRLs; net_profit untouched."""
+    done_file = XBRL_DIR / "parsed.parquet"
+    done = pd.read_parquet(done_file)
+    need = done[done["eps"].isna() & done["net_profit"].notna()]
+    plan = fetch_plan().set_index(["symbol", "q_end"])
+    print(f"refilling EPS for {len(need)} filings "
+          f"({need['symbol'].nunique()} symbols)")
+    fixed = 0
+    for i, row in need.iterrows():
+        try:
+            u = plan.loc[(row["symbol"], row["q_end"]), "xbrl"]
+            if isinstance(u, pd.Series):
+                u = u.iloc[-1]
+            r = nse.get(u, timeout=config.TIMEOUT)
+            parsed = (parse_xbrl(r.content, row["q_end"])
+                      if r.status_code == 200 else None)
+            if parsed and parsed.get("eps") is not None:
+                done.loc[i, "eps"] = parsed["eps"]
+                fixed += 1
+        except Exception:
+            pass
+        time.sleep(0.8)
+        if fixed and fixed % 200 == 0:
+            done.to_parquet(done_file, index=False)
+            print(f"  {fixed} fixed (at {row['symbol']})", flush=True)
+    done.to_parquet(done_file, index=False)
+    print(f"EPS refill done: {fixed}/{len(need)} recovered "
+          f"→ eps coverage {done['eps'].notna().mean():.1%}")
+
+
 if __name__ == "__main__":
-    {"list": backfill_list, "xbrl": backfill_xbrl}[sys.argv[1]]()
+    {"list": backfill_list, "xbrl": backfill_xbrl,
+     "refill-eps": refill_eps}[sys.argv[1]]()
