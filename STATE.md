@@ -238,6 +238,24 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
 - CONSTITUENTS synthetic path (queued idea): shares_out ≈ NP/EPS from
   fr_xbrl → mcap = close × shares → point-in-time mcap ranks →
   approximate index membership, calibrated vs 13 Wayback snapshots.
+  [BUILT 2026-07-14: ingest/constituents.py →
+  data/constituents_synth.parquet (99 month-ends 2018→, ranks ≤600,
+  mcap + free-float variants; RAW closes by design — CA-adjusted
+  prices corrupt cross-sectional ranks). Banking EPS gap fixed en
+  route (BasicEarningsPerShare*ExtraordinaryItems tags; refill-eps
+  recovered 1,021 filings → 99.1% EPS coverage; HDFCBANK/ICICIBANK
+  etc. were absent from mcap ranks before). CALIBRATION vs Wayback:
+  Nifty500 recall 0.86-0.91 (mcap variant), Nifty50 free-float recall
+  0.78-0.88 (ffmcap beats mcap on ALL N50 snapshots — free-float is
+  the real methodology). Residual misses = committee rules (F&O
+  eligibility, sector balance, buffers) we can't model. USES: PIT
+  cap-segment universes (large/mid boundary), benchmark fidelity,
+  index-add/drop event candidates via rank-crossing — with the
+  disclosed caveat that boundary noise is largest exactly at the
+  add/drop threshold. Index-inclusion study: format review done by
+  construction; pre-register only on owner's go, and the protocol
+  must handle approximation error (e.g., require rank moves DEEP
+  through the boundary, not grazes).]
 - All studies now have committed runners (runners.py incl v20.1, v24);
   site scoreboard: every row links protocol + code (27 code links).
 - OLD NOTE superseded: v22.1 rating detection was BLOCKED-DOCUMENTED — direction lives in PDF
