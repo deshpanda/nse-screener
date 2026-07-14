@@ -251,10 +251,38 @@ OLDER QUEUE (2026-07-11 late, context-limited deferrals):
   on NSE's side (empty files, kept as markers). Category coverage:
   MF rows 76,589 / FPI 86,669 / Insurance 80,319; 1,871 symbols have
   MF data. Synced to data repo; site row shows real counts.
-  NEXT: full format review (category-label consistency across years,
-  revision handling, pct-vs-shares reconciliation vs masters) THEN
-  institutional-accumulation pre-registration — owner's go, v25
-  pattern, low prior per smart-money family record.]
+  FORMAT REVIEW DONE 2026-07-15 (registration-gating facts):
+  * pct/shares parse 100.0%. Reconciliation: sum of sub-total (B)(x)
+    rows matches master public % within 0.1pp on 99.2% of 12.5k
+    sampled (symbol,quarter) pairs (median gap 0.000) — detail is
+    internally consistent with masters.
+  * TWO filing formats. Old (2016→~2022): "Mutual Funds/" (trailing
+    slash), "Foreign Portfolio Investors" (single line), "Financial
+    Institutions/ Banks", B(1)=ALL institutions. New (2018→, per-
+    company rollout): "Mutual Funds", "FPI Category I/II", "Banks",
+    "Institutions (Domestic)"/"(Foreign)" — B(1) means DOMESTIC only.
+    Sub-total (B)(1) is NOT comparable across formats — derive
+    institution totals from canonical leaf labels, never subtotals.
+  * THE TRAP: named-holder rows (">1% holders": "SBI Mutual Fund",
+    "LIC", "Europacific Growth Fund") are interleaved under category
+    rows. Substring matching double-counts — extraction must use
+    EXACT era-canonical labels: MF = {"mutual funds/","mutual funds"};
+    FPI = {"foreign portfolio investors"} ∪ {"...category i","...ii",
+    (iii variants)}; Insurance = "insurance companies" after
+    whitespace-normalize (raw has double spaces).
+  * Revisions: only 130/58,656 (symbol,quarter) pairs have >1
+    recordId → dedupe keep-latest.
+  * Signal base rates (MF, canonical labels, QoQ): change is 0 in
+    only 42.9% of quarters (promoters were 70% — institutions move
+    far more). Rises ≥0.5pp: 500-1,000/yr (7,220 total); falls:
+    5,606. Ten times v25's event supply; supports n≥100 bars easily.
+  * Registrable: IS 2023-26 + OOS 2017-22, both virgin for the
+    institutional-accumulation family. Registered prior must be LOW
+    (6th disclosure-based test; family 0-for-5) with the one honest
+    open question: institutions are the first tested actor whose
+    trades are FORCED to be slow (mandates, size) — the drift, if
+    any, may live at longer horizons (126d) than insider tests used.
+    Awaiting owner's go to write PROTOCOL_V28.]
 - v22.1 UNBLOCK IN FLIGHT: ingest/ratings.py — 3-phase PDF pipeline
   (urls scan → liquid-universe PDF download → direction regex), chained
   overnight after indices. When parsed.parquet lands: rerun v22 with
