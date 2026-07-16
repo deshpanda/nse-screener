@@ -4,8 +4,19 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-07-15. NOW 29 tested / 28 dead / v4 in paper
-> trial. LAST ACT: v28 institutional accumulation DEAD — all 30 cells
+> Last updated: 2026-07-16. NOW 30 tested / 29 dead / v4 in paper
+> trial. LAST ACT: v29 GARP screen (viral Lynch tweet; PROTOCOL_V29,
+> first VALUE-family test) — India: BEAT THE GATE BOTH WINDOWS
+> (+53.6/+11.0, all 3 declared cells positive, best-month 11%) —
+> registered prediction WRONG, printed. Incumbent rule on identical
+> windows: v4 wins everything (+99.6/+118.9, Sharpe 1.21/1.63 vs
+> 1.04/0.88) → 3rd gate-passer, 2nd "beat market, lost to v4".
+> PRIZE: corr(v4)=0.54 IS / 0.39 OOS — lowest yet, best combo
+> candidate found (future registration, v13.1 pattern, NOT now).
+> US half: SEC EPS ingestion running (ingest/sec_fundamentals.py);
+> US cells run when it lands, row updates then. Site: title now
+> "Twenty-Nine Ways", counts 30/29 machine-checked. Earlier 07-15:
+> v28 institutional accumulation DEAD — all 30 cells
 > (5 events × 3 holds × 2 windows), n in the THOUSANDS, no cell beats
 > the random-announcement null by the bar; registered long-shot (E3
 > h126) closest at +2.5 vs +3 bar, direction predicted. THE NEW
@@ -150,6 +161,7 @@ names in code/docs/site (local untracked config files are fine).
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
 | v27 | index-inclusion flows on synthetic constituents (PROTOCOL_V27; deep boundary crossings, two nulls incl. momentum-matched) | DEAD — underpowered by design and the frozen n≥30 floor did its job: IS adds looked spectacular (A50 h63 +10.3 / h126 +16.9 vs nulls ~+3-4, medians +16-18) on n=9-17 — refused as lottery evidence. OOS adds negative (both registered predictions WRONG — printed). Drops fail too (IS n<30). Structural lesson: monthly synthetic ranks + deep-crossing requirement → too few events; honest re-test needs actual NSE reconstitution announcements (future dataset, queued). Synthetic constituents dataset itself remains valid for universes/benchmarks. **v27.1 re-test (PROTOCOL_V27.1, real announcements, 2,349 core events, v27 peek disclosed): 47 of 48 cells DEAD — incl. all F63 "post-announce drift" OOS passes being fully explained by the momentum null in IS. ONE cell passes the decision window: Nifty 500 adds, announce→effective (n=94, +1.83 vs both nulls ≈ −1.35, clears the +3pp bar by 0.14pp; OOS same direction +2.6-2.9pp above nulls, misses bar by ~0.2pp). Status: CONFIRMATORY-ONLY per protocol. **v27.2 gauntlet (PROTOCOL_V27.2, same day): Stage A1 plateau 8/8 PASS, A3 after-tax PASS (+1.24 vs −1.7 nulls), but A2 LOTTERY CHECK FAIL — best quarter = 74% of positive quarterly excess (bar <40%; the v21 detector). Half-splits agree: 2023-24 mean −0.73, all juice in 2025-26. Cell DEAD (spike), Stage B cancelled per protocol. Index-flow family fully closed; only honest future re-entry = fresh events, fresh registration, years away** |
+| v29 | GARP screen from viral Lynch tweet (PROTOCOL_V29; PE<25, growth>15%, PEG<2, mcap floor; first value-family test; fwd-PE + D/E dropped, disclosed) | India: GATE PASSED both windows (+53.6 IS / +11.0 OOS; all 3 cells positive; framing debunked in protocol — $18M→$14B was AUM inflows) but LOSES to v4 on identical windows on every criterion (+99.6/+118.9, Sharpe 1.21/1.63 vs 1.04/0.88, half the DD) → incumbent stands. corr(v4) 0.54/0.39 = lowest yet → COMBO CANDIDATE (own registration required; exploration now would be contaminated). US half pending SEC EPS ingestion |
 | v28 | institutional accumulation (MF/FPI stake rises from shareholding_detail; PROTOCOL_V28; horizon ladder h21/63/126 = registered hypothesis) | DEAD all 30 cells, n=739-2,628 each — the definitive null. IS longs: E3 h126 best at +5.53 vs null +3.03 (+2.5, bar +3; direction predicted, missed). OOS: everything ≈ null (best E3 h63 +1.68 over) — NO pre-2023 drift, unlike every other family member. Screens nowhere near −3. NEW LAW: slow actors + 17d lag were never followable in any era; smart-money book closed 0-for-6 |
 | v25 | promoter ownership-trend (quarterly shareholding, PROTOCOL_V25; v21 family, priors REGISTERED: longs fail / decrease weak-toxic) | DEAD — both priors verified. IS vs baseline null: E1 +2.0 / E4 +1.2 (< +3 bar); E2 +3.24 but n=93<100 (frozen floor; also OOS's WORST cell at -4.85 = spike signature). E3 decrease screen: IS -0.9..-1.7 (not certifiable) but OOS 2018-22 genuinely toxic (-3.7 h63, -7.1 h126) — promoter selling was real, decayed like v21/v22. Smart-money family now dead at EVERY disclosure speed (same-evening/2d/17d/45d). First protocol with outcomes predicted in advance and confirmed |
 
