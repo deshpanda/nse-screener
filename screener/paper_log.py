@@ -21,6 +21,28 @@ from backtest import features
 PAPER = Path(__file__).resolve().parent.parent / "paper"
 LOG = PAPER / "log.csv"
 STATUS = PAPER / "status.json"
+GARP = PAPER / "garp.csv"
+
+
+def _log_garp(t, close) -> None:
+    """v29.1 sleeve C (PROTOCOL_V29.1) — best-effort, never blocks the
+    main log. Same append-only discipline, separate file so log.csv's
+    schema and the golive machinery stay untouched."""
+    try:
+        from backtest.garp29 import build_picks, MCAP_PRIMARY
+        picks = build_picks(MCAP_PRIMARY).get(pd.Timestamp(t.date()), [])
+        if GARP.exists() and str(t.date()) in {
+                l.split(",")[0] for l in
+                GARP.read_text().strip().split("\n")[1:]}:
+            return
+        hold = ";".join(f"{s}@{close.loc[t, s]:.2f}" for s in picks
+                        if s in close.columns
+                        and pd.notna(close.loc[t, s])) or "NONE"
+        pd.DataFrame([{"asof": t.date(), "garp_sleeve": hold}]).to_csv(
+            GARP, mode="a", header=not GARP.exists(), index=False)
+        print(f"→ garp sleeve logged ({len(picks)} names)")
+    except Exception as e:                        # never block the main log
+        print(f"garp sleeve skipped: {e}")
 
 
 def _push(msg: str) -> None:
@@ -108,6 +130,7 @@ def snapshot(asof: str | None = None) -> None:
     LOG.parent.mkdir(exist_ok=True)
     header = not LOG.exists()
     row.to_csv(LOG, mode="a", header=header, index=False)
+    _log_garp(t, close)
     print(row.to_string(index=False))
     print(f"→ appended to {LOG}")
     build_status(regime_on, t, round(float(bench.loc[t]), 2),
