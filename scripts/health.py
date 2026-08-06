@@ -104,7 +104,27 @@ def main():
     except Exception as e:
         check("status.json", False, str(e))
 
-    # 5. git remote reachable with cron-like env (publish path works)
+    # 5. live site serves the same title as the local docs (a Pages
+    #    deployment can fail silently — e.g. the 2026-08-06 race where
+    #    two quick pushes left the site stale until manually noticed)
+    try:
+        import re
+        import urllib.request
+        local = re.search(r"<title>([^<]+)", (ROOT / "docs" / "index.html")
+                          .read_text()).group(1)
+        req = urllib.request.Request(
+            "https://deshpanda.github.io/nse-screener/",
+            headers={"User-Agent": "health-check"})
+        live = re.search(r"<title>([^<]+)",
+                         urllib.request.urlopen(req, timeout=30)
+                         .read().decode()).group(1)
+        check("site-deploy", live == local,
+              f"live title {live!r} != local {local!r} — Pages deploy "
+              f"stale/failed; push an empty commit to retrigger")
+    except Exception:
+        pass                                     # offline is not a failure
+
+    # 6. git remote reachable with cron-like env (publish path works)
     r = subprocess.run(["git", "fetch", "origin", "--dry-run"], cwd=ROOT,
                        capture_output=True, timeout=60)
     check("git-remote", r.returncode == 0,
