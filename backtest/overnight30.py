@@ -61,3 +61,36 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def index_cells():
+    """The honest version of C1/C3: real NIFTY 50 index OHLC
+    (data/indices/NIFTY_50_OHLC.parquet, fetched month-by-month — the
+    yearly API hits NSE's 70-row JSON cap, a documented trap that
+    struck again). Required because bhav ETF OPEN prints are unusable
+    (stale first ticks up to ±13% off adjacent trades; NIFTYBEES
+    'overnight' compounds to +86e9% on them — pure artifact).
+    Index prints are an UPPER bound on tradability (real fills worse).
+
+        python -c "from backtest.overnight30 import index_cells; index_cells()"
+    """
+    import config
+    df = pd.read_parquet(config.DATA_DIR / "indices" / "NIFTY_50_OHLC.parquet")
+    df["date"] = pd.to_datetime(df["EOD_TIMESTAMP"], format="%d-%b-%Y")
+    df = df.sort_values("date").drop_duplicates("date").set_index("date")
+    o = df["EOD_OPEN_INDEX_VAL"].astype(float)
+    c = df["EOD_CLOSE_INDEX_VAL"].astype(float)
+    on, intra = split(o, c)
+    for label, lo, hi in (("FULL 2016-26", None, None),
+                          ("IS 2023-26", "2023-01-01", None),
+                          ("OOS 2016-22", None, "2022-12-31")):
+        w = slice(lo, hi)
+        bh = cum(c.loc[w].pct_change().dropna())
+        print(f"{label}: overnight {100*cum(on.loc[w]):+8.1f}%  "
+              f"intraday {100*cum(intra.loc[w]):+7.1f}%  bh {100*bh:+6.1f}%")
+        if lo is None and hi is None:
+            continue
+        for cost in TIERS:
+            net = cum((1 + on.loc[w].dropna()) * (1 - cost) - 1)
+            print(f"    C3@{100*cost:.2f}%RT: {100*net:+8.1f}%  "
+                  f"[{'beats bh' if net > bh else 'dead'}]")
