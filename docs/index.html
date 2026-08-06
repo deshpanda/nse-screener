@@ -75,7 +75,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a><a href="#thedata">The Data</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#stranger">The Stranger</a><a href="#season2">Season 2</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
+<a href="#yardstick">One Yardstick</a><a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#stranger">The Stranger</a><a href="#season2">Season 2</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
@@ -186,6 +186,58 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 </section>
 
 <!-- ---------------- CHAPTER 3 ---------------- -->
+
+<!-- ---------------- ONE YARDSTICK ---------------- -->
+<section id="yardstick">
+<div class="kicker">The scoreboard, on one ruler</div>
+<h2>Which was best? The same yardstick, as far as honesty allows</h2>
+<p>The table above tells thirty stories, but stories don't rank. Below, every strategy that produced a
+comparable number, ranked. One honesty warning first: there are <b>two different games</b> here, and forcing
+them onto one axis would be a lie. <b>Portfolio strategies</b> are judged by their
+<dfn data-d="How many percentage points the strategy's total return beat (or trailed) buy-and-hold index investing over the same period, after trading costs. +10 means: ₹100 in the strategy ended ₹10 ahead of ₹100 in the index.">edge vs the index</dfn>
+over years; <b>event studies</b> are judged by the average extra return per event vs a
+<dfn data-d="A control group of comparable non-event stocks measured over the same days — the 'placebo arm'. Without it, any signal that fires in bull markets looks like genius.">matched control</dfn>.
+And the decisive number is always the <b>out-of-sample</b> one — anyone can look good on the years they
+were tuned on (v2 below is the eternal reminder).</p>
+
+<div class="card">
+<h3>Portfolio strategies — edge vs the index, out-of-sample (percentage points)</h3>
+<table>
+<tr><th>strategy</th><th style="width:44%">out-of-sample edge</th><th>in-sample</th><th>fate</th></tr>
+<tr><td>v4 momentum + circuit-breaker</td><td><div style="background:var(--green);height:12px;width:59%"></div><b class="green">+116</b></td><td>+100</td><td class="green">the survivor</td></tr>
+<tr><td>v7 earnings-momentum overlay</td><td><div style="background:var(--green);height:12px;width:23%"></div><b class="green">+45</b></td><td>+118</td><td>beat index; lost to v4 (incumbent rule)</td></tr>
+<tr><td>v24 the stranger's algorithm</td><td><div style="background:var(--green);height:12px;width:12%"></div><b class="green">+23</b></td><td>+78</td><td>beat index; lost to v4</td></tr>
+<tr><td>v29 GARP screen (India)</td><td><div style="background:var(--green);height:12px;width:6%"></div><b class="green">+11</b></td><td>+54</td><td>beat index; lost to v4; lives on in a combo trial</td></tr>
+<tr><td>v2 volume breakouts (VCP)</td><td><div style="background:var(--red);height:12px;width:33%"></div><b class="red">&minus;64</b></td><td>+34</td><td>the memorization lesson: great in-sample, disaster out</td></tr>
+<tr><td>v8 v4-recipe on US large caps</td><td><div style="background:var(--red);height:12px;width:36%"></div><b class="red">&minus;40&hellip;&minus;100</b></td><td>&mdash;</td><td>edges are local</td></tr>
+<tr><td>v23 champion restricted to F&amp;O stocks</td><td><div style="background:var(--red);height:12px;width:71%"></div><b class="red">&minus;138</b></td><td>&mdash;</td><td>mapped the champion's habitat by dying</td></tr>
+<tr><td>v29 GARP screen (US)</td><td><div style="background:var(--red);height:12px;width:100%"></div><b class="red">&minus;195</b></td><td>&minus;22</td><td>edges are local, part two</td></tr>
+</table>
+<p class="small mut">Not listed: strategies that failed <i>in-sample</i> and therefore never earned an out-of-sample
+shot (v1, v3, v5, v13, v14, v16, v19 &mdash; in this system a second number must be earned, not granted), and v30,
+whose only positive numbers exist at prices nobody can trade. Ranking by one number is itself a simplification:
+the actual verdicts also weighed risk-adjusted return, drawdown, and the incumbent rule &mdash; each row's full
+reasoning stays in the scoreboard above.</p>
+</div>
+
+<div class="card">
+<h3>Event studies — extra return per event vs matched control, in the decision window (percentage points)</h3>
+<table>
+<tr><th>signal</th><th style="width:38%">per-event edge vs control</th><th>events</th><th>why it still died</th></tr>
+<tr><td>v18 proven big buyers' deals</td><td><div style="background:var(--gold);height:12px;width:100%"></div><b class="gold">+6.0</b></td><td>18k deals scored</td><td>real skill &mdash; but the average disclosed deal loses to the index</td></tr>
+<tr><td>v27.1 index-inclusion flows (N500)</td><td><div style="background:var(--gold);height:12px;width:53%"></div><b class="gold">+3.2</b></td><td>94</td><td>74% of profit sat in one quarter &mdash; the lottery detector</td></tr>
+<tr><td>v28 institutional accumulation (best cell)</td><td><div style="background:var(--mut);height:12px;width:42%"></div><b>+2.5</b></td><td>2,293</td><td>below the pre-registered +3 bar; never worked in any era</td></tr>
+<tr><td>v21 promoters buying their own stock</td><td><div style="background:var(--mut);height:12px;width:38%"></div><b>+2.3</b></td><td>416</td><td>positive in BOTH eras &mdash; but median trade &asymp; 0; profits were a few big winners</td></tr>
+<tr><td>v25 promoter stake increases</td><td><div style="background:var(--mut);height:12px;width:33%"></div><b>+2.0</b></td><td>222</td><td>below bar; predicted dead in advance</td></tr>
+<tr><td>v17 buyback / order-win announcements</td><td><div style="background:var(--red);height:12px;width:28%"></div><b class="red">&minus;1.7</b></td><td>7k</td><td>worse than a random announcement</td></tr>
+</table>
+<p class="small mut">The bar every long signal had to clear: <b>+3 points over the control, with enough events,
+with medians agreeing</b> &mdash; then survive a concentration check. Reading the two winners-that-died teaches the
+family lesson: signals can be real and still not pay &mdash; skill isn't entry timing (v18), and rare events
+can't be trusted (v27.1).</p>
+</div>
+</section>
+
 <section id="data">
 <div class="kicker">Chapter 3</div>
 <h2>Before strategy: the data will lie to you</h2>
