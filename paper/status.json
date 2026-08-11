@@ -1,10 +1,10 @@
 {
- "updated": "2026-08-03",
- "asof": "2026-08-03",
- "regime": "ON",
- "stance": "regime flipped ON \u2014 portfolio forms at next month-end",
+ "updated": "2026-08-11",
+ "asof": "2026-08-11",
+ "regime": "OFF",
+ "stance": "regime flipped OFF \u2014 exits at next month-end",
  "lowvol_names": 20,
  "entries": 2,
  "nifty_start": 271.69,
- "nifty_now": 279.87
+ "nifty_now": 279.13
 }
