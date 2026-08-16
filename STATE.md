@@ -486,6 +486,14 @@ DELTAS month-over-month may matter more than levels).
   at last close (logged in `delist` count; renames look like delists —
   known ambiguity, roughly conservative).
 - `backtest/v7.py` — SUE frame keyed to broadcast+1, overlay/standalone.
+- LEAK TEST (scripts/leak_test.py, added 2026-08-17): re-runs v4 acting
+  N days late, entry AND exit both shifted so holding length is constant.
+  A lookahead leak would retain ~100% of the edge at every delay (the
+  future stays the future); v4 retains 100/74/86/60/70/25/50% at
+  +1/2/3/5/10/15/21 days — noisy but clearly decaying. Evidence AGAINST
+  a leak, and a practical execution point: being a WEEK late costs
+  roughly 40% of the edge (reinforces SETUP.md's trade-at-the-open rule).
+  Power caveat: decisive for fast signals, only suggestive for monthly.
 - Known engine caveats: no circuit-limit modeling (upper-circuit fills
   assumed at open — flatters momentum; the ₹10cr-floor variant is the
   robustness check). MEASURED 2026-08-11 (prompted by a "7 backtest
