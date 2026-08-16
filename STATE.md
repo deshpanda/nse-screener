@@ -488,7 +488,12 @@ DELTAS month-over-month may matter more than levels).
 - `backtest/v7.py` — SUE frame keyed to broadcast+1, overlay/standalone.
 - Known engine caveats: no circuit-limit modeling (upper-circuit fills
   assumed at open — flatters momentum; the ₹10cr-floor variant is the
-  robustness check), NIFTYBEES ≈ TRI-ish benchmark (ETF accrues
+  robustness check). MEASURED 2026-08-11 (prompted by a "7 backtest
+  lies" audit checklist): of 1,838 v4 buy-fills, only 7 (0.38%) land on
+  a day that looks circuit-locked (no intraday range + >3% gap), and
+  1.03% gap up >5% from the formation close. The caveat is real but
+  small — it cannot explain a 100+pt edge. Still unmodelled: market
+  IMPACT (irrelevant at personal size, matters if capital scales), NIFTYBEES ≈ TRI-ish benchmark (ETF accrues
   dividends; strategy legs don't get dividends — slightly conservative
   for us).
 
