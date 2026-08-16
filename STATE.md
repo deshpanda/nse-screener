@@ -4,7 +4,23 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-06. NOW 31 tested / 30 dead / v4 in paper
+> Last updated: 2026-08-17. CRISIS TEST (PROTOCOL_CRISIS, single shot,
+> NOT a gate): v4 verbatim through 2006-2015 = FAIL — edge −131pt
+> (+27.5% vs index +158.4%). Registered predictions: 2008 breaker
+> works ✓ (v4 −29.7% vs −42.4%; no-breaker −65.6%), 2009 lag ✓
+> (+50.7 vs +80.9), "still beats index overall" ✗ WRONG — printed.
+> NEW LAW: edges are local in TIME, not just geography — and the
+> breaker's whipsaw rent in 2010-15 chop was ~66pt (no-breaker +81.5%
+> vs +15.1%). Era-scaled floor diagnostic recovers to −46pt (verbatim
+> ₹5cr floor = ~150 large-caps then) but still loses. Data clean
+> (7 delists, low). CONSEQUENCES: Oct-15 gates UNCHANGED (frozen;
+> this was never a gate) but sizing conversation input changed —
+> long-run expectation is era-dependent; the 1-in-4 losing-windows
+> stat was measured inside a friendly decade. Panel now 2005→present
+> (2,716 days backfilled, CA +18,855 rows, index OHLC 2004→).
+> Site: "Time Machine" chapter. Also 08-17: leak_test added (edge
+> decays with delay = evidence against lookahead). Earlier: 31
+> tested / 30 dead / v4 in paper
 > trial (2 entries, both CASH, regime OFF; entry #2 landed Jul 31 via
 > cron ✓ same-day commit ✓ reconcile CLEAN ✓ garp.csv sleeve started)
 > + TWO combo candidates paper-logging (v13.1, v29.1; reviews ≥2027).
@@ -144,7 +160,7 @@ names in code/docs/site (local untracked config files are fine).
 | v1 | trend template, buy near highs, 8% fixed stop | DEAD | -15% vs Nifty +37%; stops = noise triggers |
 | v2 | VCP breakout, ATR stops, breadth regime | DEAD (curve-fit) | IS +34pt → OOS **-64pt**; knife-edge grid |
 | v3 | delivery-spike accumulation clusters | DEAD | IS -9.2pt; grid scatter (-36..+25) |
-| **v4** | **top-20 12-1 momentum, monthly, 200DMA regime→cash** | **PASS → paper phase** | IS +100pt, OOS +77pt; 7/7 grid positive both windows; survives 2× costs, ₹10cr floor. Matches published N200M30 behavior |
+| **v4** | **top-20 12-1 momentum, monthly, 200DMA regime→cash** | **PASS → paper phase** | IS +100pt, OOS +77pt; 7/7 grid positive both windows; survives 2× costs, ₹10cr floor. Matches published N200M30 behavior. **CRISIS TEST 2026-08-17 (PROTOCOL_CRISIS, single shot, not a gate): 2006-15 FAILED — edge −131pt (+27.5% vs index +158.4%). Breaker halves the 2008 crash (−29.7 vs −42.4; no-breaker −65.6) but paid ~66pt whipsaw rent in 2010-15 chop. Edge is ERA-LOCAL; long-run expectations recalibrated, Oct-15 gates unchanged** |
 | v4.1 | vol-scaling / FIP smoothness on v4 | DEAD (incumbent stands) | vol-scaling OOS edge -23 (dilutes Indian momentum); FIP great OOS (Sharpe 1.23) but worse IS — mixed → incumbent |
 | v5 | follow sticky-institution bulk/block buys T+1 | DEAD | IS -18.7pt; ALL variants negative; disclosure lag = market front-runs you |
 | v6 | US "obvious rally" joining (event study) | DEAD | 927 events: mean excess ≈0, win rate 56%, worst -62%. MU itself fired 5 signals, 2 lost |

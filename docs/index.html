@@ -75,7 +75,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a><a href="#thedata">The Data</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#yardstick">One Yardstick</a><a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#stranger">The Stranger</a><a href="#season2">Season 2</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
+<a href="#yardstick">One Yardstick</a><a href="#timemachine">Time Machine</a><a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#stranger">The Stranger</a><a href="#season2">Season 2</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
@@ -217,7 +217,7 @@ were tuned on (v2 below is the eternal reminder).</p>
 shot (v1, v3, v5, v13, v14, v16, v19 &mdash; in this system a second number must be earned, not granted), and v30,
 whose only positive numbers exist at prices nobody can trade. Ranking by one number is itself a simplification:
 the actual verdicts also weighed risk-adjusted return, drawdown, and the incumbent rule &mdash; each row's full
-reasoning stays in the scoreboard above.</p>
+reasoning stays in the scoreboard above. And v4's row uses its registered 2017-22 window; its 2006-15 stress-test verdict (edge &minus;131, different universe scale — see The Time Machine below) is deliberately a separate story, told in full.</p>
 </div>
 
 <div class="card">
@@ -476,6 +476,49 @@ large caps. Ten challengers have tried to take its title. All ten failed.</p>
 live signals logged publicly in the repo before a single rupee moves. Its very first live instruction, July 2026:
 <i>"market below the 200-day line — hold cash."</i> The first thing the winning strategy ever did was refuse to trade.
 Sit with that.</p>
+</section>
+
+<!-- ---------------- TIME MACHINE ---------------- -->
+<section id="timemachine">
+<div class="kicker">The sternest test yet · 2006–2015, single shot</div>
+<h2>We put the survivor in a time machine. It failed.</h2>
+<p>Every number on this page comes from 2016 onward — because that's where our data began. Which meant the
+champion had never been tested through a true bear market: its
+<dfn data-d="v4's rule: if Nifty is below its own 200-day average at month-end, sell everything and hold cash. Designed to step aside during crashes.">circuit-breaker</dfn>
+exists precisely for crashes, and had never faced one. So we backfilled eleven more years of data — 2,716
+trading days, 18,855 corporate actions, the 2008 collapse included — registered the
+<a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_CRISIS.md">predictions and pass bars first ↗</a>,
+and ran the survivor through the decade it had never seen
+(<a href="https://github.com/deshpanda/nse-screener/blob/main/backtest/crisis.py">code ↗</a>). Once. As always.</p>
+
+<div class="card">
+<h3>2006–2015: v4 +27.5% &nbsp;·&nbsp; index +158.4% &nbsp;·&nbsp; <b class="red">edge −131 points</b></h3>
+<table>
+<tr><th>era</th><th>v4</th><th>index</th><th>what happened</th></tr>
+<tr><td>2006–07 bull</td><td>+74.9%</td><td>+99.6%</td><td>lagged — its universe was ~150 large caps back then, where momentum is weakest</td></tr>
+<tr><td><b>2008 crash</b></td><td class="green"><b>−29.7%</b></td><td class="red">−42.4%</td><td><b>the breaker worked</b> — without it v4 loses 65.6%</td></tr>
+<tr><td><b>2009 recovery</b></td><td class="red">+50.7%</td><td class="green">+80.9%</td><td>sat in cash through the V-bottom — the breaker's known bill, predicted in advance</td></tr>
+<tr><td><b>2010–15 chop</b></td><td class="red">+15.1%</td><td>+62.8%</td><td>the killer nobody predicted: sideways markets whipsawed the breaker for ~66 points (without it: +81.5%)</td></tr>
+</table>
+<p class="small mut">Registered predictions, scored: "the breaker halves the crash" ✓ &nbsp; "it lags the recovery" ✓ &nbsp;
+"it still beats the index overall" <b class="red">✗ — wrong, and printed.</b> Data quality is not the excuse:
+zero backfill errors, delisting noise below threshold. A diagnostic with the liquidity floor scaled to
+that era's smaller market recovers much of the gap (−46 instead of −131) — the verbatim ₹5cr floor confined
+v4 to the largest names — but it still loses.</p>
+</div>
+
+<p><b>What this changes, and what it doesn't.</b> It doesn't change the October decision — those gates were
+frozen a month ago, they test whether the machine behaves, and "we found scary history" was never one of them.
+It doesn't invalidate 2016–2026 — that edge is real, measured, and validated against fifty years of academic
+data. What it changes is the <i>claim</i>. The honest claim was never "v4 always wins"; it is now, measurably:
+<b>v4 is a strategy for markets like the last decade — trending, retail-driven, midcap-rich. In the previous
+decade it did not work.</b> The circuit-breaker is crash insurance that pays out in disasters and charges heavy
+premiums in sideways years. Anyone running a 200-DMA filter — half of trading YouTube — should know both
+halves of that sentence.</p>
+<p class="mut small">This is also the third time the same law has appeared: edges are local. v8 showed they're
+local in <i>space</i> (India ≠ America). The alpha-decay autopsy showed they're local to <i>visibility</i>.
+This shows they're local in <i>time</i>. Every backtest is a claim about the future made from one era's
+evidence — the only honest response is to say which era, out loud.</p>
 </section>
 
 <!-- ---------------- LIVE TRIAL ---------------- -->
