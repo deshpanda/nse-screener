@@ -24,6 +24,25 @@
 > quality ₹500-5,000cr band), V37 (insider re-test, ≥300 fresh events),
 > V38 (upgrade-drift, ≥150 fresh events) — all frozen with run gates
 > ≥2027-07, pass bars, and predictions, before their data exists.
+> 08-18 late: 14-agent research sweep (verified, report in owner's
+> Downloads) — KEY FACTS FOR THE RECORD: (1) v4 CAPITAL CEILING
+> ~₹12-25Cr; impact drag at ₹1Cr portfolio = 0.25-0.71%/yr vs 5-10
+> edge → scaling is a NON-ISSUE for sizing (add ASM/GSM check to
+> rebalance checklist); (2) buyback deemed-dividend tax REPEALED
+> w.e.f. 2026-04-01 (Finance Act 2026) → tender-quota arbitrage
+> (≤₹2L small-shareholder 15% reservation) is live again, ~6-7%
+> post-tax per event claimed, VERIFIED; candidate NEW FAMILY
+> (special situations) — pipeline + pre-registration required before
+> anything; (3) NEW REGISTRABLE DATASET IDEAS: RE (rights
+> entitlement) discount study — REs trade on NSE, no published India
+> backtest, we'd build the first dataset; MF flow-induced trading
+> (monthly MF portfolio disclosures = better than US 13F cadence);
+> co-coverage momentum (needs analyst network data, hard). (4)
+> pledge-exclusion overlay idea routes to the EXISTING plan: farmed
+> snapshots mature mid-2027, then pre-register (overlay on v4 =
+> incumbent re-tuning otherwise). Do-not-bother list in the report
+> (SME IPOs regulator-flagged, US-via-LRS wrappers 1.6-2.1% FX
+> friction, momentum PMS underperformed live, etc.).
 > Six pre-registered future tests now stand (incl. V26 hysteresis);
 > NOTHING further is runnable until fresh data accumulates — by
 > design. Earlier: v31 QUALITY DEAD (+10.1 IS / −31.5 OOS — prediction exactly
