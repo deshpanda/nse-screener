@@ -1,9 +1,22 @@
-"""Rights-entitlement (RE) trade harvester.
+"""PARTLY-PAID share harvester (misnamed on purpose — see below).
 
-Rights entitlements trade on NSE as their own instruments under series
-"E1" (verified: TATASTEEL E1 traded 70,492 shares on 2020-05-27). Our
-main panel filters to series EQ, so REs have been invisible to every
-study so far — this builds the dataset that makes them testable.
+CORRECTION 2026-08-19, the same day this was written: series E1/E2/E3 are
+NOT rights entitlements. They are PARTLY-PAID equity shares, which arise
+when a rights issue is payable in installments. The tell: TATASTEEL E1
+and HATSUN E1 rows exist from 2018-12-31, before RE trading existed at
+all, and HATSUN's E1 dates do not straddle its rights record date.
+
+Rights entitlements (REs) are NOT in the equity bhavcopy in any series.
+Verified by inspecting 2020-05-26, 2020-05-28 and 2020-06-01 — the middle
+of Reliance's RE trading window (20 May - 3 Jun 2020): the only RELIANCE
+row on each day is series EQ. Every apparent "-RE" symbol is a company
+whose NAME ends in RE (APOLLOTYRE, GICRE). PROTOCOL_V39 is therefore
+BLOCKED on data, not on method; untried routes are listed in STATE.
+
+What this module DID produce, and it is genuinely novel: 7,162
+partly-paid-share observations across 66 instruments, 2018-2026.
+Partly-paid shares trade at a discount reflecting unpaid installments and
+are studied by almost nobody — a candidate future protocol.
 
 Design note (important): this does NOT touch config.SERIES. Changing the
 main panel's series filter would silently alter the universe of all 34

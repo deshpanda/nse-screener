@@ -77,3 +77,24 @@ structural (non-factor, non-information) edge the project has found.
 
 ## Amendments
 None after this commit.
+
+---
+
+## ADDENDUM 2026-08-19 (same day; criteria above unchanged) — BLOCKED ON DATA
+
+The data route this protocol assumed does not exist. Series E1/E2/E3 are
+**partly-paid shares**, not rights entitlements: TATASTEEL/HATSUN E1 rows
+predate RE trading entirely, and HATSUN's E1 window does not straddle its
+rights record date. Direct verification then settled it — on 2020-05-26,
+2020-05-28 and 2020-06-01, inside Reliance's RE trading window, the only
+RELIANCE row in the full bhavcopy is series EQ. REs are not published in
+the equity bhavcopy under any series.
+
+Status: **BLOCKED-DOCUMENTED**, not dead. The hypothesis is untested and
+the pass criteria above stand unamended for whenever a data route opens.
+Untried routes, in rough order of promise: (1) NSE's separate rights-
+entitlement reports//ISIN-keyed instrument files; (2) the BSE equivalent;
+(3) reconstructing RE prices from broker/depository statements; (4) paid
+vendor data. NOTHING in this protocol may be relaxed to fit whatever
+route is found — if the new source cannot support these cells, the study
+does not run.
