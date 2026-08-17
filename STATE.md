@@ -8,9 +8,16 @@
 > trial. NEW FAMILY OPENED — structural quotas (from the 14-agent
 > sweep): (a) PIPELINE ingest/buybacks.py = 330 tender events 2016-26,
 > 94% announcement-matched, median 14d notice; (b) PIPELINE
-> ingest/rights_re.py = rights entitlements, series E1-E9, which the
-> main panel's EQ filter had hidden from ALL 34 prior studies (243
-> issues, harvest running; config.SERIES deliberately untouched).
+> ingest/rights_re.py — MISIDENTIFIED SERIES, corrected same day: E1-E3
+> are PARTLY-PAID shares, NOT rights entitlements (TATASTEEL/HATSUN E1
+> rows predate RE trading; RELIANCE shows only an EQ row on 3 dates
+> inside its 2020 RE window). **REs are NOT in the equity bhavcopy
+> under any series — do not re-attempt that route.** v39 is
+> BLOCKED-DOCUMENTED (criteria unamended; untried routes: NSE separate
+> RE/ISIN instrument files, BSE equivalent, depository statements,
+> paid vendor). Accidental yield: 7,162 partly-paid observations, 66
+> instruments 2018-2026 — an almost-unstudied instrument, candidate
+> future protocol. Site correction published same day.
 > v40 BUYBACK PRICE PATH DEAD, all 3 predictions correct: NO run-up
 > exists (A1 −0.20 IS / −2.05 OOS, A2 −1.65/−1.17, both below null),
 > and post-record weakness is real (A3 −1.08/−1.09 vs null +1.04/+0.73
@@ -555,6 +562,15 @@ audit: `monthly.simulate`'s eq rows are indexed by t1 = the month-end
 a return ENDS at (French's convention) — do NOT shift labels when
 comparing to external monthly series.
 
+
+Partly-paid shares: `data/rights_re/re_trades.parquet` — 7,162 rows,
+66 instruments, 2018-12→2026-08, series E1/E2/E3 harvested from raw
+archives. TRAP: these are NOT rights entitlements (see v39 addendum).
+Rights entitlements are absent from the equity bhavcopy entirely.
+Also `issues.parquet` (243 rights issues, issue price = faceVal +
+premium, 94% parse) and `data/buybacks/` (330 tender events, 94%
+announcement-matched). GAP: tender prices and acceptance ratios need
+post-offer PDF parsing — the project's top dataset priority.
 
 Pledge dataset (v20, under construction): NSE publishes only the CURRENT
 promoter-pledge snapshot (corporate-pledgedata API; ~1,530 companies).
