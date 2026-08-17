@@ -4,7 +4,31 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-18. NOW 34 tested / 33 dead / v4 in paper
+> Last updated: 2026-08-19. NOW 35 tested / 34 dead / v4 in paper
+> trial. NEW FAMILY OPENED — structural quotas (from the 14-agent
+> sweep): (a) PIPELINE ingest/buybacks.py = 330 tender events 2016-26,
+> 94% announcement-matched, median 14d notice; (b) PIPELINE
+> ingest/rights_re.py = rights entitlements, series E1-E9, which the
+> main panel's EQ filter had hidden from ALL 34 prior studies (243
+> issues, harvest running; config.SERIES deliberately untouched).
+> v40 BUYBACK PRICE PATH DEAD, all 3 predictions correct: NO run-up
+> exists (A1 −0.20 IS / −2.05 OOS, A2 −1.65/−1.17, both below null),
+> and post-record weakness is real (A3 −1.08/−1.09 vs null +1.04/+0.73
+> ≈ 2pp drag over 21d). READ THIS BEFORE ANY TENDER TRADE: entry
+> prices are NOT inflated (good), but unaccepted shares are held into
+> consistent weakness (bad) → the trade's viability rests ENTIRELY on
+> the acceptance ratio, which lives in un-parsed "basis of acceptance"
+> PDFs. That PDF pipeline is now the project's highest-value dataset
+> gap; the sweep's "~6-7% post-tax per event" figure remains
+> UNVERIFIED by us and must not be quoted as if tested.
+> PROTOCOL_V39 registered (RE discount capture: issue price =
+> faceVal + premium, 94% parse spot-validated vs BHARTIARTL-2019
+> Rs 220 and IDEA Rs 12.50; STCG for subscribe-route vs slab for bare
+> flip; runner committed, exit-date proxies disclosed). Site: Chapter
+> 12 "The one advantage an amateur actually has" (three kinds of edge;
+> the fact-checker-beats-researcher story; capital ceiling published;
+> do-not-bother list). trading-live: ASM/GSM surveillance check added
+> to execution rules. Earlier 08-18: 34 tested / 33 dead / v4 in paper
 > trial. v33 DUAL MOMENTUM (GEM on NIFTYBEES/JUNIORBEES/GOLDBEES/
 > LIQUIDBEES, PROTOCOL_V33): PASSED THE GATE both windows (+17.4 IS /
 > +7.3 OOS, DD −30.7 vs −51.3, 2008 sidestepped, WON the 2010-15 chop
@@ -241,6 +265,7 @@ names in code/docs/site (local untracked config files are fine).
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
 | v27 | index-inclusion flows on synthetic constituents (PROTOCOL_V27; deep boundary crossings, two nulls incl. momentum-matched) | DEAD — underpowered by design and the frozen n≥30 floor did its job: IS adds looked spectacular (A50 h63 +10.3 / h126 +16.9 vs nulls ~+3-4, medians +16-18) on n=9-17 — refused as lottery evidence. OOS adds negative (both registered predictions WRONG — printed). Drops fail too (IS n<30). Structural lesson: monthly synthetic ranks + deep-crossing requirement → too few events; honest re-test needs actual NSE reconstitution announcements (future dataset, queued). Synthetic constituents dataset itself remains valid for universes/benchmarks. **v27.1 re-test (PROTOCOL_V27.1, real announcements, 2,349 core events, v27 peek disclosed): 47 of 48 cells DEAD — incl. all F63 "post-announce drift" OOS passes being fully explained by the momentum null in IS. ONE cell passes the decision window: Nifty 500 adds, announce→effective (n=94, +1.83 vs both nulls ≈ −1.35, clears the +3pp bar by 0.14pp; OOS same direction +2.6-2.9pp above nulls, misses bar by ~0.2pp). Status: CONFIRMATORY-ONLY per protocol. **v27.2 gauntlet (PROTOCOL_V27.2, same day): Stage A1 plateau 8/8 PASS, A3 after-tax PASS (+1.24 vs −1.7 nulls), but A2 LOTTERY CHECK FAIL — best quarter = 74% of positive quarterly excess (bar <40%; the v21 detector). Half-splits agree: 2023-24 mean −0.73, all juice in 2025-26. Cell DEAD (spike), Stage B cancelled per protocol. Index-flow family fully closed; only honest future re-entry = fresh events, fresh registration, years away** |
+| v40 | buyback tender-offer price path (PROTOCOL_V40; A1 announce→record, A2 pre-record 5d, A3 post-record 21d) | DEAD, all 3 predictions correct. A1 −0.20 IS / −2.05 OOS; A2 −1.65 / −1.17; both below the random-announcement null → NO run-up to capture. A3 −1.08 / −1.09 vs null +1.04 / +0.73 = consistent ~2pp post-record drag over 21d in BOTH windows (n=59-100/window). Implication: entry not inflated, but unaccepted shares bleed → acceptance ratio is the whole trade. Tender price + acceptance ratio NOT computable from our data (snippets truncate to face value) — disclosed in protocol |
 | v33 | dual momentum GEM: 4 ETFs, 12m lookback, monthly (PROTOCOL_V33 + gauntlet V33.1) | PASSED GATE both windows (+17.4/+7.3, DD nearly halved, 2008 −20.8 vs −42.9, predictions wrong ×3 — printed) then DEAD in same-day confirmation: plateau 2/8 (lookback/anchor-day/cost knife-edges; 2015-22 half −39.8), after-tax LOSES both windows (4/35 lots LTCG). No-gold cell dead everywhere — gold was the engine. 4th gate-passer, 2nd killed by its own gauntlet |
 | v32 | turn-of-month/SIP flows (PROTOCOL_V32; 3 cells, cost tiers) | DEAD — concentration real OOS 2006-22 (C1 19% of days: +240.8% gross vs +87.3% rest-of-month) but FADED IS (C1 +12.0 vs C3 +21.5); tradable cells lose to buy-and-hold at every tier both windows. Predictions: trade-fails ✓, concentration-replicates ✓ OOS ✗ IS (decay kill #7) |
 | v31 | quality composite: margin/stability/streak, mcap>₹5,000cr (PROTOCOL_V31) | DEAD — +10.1 IS / −31.5 OOS; prediction EXACTLY BACKWARDS (registered: OOS shines, IS struggles), printed. corr(v4)=0.31, corr lowest yet — no combo seat for dead strategies. Factor triad closed: momentum alive, value gate-passed-lost, quality dead. Small-cap quality (S&P600-style) queued for FRESH windows 2027 — this family's windows now spent |
