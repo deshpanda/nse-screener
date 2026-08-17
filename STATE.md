@@ -4,7 +4,22 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-17 (eve). NOW 33 tested / 32 dead / v4 in paper
+> Last updated: 2026-08-18. NOW 34 tested / 33 dead / v4 in paper
+> trial. v33 DUAL MOMENTUM (GEM on NIFTYBEES/JUNIORBEES/GOLDBEES/
+> LIQUIDBEES, PROTOCOL_V33): PASSED THE GATE both windows (+17.4 IS /
+> +7.3 OOS, DD −30.7 vs −51.3, 2008 sidestepped, WON the 2010-15 chop
+> +103 vs +63 — three of four registered predictions WRONG, printed;
+> 4th-ever gate passer) THEN DIED same day in the pre-registered
+> v33.1 gauntlet: A1 plateau 2/8 (9m lookback → −26.7 OOS; formation
+> ±3d → −53.1/−7.7 — anchor-day knife-edge; cost ×2 → −54.3; 2015-22
+> half → −39.8), A2 lottery ok (32%/21%), A3 AFTER-TAX FAILS BOTH
+> (only 4/35 lots reach LTCG — GEM switches too much; all three
+> gauntlet predictions also wrong). D2 no-gold diagnostic: dead
+> everywhere → gold was the engine. Verdict: fragile spike + after-tax
+> loser. Reddit/practitioner momentum-toolkit sweep same day: 5 of 7
+> "works for people" variants already dead on our data; 52-week-high
+> + FIP locked in the 2027 fresh-window queue. Earlier 08-17: 33
+> tested / 32 dead / v4 in paper
 > trial. v31 QUALITY DEAD (+10.1 IS / −31.5 OOS — prediction exactly
 > backwards, printed; corr(v4) 0.31 = lowest yet but dead strategies
 > earn no combo seats; factor triad now fully tested: momentum
@@ -201,6 +216,7 @@ names in code/docs/site (local untracked config files are fine).
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
 | v27 | index-inclusion flows on synthetic constituents (PROTOCOL_V27; deep boundary crossings, two nulls incl. momentum-matched) | DEAD — underpowered by design and the frozen n≥30 floor did its job: IS adds looked spectacular (A50 h63 +10.3 / h126 +16.9 vs nulls ~+3-4, medians +16-18) on n=9-17 — refused as lottery evidence. OOS adds negative (both registered predictions WRONG — printed). Drops fail too (IS n<30). Structural lesson: monthly synthetic ranks + deep-crossing requirement → too few events; honest re-test needs actual NSE reconstitution announcements (future dataset, queued). Synthetic constituents dataset itself remains valid for universes/benchmarks. **v27.1 re-test (PROTOCOL_V27.1, real announcements, 2,349 core events, v27 peek disclosed): 47 of 48 cells DEAD — incl. all F63 "post-announce drift" OOS passes being fully explained by the momentum null in IS. ONE cell passes the decision window: Nifty 500 adds, announce→effective (n=94, +1.83 vs both nulls ≈ −1.35, clears the +3pp bar by 0.14pp; OOS same direction +2.6-2.9pp above nulls, misses bar by ~0.2pp). Status: CONFIRMATORY-ONLY per protocol. **v27.2 gauntlet (PROTOCOL_V27.2, same day): Stage A1 plateau 8/8 PASS, A3 after-tax PASS (+1.24 vs −1.7 nulls), but A2 LOTTERY CHECK FAIL — best quarter = 74% of positive quarterly excess (bar <40%; the v21 detector). Half-splits agree: 2023-24 mean −0.73, all juice in 2025-26. Cell DEAD (spike), Stage B cancelled per protocol. Index-flow family fully closed; only honest future re-entry = fresh events, fresh registration, years away** |
+| v33 | dual momentum GEM: 4 ETFs, 12m lookback, monthly (PROTOCOL_V33 + gauntlet V33.1) | PASSED GATE both windows (+17.4/+7.3, DD nearly halved, 2008 −20.8 vs −42.9, predictions wrong ×3 — printed) then DEAD in same-day confirmation: plateau 2/8 (lookback/anchor-day/cost knife-edges; 2015-22 half −39.8), after-tax LOSES both windows (4/35 lots LTCG). No-gold cell dead everywhere — gold was the engine. 4th gate-passer, 2nd killed by its own gauntlet |
 | v32 | turn-of-month/SIP flows (PROTOCOL_V32; 3 cells, cost tiers) | DEAD — concentration real OOS 2006-22 (C1 19% of days: +240.8% gross vs +87.3% rest-of-month) but FADED IS (C1 +12.0 vs C3 +21.5); tradable cells lose to buy-and-hold at every tier both windows. Predictions: trade-fails ✓, concentration-replicates ✓ OOS ✗ IS (decay kill #7) |
 | v31 | quality composite: margin/stability/streak, mcap>₹5,000cr (PROTOCOL_V31) | DEAD — +10.1 IS / −31.5 OOS; prediction EXACTLY BACKWARDS (registered: OOS shines, IS struggles), printed. corr(v4)=0.31, corr lowest yet — no combo seat for dead strategies. Factor triad closed: momentum alive, value gate-passed-lost, quality dead. Small-cap quality (S&P600-style) queued for FRESH windows 2027 — this family's windows now spent |
 | v30 | overnight anomaly from viral chart (PROTOCOL_V30; v24 pattern — claim pre-peeked, disclosed; decomposition + costed close→open trade) | TRUE BUT UNTRADABLE — all registered predictions verified. Real index OHLC 2016-26: overnight +1,691% / intraday −83% / bh +209%. C3 trade: 0.50% RT dead both; 0.10% dead BOTH (incl. OOS); 0.05% beats OOS but DIES IS (+22.6 vs +35.3) → fails the both-windows gate; 0.02% (institutional fantasy, diagnostic-only) beats both. Anomaly decaying: +836% OOS → +91% IS. NEW DATA TRAPS: (1) bhav ETF OPEN prints are fake (stale ticks ±13% off; any ETF open-based study is invalid); (2) 70-row JSON cap also afflicts /api/historicalOR/indicesHistory — fetch month-by-month. NIFTY_50_OHLC.parquet added to data/indices |

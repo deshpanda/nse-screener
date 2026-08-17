@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thirty-Two Ways We Failed to Beat the Market (and One That Survived)</title>
-<meta name="description" content="An interactive, honest log of testing thirty-three trading strategies on real market data — thirty-two failures, one survivor, zero rupees lost.">
+<title>Thirty-Three Ways We Failed to Beat the Market (and One That Survived)</title>
+<meta name="description" content="An interactive, honest log of testing thirty-four trading strategies on real market data — thirty-three failures, one survivor, zero rupees lost.">
 <style>
 :root{
   --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#8b949e;
@@ -81,14 +81,14 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <main>
 <div class="hero">
 <div class="kicker">A real research log · real money never risked · real data throughout</div>
-<h1>Thirty-two ways we failed to beat the market.<br>And the one that survived.</h1>
+<h1>Thirty-three ways we failed to beat the market.<br>And the one that survived.</h1>
 <p class="big mut">We spent weeks building trading strategies on ten years of real Indian stock-market data —
 momentum breakouts, "follow the institutions," chasing obvious rallies. Almost everything a
 YouTube guru sells, we actually tested. This page is the honest scoreboard, and every chart on it
 runs on the real numbers.</p>
 <div class="statrow">
-<div class="stat"><b>33</b><span class="mut small">strategies tested</span></div>
-<div class="stat"><b class="red">32</b><span class="mut small">failed honestly</span></div>
+<div class="stat"><b>34</b><span class="mut small">strategies tested</span></div>
+<div class="stat"><b class="red">33</b><span class="mut small">failed honestly</span></div>
 <div class="stat"><b class="green">1</b><span class="mut small">survived every test</span></div>
 <div class="stat"><b>₹0</b><span class="mut small">lost finding out</span></div>
 </div>
@@ -146,7 +146,7 @@ it's too late: you'll bend the rules to fit them. Every scientist knows this; al
 <i>exactly</i> a 1.5× volume filter and dies at 1.25× or 2×, that setting is a lottery ticket that already won —
 in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 </div>
-<p>Thirty-three strategies entered this gauntlet (one more is pre-registered to run in 2027) (each row's full pre-registered spec and verdict lives as a protocol file in <a href='https://github.com/deshpanda/nse-screener'>the repo</a>). Here's the scoreboard we'll walk through:</p>
+<p>Thirty-four strategies entered this gauntlet (one more is pre-registered to run in 2027) (each row's full pre-registered spec and verdict lives as a protocol file in <a href='https://github.com/deshpanda/nse-screener'>the repo</a>). Here's the scoreboard we'll walk through:</p>
 <table>
 <tr><th>#</th><th>Idea (the pitch)</th><th>Verdict</th></tr>
 <tr><td>v1 <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/run.py">code ↗</a></td><td>Buy strong stocks near their highs (Minervini-style template)</td><td><span class="pill dead">DEAD</span> lost money outright</td></tr>
@@ -184,6 +184,7 @@ in the past. You'll see a spectacular live example of this in Chapter 4.</p>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V30.md">v30</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/overnight30.py">code ↗</a></td><td>The viral "market works at night" chart — all of Nifty's return happens overnight; the trading day loses money</td><td><span class="pill dead">TRUE BUT UNTRADABLE</span> the chart is real (overnight +1,691% / intraday −83% on our data) — but capturing it means 500 trades a year, and at any cost a retail account can get, the toll booth eats the road</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V31.md">v31</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/quality31.py">code ↗</a></td><td>Quality investing — buy durably profitable companies (high stable margins, unbroken profit streaks)</td><td><span class="pill dead">DEAD</span> +10 vs index in the design years, −32 out-of-sample — our prediction was exactly backwards, and is printed. The factor textbooks love, at least in large caps, didn't pay here</td></tr>
 <tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V32.md">v32</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/tom32.py">code ↗</a></td><td>Turn-of-the-month effect — returns cluster around month boundaries (SIP flows, salary flows)</td><td><span class="pill dead">DEAD</span> the clustering was real for 17 years (19% of days earned 3× the rest combined) — then faded this decade, and the tradable version never beat buy-and-hold anyway</td></tr>
+<tr><td><a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V33.md">v33</a><a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V33.1.md">.1</a> <a class="small" href="https://github.com/deshpanda/nse-screener/blob/main/backtest/dualmom33.py">code ↗</a></td><td>Dual momentum (the famous Antonacci rotation): each month hold the strongest of equities/gold/cash</td><td><span class="pill dead">PASSED THE GATE, DIED IN CONFIRMATION</span> fourth-ever gate passer — then the pre-registered gauntlet found a knife-edge (2 of 8 settings survive; move the lookback or the rebalance day and it collapses) and an after-tax loss in both eras. Gold was the entire engine</td></tr>
 </table>
 </section>
 
@@ -216,6 +217,7 @@ were tuned on (v2 below is the eternal reminder).</p>
 <tr><td>v29 GARP screen (US)</td><td><div style="background:var(--red);height:12px;width:100%"></div><b class="red">&minus;195</b></td><td>&minus;22</td><td>edges are local, part two</td></tr>
 <tr><td>v31 quality factor</td><td><div style="background:var(--red);height:12px;width:16%"></div><b class="red">&minus;32</b></td><td>+10</td><td>the triad's third leg, fallen</td></tr>
 <tr><td>v32 turn-of-month timing</td><td><div style="background:var(--red);height:12px;width:100%"></div><b class="red">&minus;331</b></td><td>&minus;27</td><td>19% of days can't beat 100% of a bull market</td></tr>
+<tr><td>v33 dual momentum (gold/equity/cash rotation)</td><td><div style="background:var(--gold);height:12px;width:4%"></div><b class="gold">+7</b></td><td>+17</td><td>passed, then died in confirmation: knife-edge settings + after-tax loss</td></tr>
 </table>
 <p class="small mut">Not listed: strategies that failed <i>in-sample</i> and therefore never earned an out-of-sample
 shot (v1, v3, v5, v13, v14, v16, v19 &mdash; in this system a second number must be earned, not granted), and v30,
@@ -692,7 +694,7 @@ believed for free.</p>
 <p>After the first wave of verdicts, the bottleneck stopped being ideas — it was questions our data couldn't
 answer. So the project pivoted: build datasets almost nobody bothers to collect, write down each hypothesis
 and its pass criteria <dfn data-d="Pre-registration: committing the exact rules, test windows, and success criteria to the public repository BEFORE running the test — so results can't quietly bend the rules. Every protocol here is git-timestamped.">before</dfn>
-testing it, and let the machine keep score. Eighteen more studies. Here is each one, its result, and what it taught:</p>
+testing it, and let the machine keep score. Nineteen more studies. Here is each one, its result, and what it taught:</p>
 <div class="tablewrap"><table>
 <tr><th>What we tried</th><th>Result</th><th>The takeaway</th></tr>
 <tr><td>Judge the champion harder — penalise it for every strategy we ever tried (deflated Sharpe), test whether our own variant-picking overfits</td><td class="green">v4 survived: 99.5% likely real. But picking the "best-looking" variant of any family = coin flip</td><td>Never promote the shiniest settings; keep the pre-declared ones</td></tr>
@@ -713,6 +715,7 @@ testing it, and let the machine keep score. Eighteen more studies. Here is each 
 <tr><td>A viral chart's "brutal truth": ALL of Nifty's gains come overnight (close→open); the trading day itself is a losing proposition (v30)</td><td class="gold">CONFIRMED as a fact — overnight +1,691%, intraday −83% since 2016 on real index data — and DEAD as a trade, exactly as registered: at 0.10% round-trip cost it loses to buy-and-hold in both eras; only institutional-fantasy costs survive. Bonus: the anomaly itself is fading (+836% pre-2023, +91% after)</td><td>A true fact can still be a dead trade — friction is the wall, not the moat. Also: two of our own documented data traps (fake ETF opening prints, NSE's 70-row cap) both struck during this one study and were caught by sanity checks</td></tr>
 <tr><td>The third factor: quality (v31) — profitable, stable, streak-of-profits companies, built from our 43k parsed filings</td><td class="red">DEAD: +10 in-sample, −32 out-of-sample. Registered prediction exactly backwards (we said quality would shine in the COVID-era window; it did the opposite) — printed</td><td>Momentum survived, value passed-then-lost, quality died: the factor triad is now fully tested on identical windows. Also the lowest v4-correlation yet (0.31) — but dead strategies don't earn combo seats</td></tr>
 <tr><td>Turn-of-the-month flows (v32): do SIP debits and salary-day money make month-boundaries special?</td><td class="gold">The effect was REAL out-of-sample — the 5-day window around month-ends (19% of days) earned +241% while the other 81% earned +87%. Then this decade it faded to nothing. The trade dies at every cost tier either way</td><td>Another edge with an expiry date — the decay law's seventh confirmed kill. Beautiful fact, dead trade, free chapter</td></tr>
+<tr><td>The internet's favorite: dual momentum (v33) — rotate monthly into the strongest of Nifty/midcaps/gold/cash. Backed by "215 years of evidence" and half of retail-quant blogging</td><td class="gold">PASSED the index gate in both eras (+17 and +7 points, drawdowns near halved, sidestepped 2008) — our prediction of failure was wrong, printed. Then its pre-registered confirmation gauntlet executed it the same day: 2 of 8 parameter perturbations survive, and after Indian taxes it LOSES to buy-and-hold in both eras (it switches too often for the cheap tax rate)</td><td>The no-gold diagnostic told the real story: the strategy is mostly "owned gold in 2011 and 2024". A famous strategy can be a knife-edge wearing a track record — and the tax office kills what the market spares</td></tr>
 </table></div>
 <p>Season two's laws, earned twice each: <b>the market tells you what to refuse more reliably than what to
 buy — but even refusal has seasons.</b> The champion faced five more challengers this season under the
@@ -739,9 +742,9 @@ A tie broken by discretion after seeing results isn't a tie; it's a leak.</p>
 windows, across every settings variant. The information in earnings is genuine. It just doesn't add
 anything that price momentum hadn't already noticed — by the time profits accelerate, the price usually
 knows.</p>
-<p class="big"><b>Final score: thirty-three strategies, thirty-two deaths, one survivor</b> — boring monthly
+<p class="big"><b>Final score: thirty-four strategies, thirty-three deaths, one survivor</b> — boring monthly
 momentum with a circuit-breaker, now proving itself in a public paper trial before a single rupee moves.
-The thirty-two failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
+The thirty-three failures were not wasted work — they are the reason the one survivor can be trusted.</p><div class="card">
 <h3>The experiment we refused to fake — and what we're doing instead</h3>
 <p>One idea remains genuinely promising: avoid companies whose founders have
 <dfn data-d="Promoters (founders/controlling owners) can borrow money using their own shares as collateral. If the stock falls, lenders force-sell those shares, pushing it down further — a cascade. High pledge = hidden fragility.">pledged</dfn>
@@ -770,7 +773,7 @@ portfolio moved with the academic benchmark at a correlation of <b>0.89</b>, and
 beat for beat: the premium era before 2009, the famous momentum crash of 2009 (−26 points in one year), and the
 post-2010 decay (<a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_USAUDIT.md">pass criteria
 frozen in advance ↗</a>, <a href="https://github.com/deshpanda/nse-screener/blob/main/us/engine_audit.py">code ↗</a>).
-The machine that declared thirty-two strategies dead and one alive measures reality the way five decades of
+The machine that declared thirty-three strategies dead and one alive measures reality the way five decades of
 published research does. The verdicts stand on tested ground.</p>
 
 <p><b>Postscript 3 — the visitor every backtest forgets: the tax office.</b> Every edge number on this page is
