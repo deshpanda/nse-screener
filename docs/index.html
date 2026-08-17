@@ -75,7 +75,7 @@ footer{padding:40px 20px;text-align:center;color:var(--mut);font-size:14px}
 <nav><div class="in">
 <a href="#promise">The Promise</a><a href="#rules">The Gate</a><a href="#data">Data Traps</a><a href="#thedata">The Data</a>
 <a href="#breakouts">Breakouts</a><a href="#smartmoney">Smart Money</a><a href="#rallies">Rally Chasing</a>
-<a href="#yardstick">One Yardstick</a><a href="#timemachine">Time Machine</a><a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#stranger">The Stranger</a><a href="#season2">Season 2</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
+<a href="#yardstick">One Yardstick</a><a href="#timemachine">Time Machine</a><a href="#survivor">The Survivor</a><a href="#livetrial">Live Trial</a><a href="#uslesson">The US Test</a><a href="#autopsy">The Autopsy</a><a href="#method">The Method</a><a href="#stranger">The Stranger</a><a href="#season2">Season 2</a><a href="#smallness">Smallness</a><a href="#finale">The Finale</a><a href="#glossary">Glossary</a>
 </div></nav>
 
 <main>
@@ -297,6 +297,8 @@ the open repo; a nightly job keeps it all current. What a decade of it looks lik
 <tr><td><b>Index membership</b></td><td>13 snapshots</td><td>Point-in-time Nifty constituent lists recovered from the Internet Archive — partial but honest.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/constituents.py">Synthetic constituents</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/blob/main/constituents_synth.parquet">data ↗</a></td><td>99 month-ends</td><td>Index membership <i>reconstructed</i>: share counts implied from 43k quarterly filings (profit ÷ EPS — a banking-taxonomy EPS fix got the banks in) × unadjusted prices × the promoter data's <dfn data-d="Free-float market cap: company value counting only shares the public can actually trade — promoters' locked-in stakes excluded. What Nifty actually ranks by.">free-float</dfn> weighting. Calibration against the 13 real snapshots: Nifty500 ~90% recall, Nifty50 ~84%. The honest fix for the constituent history nobody publishes.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/reconstitution.py">Index reconstitution announcements</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/reconstitution">data ↗</a></td><td>1,115 press releases</td><td>Every NSE Indices press release since 1998 — including the actual add/drop announcements with announce <i>and</i> effective dates, tables carrying NSE symbols. Acquired after v27's post-mortem: the real event timing its synthetic detection couldn't see.</td></tr>
+<tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/buybacks.py">Buyback tender events</a></b></td><td>330 events, 2016→2026</td><td>Every buyback with its record date, 94% matched back to the original announcement (median 14 days' notice). The dataset behind the small-shareholder-quota question. Honest gap: realized acceptance ratios live in post-offer PDFs and are not yet parsed, so only <i>break-even</i> acceptance can be computed.</td></tr>
+<tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/rights_re.py">Rights entitlements</a></b></td><td>243 issues; RE trades harvesting</td><td>The tradable rights themselves — invisible to every earlier study because they trade under series codes our price pipeline filters out. Issue prices reconstructed from the corporate-actions feed (94% parse rate, spot-checked against real 2019 issues). Powers <a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V39.md">v39</a>.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/sectors.py">Pledge snapshots</a></b></td><td>growing monthly</td><td>The dataset being farmed (see the finale) — promoter share-pledge levels, captured every month until enough history exists to test honestly.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/shareholding.py">Shareholding patterns</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/shareholding">data ↗</a></td><td>94,822 quarters</td><td>Every company's quarterly <dfn data-d="The disclosure every listed Indian company files each quarter: what percentage of its shares each category of owner holds — promoters vs the public. We store when each filing became public, so tests can't accidentally use the future.">shareholding pattern</dfn> — promoter vs public split for 1,877 companies back to 2004, disclosure-timestamped since 2015. Powered v25.</td></tr>
 <tr><td><b><a href="https://github.com/deshpanda/nse-screener/blob/main/ingest/shareholding_detail.py">Institutional ownership detail</a></b> <a class="small" href="https://github.com/deshpanda/nse-screener-data/tree/main/shareholding_detail">data ↗</a></td><td>2.46M rows · 58,800 filings</td><td>The category breakdown inside each quarterly filing — mutual funds, insurers, <dfn data-d="Foreign Portfolio Investors (what news anchors call FIIs): overseas funds buying Indian stocks. Alongside DIIs (domestic institutions — mutual funds, insurers), the 'big money' whose quarterly stakes this dataset tracks per company.">FPI/FII</dfn> categories — per company per quarter since 2016 — 1,877 companies complete. Unlocks the institutional-accumulation question v25's promoter-only data couldn't answer.</td></tr>
@@ -722,6 +724,67 @@ buy — but even refusal has seasons.</b> The champion faced five more challenge
 <dfn data-d="The incumbent rule: a challenger replaces the current champion only by beating it on every pre-agreed measure in BOTH test eras. Ties and mixed results go to the champion — because 'it won in the era I prefer' is how self-deception starts.">incumbent rule</dfn>
 and kept its title every time. And a standing rule joined the machine: any new dataset used anywhere gets a
 row in the data table above, same day — and every dataset is downloadable — small derived ones in the main repo, the full panels in a dedicated <a href="https://github.com/deshpanda/nse-screener-data">data repository</a>. If you can't see the data, you shouldn't trust the verdict.</p>
+</section>
+
+<!-- ---------------- SMALLNESS ---------------- -->
+<section id="smallness">
+<div class="kicker">Chapter 12 · the sweep that changed the question</div>
+<h2>The one advantage an amateur actually has</h2>
+<p>Thirty-four strategies in, we did something different: instead of asking "what else can we predict?", we
+swept the whole map of ways money is made in this market — seven parallel research lenses, then a second wave
+of <dfn data-d="Each big claim was handed to a separate researcher whose job was to REFUTE it using primary sources — SEBI circulars, RBI bulletins, fund factsheets — and to recompute every return after Indian taxes. Promotional sources were treated as guilty until proven otherwise.">adversarial fact-checkers</dfn>
+whose only job was to destroy the findings. Fourteen researchers, about 160 sources. The result reframed the
+project.</p>
+
+<div class="card">
+<h3>Three kinds of edge exist. We had spent three months on the hardest one.</h3>
+<table>
+<tr><th>kind of edge</th><th>where it comes from</th><th>our record</th></tr>
+<tr><td><b>Prediction edges</b><br><span class="mut small">momentum, value, quality, events</span></td><td>knowing something the price doesn't</td><td class="red">34 tested, 1 survivor — and its edge is <a href="#timemachine">era-local</a></td></tr>
+<tr><td><b>Structural quotas</b><br><span class="mut small">buyback tenders, IPO retail quota, rights entitlements</span></td><td>rules that <i>reserve</i> part of a deal for small holders</td><td class="gold">never examined until now — being small is the qualification</td></tr>
+<tr><td><b>Plumbing &amp; tax wedges</b><br><span class="mut small">fund taxation, employer schemes, tracking difference</span></td><td>the tax code and fee structures, not the market</td><td class="green">certain, boring, and mostly ignored by people hunting alpha</td></tr>
+</table>
+<p class="small mut">The uncomfortable arithmetic: the second and third categories are <i>where the small
+investor is structurally advantaged</i>, and they are exactly the categories nobody writes threads about,
+because you cannot sell a course on filing a tender form.</p>
+</div>
+
+<p><b>The headline finding came from a fact-checker correcting a researcher.</b> India's rules reserve
+<b>15% of every buyback tender offer</b> for shareholders holding ≤₹2 lakh — a quota an institution physically
+cannot qualify for. Historically that produced acceptance rates far above entitlement (one 2017 case: 37.5%
+entitled, 68% actually accepted). Our researcher reported the trade as dead, killed by an October-2024 tax
+change that taxed buyback proceeds as dividend income at slab rates. The fact-checker sent to destroy that
+claim found something better: <b>the Finance Act 2026 repealed it, effective April 2026.</b> The trade is
+alive again, and the verification step — not the research step — is what discovered it.</p>
+
+<p><b>The second finding was about our own strategy's ceiling.</b> A dedicated agent ran market-impact math on
+the survivor's actual liquidity profile. At a ₹1 crore portfolio, the estimated cost of moving prices against
+ourselves is <b>0.25–0.71% a year</b> against an edge several times that; the strategy's practical ceiling sits
+around <b>₹12–25 crore</b>, and every regulatory disclosure threshold is 20–40× further out. A worry we had
+carried for months turned out to be arithmetic we had never done.</p>
+
+<div class="card">
+<h3>What the sweep told us <i>not</i> to do — the more useful half</h3>
+<ul class="check">
+<li class="no"><b>SME IPOs.</b> The regulator's own research is damning: in retail-heavy small-company IPOs, a median listing pop near +190% turned <i>negative within a month</i> and roughly −40 to −60% by six months. The famous "76% average gains" figure was a partial-year snapshot from the peak of a frenzy that has since broken.</li>
+<li class="no"><b>Foreign-stock apps for Indians.</b> Round-trip currency friction of 1.6–2.1% versus roughly 0.05–0.1% on the institutional route — a 25× markup on the same exposure. And the yield gap on US government bonds is not free money; it is the market's forecast of rupee depreciation.</li>
+<li class="no"><b>Paying a professional for the factor you already own.</b> The flagship live momentum products in India underperformed the index over the last five years, net of fees, while marketing backtests promising several points of annual outperformance.</li>
+<li class="no"><b>Chasing the "boring" yield without checking.</b> Direct government treasury bills currently yield <i>less</i> than an ordinary large-bank fixed deposit at identical taxation — the smart-sounding option is the worse one this month.</li>
+</ul>
+</div>
+
+<p>So the project's question has changed. For three months it was <i>"can we predict better than the market?"</i>
+— answered, narrowly, once, with caveats. The better question, which we are now testing with the same
+pre-registered machinery: <b>where do the rules themselves hand an advantage to someone small enough to
+qualify?</b> Two studies are registered and running on datasets that did not exist last week — a decade of
+buyback tender events, and every
+<dfn data-d="When a company offers new shares to existing holders, those holders get a tradable 'right' to subscribe. It trades on the exchange for a few sessions and then expires worthless if unsold — which means some holders dump it at any price, and some forget entirely.">rights entitlement</dfn>
+ever traded on the exchange. The rights-entitlement data turned out to have been invisible to all thirty-four
+earlier studies, because our price pipeline filters to ordinary shares and these instruments trade under a
+different series code. Nobody has published a backtest of them in India. We may as well be first.</p>
+<p class="mut small">Nothing here is a recommendation — it is a research log, and none of us is your advisor.
+Every number above survived an adversarial check against primary sources, and the ones that did not survive
+were deleted rather than softened.</p>
 </section>
 
 <!-- ---------------- CHAPTER 9 ---------------- -->
