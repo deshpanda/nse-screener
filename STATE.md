@@ -19,8 +19,14 @@
 > loser. Reddit/practitioner momentum-toolkit sweep same day: 5 of 7
 > "works for people" variants already dead on our data; 52-week-high
 > + FIP locked in the 2027 fresh-window queue. Earlier 08-17: 33
-> tested / 32 dead / v4 in paper
-> trial. v31 QUALITY DEAD (+10.1 IS / −31.5 OOS — prediction exactly
+> tested / 32 dead. ALSO 08-18: THE ENTIRE 2027 QUEUE SPEC-LOCKED —
+> PROTOCOL_V34 (FIP re-test), V35 (52-week-high), V36 (small-cap
+> quality ₹500-5,000cr band), V37 (insider re-test, ≥300 fresh events),
+> V38 (upgrade-drift, ≥150 fresh events) — all frozen with run gates
+> ≥2027-07, pass bars, and predictions, before their data exists.
+> Six pre-registered future tests now stand (incl. V26 hysteresis);
+> NOTHING further is runnable until fresh data accumulates — by
+> design. Earlier: v31 QUALITY DEAD (+10.1 IS / −31.5 OOS — prediction exactly
 > backwards, printed; corr(v4) 0.31 = lowest yet but dead strategies
 > earn no combo seats; factor triad now fully tested: momentum
 > survives, value passed-then-lost, quality died). v32 TURN-OF-MONTH
