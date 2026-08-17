@@ -72,6 +72,8 @@ Every verdict's exact code is committed. Engines:
 | Site stale vs verdicts | follow CLAUDE-independent rules in this file §"Adding" |
 | paper push failed (offline) | next month-end push carries it; or `git push` manually |
 | site stale after a push (Pages deploy race) | watchdog now catches it (site-deploy check); fix: `git commit --allow-empty -m retrigger && git push` |
+| RE (rights entitlement) harvest interrupted | rerun `python -m ingest.rights_re harvest` — resumes from stored days |
+| need buyback event calendar refreshed | `python -m ingest.buybacks calendar && python -m ingest.buybacks announce` |
 | shareholding detail backfill interrupted | rerun `python -m ingest.shareholding_detail detail` — per-symbol restartable, skips existing files |
 | laptop slept through 23:00 month-end cron | self-heals: the watchdog runs an automated catch-up (same formation, asof pinned to month-end) within 3 days — valid per PROTOCOL_GOLIVE gate-1 amendment. Do NOT run paper_log by hand; a human backfill fails the gate |
 
