@@ -4,7 +4,22 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-19. NOW 35 tested / 34 dead / v4 in paper
+> Last updated: 2026-08-28. INFRA: watchdog alerted (panel stale since
+> Aug 24) — ROOT CAUSE: the laptop is now asleep by 19:30, so the DAILY
+> cron had not run for 4 consecutive weekdays (cron.log untouched since
+> Aug 24 19:37; no 20:15 health entries either). Panel healed (Aug
+> 25-27 backfilled; Aug 28 publishes after 18:00). FIX SHIPPED:
+> scripts/health.py now has panel_catchup() — runs daily.py itself once
+> the panel is >2 trading days stale, mirroring the month-end
+> self-heal, and ordered BEFORE month_end_catchup so a healed panel is
+> available to it. Tested both branches (no-op when fresh, fires when
+> stale). NOTE for Aug 31 month-end: the 23:00 cron will likely be
+> missed too — the existing 3-day auto-catchup covers it and now pins
+> the right formation because the panel self-heals first.
+> Implied splits 64→243 is EXPECTED, not corruption: 176 are pre-2016
+> from the crisis backfill, only ~3 new modern-era; reconcile_paper
+> CLEAN (both paper entries reproduce), gate-1 evidence intact.
+> Earlier 08-19: 35 tested / 34 dead / v4 in paper
 > trial. NEW FAMILY OPENED — structural quotas (from the 14-agent
 > sweep): (a) PIPELINE ingest/buybacks.py = 330 tender events 2016-26,
 > 94% announcement-matched, median 14d notice; (b) PIPELINE

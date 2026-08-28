@@ -67,7 +67,28 @@ def month_end_catchup():
         check("catchup", False, r.stderr.strip()[-120:])
 
 
+def panel_catchup():
+    """Step 0b — self-heal a slept-through DAILY cron (added 2026-08-28
+    after four consecutive 19:30 pulls were missed: the laptop is now
+    asleep by 19:30, so daily.py never ran and its own trailing-week
+    backfill never got the chance to help). If the panel is more than 2
+    trading days stale, run the daily pull now. Once it succeeds the
+    panel is fresh and this is a no-op."""
+    bhav = sorted((ROOT / "data" / "bhav").glob("*.parquet"))
+    if not bhav:
+        return
+    last = date.fromisoformat(bhav[-1].stem)
+    if last >= weekdays_ago(2):
+        return
+    r = subprocess.run([str(ROOT / ".venv" / "bin" / "python"), "daily.py"],
+                       cwd=ROOT, capture_output=True, text=True, timeout=3600)
+    tag = "PANEL-CATCHUP ok" if r.returncode == 0 else "PANEL-CATCHUP FAILED"
+    print(f"{datetime.now().strftime('%Y-%m-%d %H:%M')} {tag} "
+          f"(panel was {last})")
+
+
 def main():
+    panel_catchup()
     month_end_catchup()
     # 1. price panel freshness (allow 2 trading days of lag: NSE evening
     #    publication + one slept-through cron)

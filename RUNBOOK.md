@@ -75,6 +75,7 @@ Every verdict's exact code is committed. Engines:
 | RE (rights entitlement) harvest interrupted | rerun `python -m ingest.rights_re harvest` — resumes from stored days |
 | need buyback event calendar refreshed | `python -m ingest.buybacks calendar && python -m ingest.buybacks announce` |
 | shareholding detail backfill interrupted | rerun `python -m ingest.shareholding_detail detail` — per-symbol restartable, skips existing files |
+| laptop slept through the 19:30 daily pull | self-heals: the watchdog runs the daily pull itself once the panel is >2 trading days stale (added 2026-08-28, after 4 consecutive misses). Manual equivalent: `python daily.py`, or `python backfill.py --start <gap>` for a long gap |
 | laptop slept through 23:00 month-end cron | self-heals: the watchdog runs an automated catch-up (same formation, asof pinned to month-end) within 3 days — valid per PROTOCOL_GOLIVE gate-1 amendment. Do NOT run paper_log by hand; a human backfill fails the gate |
 
 ## Go-live (October) — the sequence
