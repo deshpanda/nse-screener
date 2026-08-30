@@ -4,7 +4,27 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-28. INFRA: watchdog alerted (panel stale since
+> Last updated: 2026-08-28 (eve). NOW 36 tested / 35 dead / v4 in
+> paper trial. v41 LONG-HORIZON REVERSAL (De Bondt & Thaler, via a
+> Zerodha research video; PROTOCOL_V41, NEW family, testable only
+> because of the 2005 backfill) = DEAD, and not narrowly: IS 2017-26
+> +13.1% vs index +362.6% (edge −349.5pt, maxDD −74.9%); OOS 2008-16
+> +6.9% vs +92.8% (−85.9pt); 60m cell worse in both. Predictions: (1)
+> fails both windows ✓; (2) liquidity floor binds ✗ WRONG — ~430
+> names qualified per formation, the floor was NOT the culprit; (3)
+> older window kinder ✗ WRONG — both eras lose. Printed.
+> **FINDING WORTH KEEPING: in India long-horizon losers keep LOSING —
+> the overreaction effect runs the SAME direction as momentum, not
+> against it. That is the strongest indirect confirmation yet of why
+> v4 works here.** corr(v4, reversal) = −0.05 on annual returns (n=7;
+> the runner's inline corr prints nan because rebalance_every=252
+> misaligns the join — computed separately, noted).
+> RUNNER BUG FOUND AND FIXED MID-STUDY (fix made the test MATCH the
+> registered protocol, not change it): truncating the panel at the
+> window start let the 36-60m lookback eat ~3y off the front of each
+> window; now loads 4y of lookback history and confines trading to the
+> declared window. First (buggy) IS figure was −7.9pt; corrected
+> −349.5pt. Earlier 08-28 INFRA: watchdog alerted (panel stale since
 > Aug 24) — ROOT CAUSE: the laptop is now asleep by 19:30, so the DAILY
 > cron had not run for 4 consecutive weekdays (cron.log untouched since
 > Aug 24 19:37; no 20:15 health entries either). Panel healed (Aug
@@ -287,6 +307,7 @@ names in code/docs/site (local untracked config files are fine).
 
 | v24 | "NSE-200 winner" found in the wild (12m top-20, hold-till-top-40 hysteresis, no skip/regime) | BEAT NIFTY BOTH WINDOWS (+78/+23) — 2nd ever gate-passer — but LOSES to v4 everywhere (Sharpe 0.88/0.73 vs 1.21/1.04). Hysteresis is a genuinely good anti-churn idea (OOS +23 vs -4 without). Incumbent stands |
 | v27 | index-inclusion flows on synthetic constituents (PROTOCOL_V27; deep boundary crossings, two nulls incl. momentum-matched) | DEAD — underpowered by design and the frozen n≥30 floor did its job: IS adds looked spectacular (A50 h63 +10.3 / h126 +16.9 vs nulls ~+3-4, medians +16-18) on n=9-17 — refused as lottery evidence. OOS adds negative (both registered predictions WRONG — printed). Drops fail too (IS n<30). Structural lesson: monthly synthetic ranks + deep-crossing requirement → too few events; honest re-test needs actual NSE reconstitution announcements (future dataset, queued). Synthetic constituents dataset itself remains valid for universes/benchmarks. **v27.1 re-test (PROTOCOL_V27.1, real announcements, 2,349 core events, v27 peek disclosed): 47 of 48 cells DEAD — incl. all F63 "post-announce drift" OOS passes being fully explained by the momentum null in IS. ONE cell passes the decision window: Nifty 500 adds, announce→effective (n=94, +1.83 vs both nulls ≈ −1.35, clears the +3pp bar by 0.14pp; OOS same direction +2.6-2.9pp above nulls, misses bar by ~0.2pp). Status: CONFIRMATORY-ONLY per protocol. **v27.2 gauntlet (PROTOCOL_V27.2, same day): Stage A1 plateau 8/8 PASS, A3 after-tax PASS (+1.24 vs −1.7 nulls), but A2 LOTTERY CHECK FAIL — best quarter = 74% of positive quarterly excess (bar <40%; the v21 detector). Half-splits agree: 2023-24 mean −0.73, all juice in 2025-26. Cell DEAD (spike), Stage B cancelled per protocol. Index-flow family fully closed; only honest future re-entry = fresh events, fresh registration, years away** |
+| v41 | long-horizon reversal, 36m/60m formation skip-21, worst-20, annual rebalance (PROTOCOL_V41; new family) | DEAD both windows by huge margins: IS 2017-26 +13.1% vs index +362.6% (−349.5pt, DD −74.9%), OOS 2008-16 +6.9% vs +92.8% (−85.9pt); 60m worse; breaker diagnostic worse still. Liquidity floor did NOT bind (~430 candidates/formation) — prediction wrong, printed; older era NOT kinder — also wrong. KEY FINDING: India shows long-horizon CONTINUATION, not reversal — losers keep losing, same sign as momentum. Runner bug found+fixed mid-study (panel truncation ate 3y of each window; fix restored the registered windows) |
 | v40 | buyback tender-offer price path (PROTOCOL_V40; A1 announce→record, A2 pre-record 5d, A3 post-record 21d) | DEAD, all 3 predictions correct. A1 −0.20 IS / −2.05 OOS; A2 −1.65 / −1.17; both below the random-announcement null → NO run-up to capture. A3 −1.08 / −1.09 vs null +1.04 / +0.73 = consistent ~2pp post-record drag over 21d in BOTH windows (n=59-100/window). Implication: entry not inflated, but unaccepted shares bleed → acceptance ratio is the whole trade. Tender price + acceptance ratio NOT computable from our data (snippets truncate to face value) — disclosed in protocol |
 | v33 | dual momentum GEM: 4 ETFs, 12m lookback, monthly (PROTOCOL_V33 + gauntlet V33.1) | PASSED GATE both windows (+17.4/+7.3, DD nearly halved, 2008 −20.8 vs −42.9, predictions wrong ×3 — printed) then DEAD in same-day confirmation: plateau 2/8 (lookback/anchor-day/cost knife-edges; 2015-22 half −39.8), after-tax LOSES both windows (4/35 lots LTCG). No-gold cell dead everywhere — gold was the engine. 4th gate-passer, 2nd killed by its own gauntlet |
 | v32 | turn-of-month/SIP flows (PROTOCOL_V32; 3 cells, cost tiers) | DEAD — concentration real OOS 2006-22 (C1 19% of days: +240.8% gross vs +87.3% rest-of-month) but FADED IS (C1 +12.0 vs C3 +21.5); tradable cells lose to buy-and-hold at every tier both windows. Predictions: trade-fails ✓, concentration-replicates ✓ OOS ✗ IS (decay kill #7) |
