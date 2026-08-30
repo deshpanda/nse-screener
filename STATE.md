@@ -49,6 +49,28 @@
 > our own price panel (a buyback price sits at a premium to the
 > record-date market price). Without it, per-event returns still
 > cannot be computed — acceptance alone is half the equation.
+> 2026-08-30 (eve): **TENDER PRICE EXTRACTOR built — the buyback
+> dataset is now COMPLETE.** ingest/buyback_acceptance.py `prices`
+> phase: 41 of 47 filings priced, **40 validated by a WORDS-vs-DIGITS
+> cross-check** (filings state the amount twice — "2,770/- (Rupees Two
+> Thousand Seven Hundred and Seventy Only)" — and those notations are
+> genuinely INDEPENDENT, which is exactly what the ASHIANA correlated-
+> OCR failure taught us to require), 1 by market-premium sanity.
+> Words parser unit-tested incl. rejecting OCR garbage.
+> TRAP HIT AND FIXED: validating against the CA-ADJUSTED panel gave a
+> median premium of +52.6% (a later split multiplies the ratio);
+> RAW closes give **+29.7% at filing / +28.5% at RECORD DATE**, p25
+> +18.4, p75 +45.7, and ZERO negative-premium cases — the sanity
+> result a real buyback premium must show. Record-date premium is now
+> in the dataset (that is the decision-relevant one; the filing-date
+> premium is measured after the offer closed).
+> INDICATIVE ARITHMETIC ONLY, NOT A BACKTEST: median acceptance 38.7%
+> x median premium +28.5% = +11.05%, minus 61.3% unaccepted x v40's
+> -1.1% post-record drift = **~+10.4% gross per event**. Before costs,
+> before 20% STCG, before the fact that medians of separate
+> distributions do not compose. A REAL verdict needs PROTOCOL_V43
+> (per-event join, entry timing, costs, tax, concentration check) —
+> NOT YET REGISTERED, and this number must not be quoted as tested.
 > RULE ADDED 08-28 (RUNBOOK §"Adding a new COMBO SLEEVE" + CLAUDE.md
 > 6b): future combo sleeves need (a) their own index-gate pass — dead
 > strategies earn no seat however low their correlation (v31 quality:
