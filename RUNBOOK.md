@@ -61,6 +61,38 @@ Every verdict's exact code is committed. Engines:
 5. New dataset? Ingest module with documented quirks + data-section row
    + entry in STATE §5 + sync to the data repo (`scripts/sync_data_repo.sh`).
 
+## Adding a new COMBO SLEEVE (the second law, added 2026-08-28)
+
+A combo exists to buy era-robustness, not return: every combo we have
+measured RAISES Sharpe and LOWERS total return versus the incumbent
+alone (v29.1: IS Sharpe 1.29 vs 1.21 but +122% vs +132%; OOS Sharpe
+tied, +154% vs +186%). Register one only if that trade is what you
+want. Then it must clear ALL of:
+
+1. **Positive expected return on its own.** The candidate must have
+   passed the index gate as a standalone strategy. A dead strategy earns
+   no combo seat no matter how low its correlation — v31 quality has the
+   lowest correlation to v4 we have ever measured (0.31) and is still
+   ineligible, because its expected contribution is negative.
+2. **Low realized correlation** to the incumbent (< 0.6), measured only
+   over days BOTH sleeves are invested.
+3. **FACTOR DIVERSITY — the requirement v42 forced.** Low correlation is
+   NOT sufficient. v4 carries an SMB loading of +0.92, so a second
+   midcap-tilted sleeve would add the same underlying risk wearing a
+   different name while still showing modest month-to-month correlation.
+   Run `backtest/attribution42.py`'s regression on the candidate and
+   require its factor loadings to differ materially from the
+   incumbent's — a different market beta or a different (ideally
+   opposite-signed) size loading. Same-factor sleeves are refused.
+4. **Weights frozen before results**, one weight only, no grid. The
+   house convention is 70/30 incumbent/challenger (v13.1, v29.1).
+5. **Confirmation on future data only**, with a review date and the
+   behavioural checks (fidelity, correlation, realized Sharpe) written
+   into the protocol before the first month is logged.
+
+Cannot be retrofitted: v13.1 and v29.1 were registered before rule 3
+existed and their criteria are frozen. This governs everything after.
+
 ## Recovery cheat-sheet
 
 | symptom | fix |

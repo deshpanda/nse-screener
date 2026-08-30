@@ -25,6 +25,18 @@
 > CONSEQUENCE for sizing (Oct 15): the edge is real but a meaningful
 > part of raw outperformance is size beta; the skill portion rests on
 > t≈2. Do not quote the raw +100/+116 as if it were all alpha.
+> RULE ADDED same day (RUNBOOK §"Adding a new COMBO SLEEVE" + CLAUDE.md
+> 6b): future combo sleeves need (a) their own index-gate pass — dead
+> strategies earn no seat however low their correlation (v31 quality:
+> corr 0.31, still ineligible), (b) corr < 0.6 on both-invested days,
+> (c) **FACTOR DIVERSITY via attribution42** — low correlation is
+> insufficient because v4's SMB loading is +0.92, so a second
+> midcap-tilted sleeve duplicates risk under a different name,
+> (d) weights frozen, no grid, (e) confirmation on future data only.
+> NOT retrofitted to v13.1/v29.1 (criteria frozen). Rationale on
+> record: every combo measured so far RAISES Sharpe and LOWERS total
+> return, so a combo buys era-robustness — the weakness the crisis
+> test exposed — not extra return.
 > Earlier 08-28 (night): 36 tested / 35 dead (v41.1 is
 > an ARM of v41, not a new test). v41.1 US REPLICATION of long-horizon
 > reversal (PROTOCOL_V41.1) — our own US panel DISQUALIFIED up front
