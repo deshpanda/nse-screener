@@ -4,7 +4,28 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-28 (night). NOW 36 tested / 35 dead (v41.1 is
+> Last updated: 2026-08-28 (late). NOW 36 tested / 35 dead (v42 is an
+> AUDIT, no count change). **v42 FACTOR ATTRIBUTION — the most
+> decision-relevant number we have produced for the Oct-15 sizing
+> conversation.** v4 regressed on market + size (India has no book
+> value → no HML; the US arm measures that gap):
+>   * market beta **0.18-0.37** — prediction of 0.7-0.95 WRONG, and
+>     wrong favourably: the breaker's cash months strip market risk.
+>   * **SMB loading +0.92 (t=6.1)** — a large share of the RAW edge is
+>     a size premium, i.e. buyable in a midcap index fund, not skill.
+>   * **alpha +13.45%/yr (t=2.04)** full window (2018-07→2026-07,
+>     n=97); RF sensitivity 11.7-15.2%/yr at 8%/4% cash. BUT sub-window
+>     alphas are NOT significant alone: IS +17.11 (t=1.71), OOS +10.55
+>     (t=1.19). Marginal significance is the honest caveat.
+>   * US ARM (French clean, momentum decile): omitting HML UNDERSTATES
+>     alpha by ~1.03pp/yr (HML loading −0.33, t=−12.1) → **the India
+>     alpha is conservative, not flattering** — prediction correct.
+>     US momentum alpha decays and loses significance: t 4.92 (pre-85)
+>     → 2.87 → 0.01 → 0.81 (2015-). 4 of 5 predictions correct.
+> CONSEQUENCE for sizing (Oct 15): the edge is real but a meaningful
+> part of raw outperformance is size beta; the skill portion rests on
+> t≈2. Do not quote the raw +100/+116 as if it were all alpha.
+> Earlier 08-28 (night): 36 tested / 35 dead (v41.1 is
 > an ARM of v41, not a new test). v41.1 US REPLICATION of long-horizon
 > reversal (PROTOCOL_V41.1) — our own US panel DISQUALIFIED up front
 > (survivor-only is fatal when buying losers); used French CRSP-clean
