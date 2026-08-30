@@ -264,10 +264,14 @@ def words_to_number(text):
 
 def prices() -> None:
     from pypdf import PdfReader
-    from backtest import features
+    from ingest.constituents import raw_close_panel
     acc = pd.read_parquet(DIR / "acceptance.parquet")
-    p = features._panel(None, None)
-    close = p["close"]
+    # RAW closes, not the CA-adjusted panel: the tender price in a filing is
+    # the actual rupee price of that day, while the adjusted panel restates
+    # history for later splits/bonuses. Comparing the two made premiums look
+    # like +160% (a 1:10 split inflates the ratio tenfold). Same trap the
+    # v29 valuation work documented — price LEVELS need raw prices.
+    close = raw_close_panel()
     rows, by_words, by_market, dropped = [], 0, 0, 0
     for _, r in acc.iterrows():
         f = PDF_DIR / r["pdf"]
