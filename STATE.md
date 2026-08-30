@@ -4,7 +4,24 @@
 > fresh session — new context window, new collaborator, future us — starts
 > with everything we know. **Update it at every milestone** (verdict, new
 > data source, infra change). A stale STATE.md is worse than none.
-> Last updated: 2026-08-28 (eve). NOW 36 tested / 35 dead / v4 in
+> Last updated: 2026-08-28 (night). NOW 36 tested / 35 dead (v41.1 is
+> an ARM of v41, not a new test). v41.1 US REPLICATION of long-horizon
+> reversal (PROTOCOL_V41.1) — our own US panel DISQUALIFIED up front
+> (survivor-only is fatal when buying losers); used French CRSP-clean
+> deciles instead. RESULT, loser-minus-winner decile VW annualized:
+> 1926-84 **+8.10pp** (effect REAL pre-publication — also validates our
+> parsing, protocol's verdict-C sanity check), 1985-99 −3.14, 2000-14
+> +6.95 (a genuine REVIVAL — decay is NOT monotonic, stated honestly),
+> 2015-present **−13.07pp**. Equal-weighted decays monotonically
+> (+14.81/+9.16/+6.50/−10.98). VERDICT (B) "decayed everywhere", NOT
+> "edges are local" — US and India now AGREE on the sign.
+> PREDICTIONS: decay ✓; R2<R1 ✓; **small-cap concentration ✗ WRONG —
+> SMALL +4.51 vs BIG +3.96 pre-1985, essentially equal.** That kills
+> my own excuse for v41's India failure: the ₹5cr liquidity floor was
+> NOT the culprit, because the effect was never small-cap-specific.
+> Two of my wrong predictions in two days both pointed the same way —
+> I keep reaching for the liquidity-floor explanation and it keeps
+> being false. Earlier 08-28 (eve): 36 tested / 35 dead / v4 in
 > paper trial. v41 LONG-HORIZON REVERSAL (De Bondt & Thaler, via a
 > Zerodha research video; PROTOCOL_V41, NEW family, testable only
 > because of the 2005 backfill) = DEAD, and not narrowly: IS 2017-26
