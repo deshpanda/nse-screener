@@ -162,7 +162,17 @@ def parse() -> None:
             continue
         reserved, bids, tendered = vals[0], vals[1], vals[2]
         stated = vals[3] if len(vals) > 3 else None
-        if reserved <= 0 or tendered <= 0:
+        # PLAUSIBILITY BOUNDS (added after ASHIANA-2023 slipped through):
+        # some post-offer PAs are SCANS, and OCR drops digits. There the
+        # cross-check below is useless, because the reserved figure and the
+        # stated response are mangled by the SAME corrupted text, so their
+        # ratio survives and they agree. Correlated errors defeat a
+        # consistency check — only absolute plausibility catches them.
+        # A real reserved category is never a few hundred shares, and even
+        # the most extreme genuine oversubscription is tens of times, not
+        # thousands.
+        if (reserved < 1000 or tendered <= 0
+                or tendered / reserved > 200):
             rejected += 1
             continue
         derived = tendered / reserved                 # "times oversubscribed"
