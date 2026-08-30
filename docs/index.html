@@ -867,6 +867,34 @@ frozen in advance ↗</a>, <a href="https://github.com/deshpanda/nse-screener/bl
 The machine that declared thirty-five strategies dead and one alive measures reality the way five decades of
 published research does. The verdicts stand on tested ground.</p>
 
+<p><b>Postscript 4 — the hardest question we can ask ourselves: is the edge <i>skill</i>, or just risk we
+forgot to price?</b> Every figure on this page compares the strategy to the index in raw returns. That
+comparison cannot tell skill apart from <dfn data-d="Systematic risk exposure — how much of a strategy's return simply comes from being more exposed to the market, or to small companies, than the index is. You can buy that exposure cheaply in an index fund, so it isn't skill.">factor exposure</dfn>
+you could buy for 0.2% in an index fund. The 1968 paper that named "alpha" defines it as what survives after
+you subtract those exposures, so we finally ran that regression
+(<a href="https://github.com/deshpanda/nse-screener/blob/main/PROTOCOL_V42.md">method frozen first ↗</a>,
+<a href="https://github.com/deshpanda/nse-screener/blob/main/backtest/attribution42.py">code ↗</a>). Three findings,
+none of them comfortable:</p>
+<div class="card">
+<h3>What the survivor is actually made of</h3>
+<table>
+<tr><th>exposure</th><th>loading</th><th>what it means</th></tr>
+<tr><td>Market (beta)</td><td><b>0.18–0.37</b></td><td>far <i>less</i> market-exposed than the index — we predicted 0.7–0.95 and were <b class="red">wrong</b>. The circuit-breaker sits in cash for whole months, which strips out market risk</td></tr>
+<tr><td>Size</td><td><b class="gold">+0.92</b> <span class="mut small">(t = 6.1)</span></td><td>the big one. A large share of the raw return is simply <i>being in smaller companies</i> — buyable in a midcap index fund</td></tr>
+<tr><td>What's left over — alpha</td><td><b class="green">+13.4%/yr</b> <span class="mut small">(t = 2.0)</span></td><td>real, and it survives stripping both exposures. But only <i>just</i> statistically significant, and not significant in either half of the period on its own</td></tr>
+</table>
+<p class="small mut">Indian quarterly filings carry no balance sheet, so we cannot build a value factor here — the
+estimate above is missing one regressor. Rather than wave that away, we measured it: on a century of clean US
+data, dropping the value factor from the same kind of regression <i>understates</i> momentum's alpha by about
+1 point a year (winners are growth-like, so they carry a negative value loading — −0.33, t = −12). So our
+Indian number is more likely conservative than flattering. Four of our five pre-registered predictions were
+right; the beta one was wrong, and in our favour.</p>
+</div>
+<p>The honest summary, which now belongs in every conversation about this strategy: <b>the edge is not an
+illusion, but a meaningful part of the raw outperformance is a size premium, not skill</b> — and the skill
+portion, while positive, rests on a t-statistic of two. That is exactly the kind of number that looks
+overwhelming in a brochure and modest in a regression.</p>
+
 <p><b>Postscript 3 — the visitor every backtest forgets: the tax office.</b> Every edge number on this page is
 pre-tax, like every backtest you will ever be shown. But the survivor's monthly churn means almost every gain it
 realizes is <dfn data-d="Short-term capital gains: profit on listed shares held 12 months or less — taxed at 20% in India. A monthly-rebalance strategy realizes nearly ALL its gains this way.">short-term</dfn>
