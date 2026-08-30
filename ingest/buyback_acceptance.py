@@ -214,9 +214,119 @@ def parse() -> None:
                   f"{100*(ent['small_acceptance'].median() - gen.median()):+.1f}pp")
 
 
+# --- tender price phase -------------------------------------------------
+# Format review: the price is always stated as
+#   "at a price of <CUR><NUMBER>/- (<THE SAME AMOUNT IN WORDS>) per Equity Share"
+# but the currency glyph is mangled differently by every PDF encoder
+# (Rs. / INR / ` / f / t / nothing), so it is matched loosely.
+#
+# TWO INDEPENDENT CHECKS, deliberately chosen after the ASHIANA lesson
+# (correlated OCR errors defeated the acceptance cross-check):
+#   1. WORDS vs DIGITS — the filing states the amount twice in different
+#      notations. An OCR slip that drops a digit does NOT produce a
+#      matching slip in the spelled-out words, so these two are genuinely
+#      independent, unlike reserved-vs-response.
+#   2. MARKET SANITY — a buyback price is a premium to the market price
+#      around the record date. Checked against our own panel.
+# A price is accepted if the words agree, or (words unparseable) the
+# market check passes. Rows failing both are dropped, not guessed.
+PRICE = re.compile(
+    r"price\s+o[fl]\s*(?:Rs\.?|INR|₹|`|f|t|\W){0,3}\s*([\d,]+(?:\.\d+)?)"
+    r"\s*(?:/[-–])?\s*\(([^)]{0,160})\)", re.I)
+_UNITS = {"zero":0,"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,
+          "seven":7,"eight":8,"nine":9,"ten":10,"eleven":11,"twelve":12,
+          "thirteen":13,"fourteen":14,"fifteen":15,"sixteen":16,
+          "seventeen":17,"eighteen":18,"nineteen":19,"twenty":20,
+          "thirty":30,"forty":40,"fourty":40,"fifty":50,"sixty":60,
+          "seventy":70,"eighty":80,"ninety":90}
+_SCALE = {"hundred":100,"thousand":1000,"lakh":100000,"lakhs":100000,
+          "crore":10000000,"crores":10000000}
+
+
+def words_to_number(text):
+    """'Two Thousand Seven Hundred and Seventy' -> 2770; None if unparseable"""
+    toks = re.findall(r"[a-z]+", text.lower())
+    toks = [t for t in toks if t not in ("rupees", "indian", "only", "and",
+                                         "rupee", "inr", "rs")]
+    if not toks or not all(t in _UNITS or t in _SCALE for t in toks):
+        return None
+    total = cur = 0
+    for t in toks:
+        if t in _UNITS:
+            cur += _UNITS[t]
+        elif t == "hundred":
+            cur = max(cur, 1) * 100
+        else:
+            total += max(cur, 1) * _SCALE[t]
+            cur = 0
+    return total + cur or None
+
+
+def prices() -> None:
+    from pypdf import PdfReader
+    from backtest import features
+    acc = pd.read_parquet(DIR / "acceptance.parquet")
+    p = features._panel(None, None)
+    close = p["close"]
+    rows, by_words, by_market, dropped = [], 0, 0, 0
+    for _, r in acc.iterrows():
+        f = PDF_DIR / r["pdf"]
+        try:
+            txt = re.sub(r"\s+", " ", "\n".join(
+                (pg.extract_text() or "") for pg in PdfReader(str(f)).pages))
+        except Exception:
+            dropped += 1
+            continue
+        sym, dt = r["symbol"], pd.Timestamp(r["an_dt"])
+        # market reference: last close on/before the filing date
+        mkt = None
+        if sym in close.columns:
+            hist = close.loc[:dt, sym].dropna()
+            mkt = float(hist.iloc[-1]) if len(hist) else None
+        best = None
+        for m in PRICE.finditer(txt):
+            try:
+                num = float(m.group(1).replace(",", ""))
+            except ValueError:
+                continue
+            if num <= 0:
+                continue
+            w = words_to_number(m.group(2))
+            words_ok = w is not None and abs(w - num) / max(num, 1) < 0.01
+            mkt_ok = (mkt is not None and 0.5 <= num / mkt <= 4.0)
+            if words_ok or (w is None and mkt_ok):
+                best = (num, words_ok, mkt_ok)
+                if words_ok:
+                    break                       # strongest evidence, stop
+        if best is None:
+            dropped += 1
+            continue
+        num, words_ok, mkt_ok = best
+        by_words += words_ok
+        by_market += (not words_ok) and mkt_ok
+        rows.append({"symbol": sym, "an_dt": r["an_dt"],
+                     "tender_price": num, "market_ref": mkt,
+                     "premium_pct": (100 * (num / mkt - 1)
+                                     if mkt else None),
+                     "validated_by": "words" if words_ok else "market",
+                     "small_acceptance": r["small_acceptance"]})
+    out = pd.DataFrame(rows)
+    out.to_parquet(DIR / "tender_prices.parquet", index=False)
+    print(f"tender prices: {len(out)} of {len(acc)} filings "
+          f"(words-validated {by_words}, market-validated {by_market}, "
+          f"dropped {dropped})")
+    if len(out):
+        pr = out["premium_pct"].dropna()
+        print(f"\npremium of tender price over market at filing:")
+        print(f"  median {pr.median():+.1f}%   p25 {pr.quantile(.25):+.1f}%"
+              f"   p75 {pr.quantile(.75):+.1f}%")
+        print(f"  negative-premium cases: {(pr < 0).sum()} "
+              f"(price below market by the time of the post-offer filing)")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "pdfs":
         pdfs(int(sys.argv[2]) if len(sys.argv) > 2 else None)
     else:
-        {"scan": scan, "parse": parse}[cmd]()
+        {"scan": scan, "parse": parse, "prices": prices}[cmd]()
