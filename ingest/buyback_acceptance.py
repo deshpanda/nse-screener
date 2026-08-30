@@ -118,7 +118,11 @@ def pdfs(limit: int | None = None) -> None:
 # stated figure matches the derived ratio (as-is or x100) within 5%.
 SMALL = re.compile(r"Reserved\s+category\s+for\s+Small\s+Shareholders", re.I)
 GENERAL = re.compile(r"General\s+[Cc]ategory", re.I)
-NUM = re.compile(r"\d[\d,\s]{2,}\d(?:\.\d+)?")
+# NOTE: whitespace must NOT be allowed inside this pattern — an earlier
+# version permitted it and greedily merged four table columns into one
+# number. Filings whose PDF text splits a figure ("1,84,7 6,817") now
+# simply fail the cross-check below and are rejected rather than guessed.
+NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 
 
 def _nums(text):
