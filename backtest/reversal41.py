@@ -27,7 +27,8 @@ def picks_for(p, ctx, lookback):
         ok = liquid.loc[t].reindex(r.index, fill_value=False)
         ok[[s for s in r.index if s not in ctx["stocks"]]] = False
         cand = r[ok].dropna()
-        counts.append(len(cand))
+        if len(cand):
+            counts.append(len(cand))
         if len(cand) >= 20:
             picks[t] = list(cand.nsmallest(20).index)
     return picks, (np.median(counts) if counts else 0)
@@ -58,14 +59,24 @@ def concentration(res):
 
 
 def main():
-    for label, start, end in (("IS 2017-26 (DECISION)", "2016-01-01", None),
-                              ("OOS 2008-16 (single shot)", "2007-01-01",
-                               "2016-12-31")):
+    # BUGFIX 2026-08-28 (to MATCH the registered protocol, not to change
+    # it): the panel must start ~4y BEFORE the declared window so the
+    # 36-60m lookback is available on day one; trading is then confined
+    # to the declared window by dropping earlier formations. The first
+    # implementation truncated the panel at the window start, so the
+    # lookback silently ate the first ~3 years of each window.
+    for label, load_from, win_start, end in (
+            ("IS 2017-26 (DECISION)", "2012-01-01", "2017-01-01", None),
+            ("OOS 2008-16 (single shot)", "2003-01-01", "2008-01-01",
+             "2016-12-31")):
         print(f"\n=== {label} ===")
-        p = features._panel(start, end)
+        p = features._panel(load_from, end)
+        keep = p["close"].index >= win_start
         ctx = features._context(p)
         for name, lb in LOOKBACKS.items():
             picks, med = picks_for(p, ctx, lb)
+            picks = {t: v for t, v in picks.items()
+                     if str(t.date()) >= win_start}
             if not picks:
                 print(f"  {name}: no formations with 20+ names")
                 continue
@@ -80,6 +91,8 @@ def main():
                   f" | after-tax total: {after_tax(res):+.1f}%")
         # C3 diagnostic: PRIMARY + breaker
         picks, _ = picks_for(p, ctx, LOOKBACKS["36m"])
+        picks = {t: v for t, v in picks.items()
+                 if str(t.date()) >= win_start}
         if picks:
             monthly.report("C3 reversal_36m+breaker", monthly.simulate(
                 p, ctx, regime_filter=True, select_fn=sel_fn(picks),
