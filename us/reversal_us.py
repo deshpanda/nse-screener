@@ -39,10 +39,25 @@ def fetch():
 
 
 def sections(zip_name):
+    """French is inconsistent across files: the 10-portfolio file heads
+    its value-weighted block 'Value Weight Returns -- Monthly' while the
+    6-portfolio file uses 'Average Value Weighted Returns -- Monthly'.
+    Same trap that bit the engine audit — try both."""
     z = zipfile.ZipFile(FRENCH / zip_name)
     txt = z.read(z.namelist()[0]).decode("latin-1")
-    vw = _monthly_section(txt, "Average Value Weighted Returns -- Monthly")
-    ew = _monthly_section(txt, "Average Equal Weighted Returns -- Monthly")
+
+    def grab(*variants):
+        for v in variants:
+            try:
+                return _monthly_section(txt, v)
+            except StopIteration:
+                continue
+        raise KeyError(f"no section among {variants} in {zip_name}")
+
+    vw = grab("Average Value Weighted Returns -- Monthly",
+              "Value Weight Returns -- Monthly")
+    ew = grab("Average Equal Weighted Returns -- Monthly",
+              "Equal Weight Returns -- Monthly")
     return vw, ew
 
 
