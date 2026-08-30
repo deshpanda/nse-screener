@@ -25,7 +25,31 @@
 > CONSEQUENCE for sizing (Oct 15): the edge is real but a meaningful
 > part of raw outperformance is size beta; the skill portion rests on
 > t≈2. Do not quote the raw +100/+116 as if it were all alpha.
-> RULE ADDED same day (RUNBOOK §"Adding a new COMBO SLEEVE" + CLAUDE.md
+> 2026-08-30: **BUYBACK ACCEPTANCE PIPELINE BUILT** (the gap v40 named
+> as the project's top dataset priority). ingest/buyback_acceptance.py,
+> 3 phases mirroring the v22.1 ratings design: scan (2,489 buyback
+> announcements 2016-26, 502 post-offer with the numbers) → pdfs (336
+> downloaded; our ann_full store has these filings but EMPTY snippets —
+> the numbers exist only in attachments) → parse (47 validated).
+> **MEASURED, not quoted: small-shareholder acceptance median 43.7%**
+> (mean 51.1, p25 23.4, p75 79.8); 40% of events accept >50%; **19%
+> accept 100%** (reserved category undersubscribed). General-category
+> median 13.6% → **the small-shareholder quota is worth +30.1pp of
+> acceptance**. That is the structural edge, quantified. NOTE the
+> sweep's cherry-picked 68% (HCL) is well above our median — use 43.7%.
+> TWO PARSE TRAPS DOCUMENTED: (1) whitespace inside the number regex
+> greedily merged four table columns — all 43 tables failed until
+> fixed; (2) a SCANNED filing (ASHIANA 2023) passed the stated-vs-
+> derived cross-check because OCR mangled BOTH figures from the same
+> text, preserving their ratio — correlated errors defeat consistency
+> checks, so absolute plausibility bounds (reserved >= 1000 shares,
+> oversubscription <= 200x) were added. REMAINING GAP: the TENDER
+> PRICE is only ~50% extractable with a naive regex (it collides with
+> buyback SIZE in rupees); the fix is to validate candidates against
+> our own price panel (a buyback price sits at a premium to the
+> record-date market price). Without it, per-event returns still
+> cannot be computed — acceptance alone is half the equation.
+> RULE ADDED 08-28 (RUNBOOK §"Adding a new COMBO SLEEVE" + CLAUDE.md
 > 6b): future combo sleeves need (a) their own index-gate pass — dead
 > strategies earn no seat however low their correlation (v31 quality:
 > corr 0.31, still ineligible), (b) corr < 0.6 on both-invested days,
