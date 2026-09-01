@@ -49,7 +49,26 @@
 > our own price panel (a buyback price sits at a premium to the
 > record-date market price). Without it, per-event returns still
 > cannot be computed — acceptance alone is half the equation.
-> 2026-08-30 (eve): **TENDER PRICE EXTRACTOR built — the buyback
+> 2026-09-01: **v43 BUYBACK TENDER TRADE — PASSED (confirmatory-only).
+> The first structural-quota trade to clear our bars.** PROTOCOL_V43
+> registered with BOTH peeks disclosed (the indicative +10.4%, and the
+> v40 window overlap), n=41 declared underpowered, parse selection bias
+> stated. Results: E1 announce+1 n=37 after-tax +4.49%/event, excess
+> +3.70pp, conc 17%, win 81% PASS; E2 record-5 n=39 +6.17%, +3.22pp,
+> conc 13%, win 82% PASS; E3 record-2 n=39 +4.38%, +1.95pp FAIL (missed
+> the +3pp excess bar). PREDICTIONS: 1 of 4 correct — magnitude ✓
+> (+2-6% predicted, +4.4-6.2% actual); E3-beats-E1 ✗; concentration-is-
+> the-risk ✗ (it passed easily, 11-17% vs 25% bar); "+3pp is a freebie"
+> ✗ — it was the BINDING constraint and the only thing that failed.
+> RUNNER BUG FOUND AND FIXED: used the month-end raw panel, so
+> "record-5 trading days" meant five MONTHS earlier — inflated excess
+> to +42pp before the fix. Implausibility is what triggered the check.
+> STATUS: confirmatory-only per protocol — earns a fresh-events re-test,
+> NOT capital; nothing enters the 2026 go-live. Capped by law at
+> Rs 2L/event (~Rs 6L rotating across 3-6 events/yr), so a modest
+> capped edge, not a replacement for anything. Site: 37 tested / 35
+> dead / 1 survivor / 1 awaiting fresh events.
+> Earlier 08-30 (eve): **TENDER PRICE EXTRACTOR built — the buyback
 > dataset is now COMPLETE.** ingest/buyback_acceptance.py `prices`
 > phase: 41 of 47 filings priced, **40 validated by a WORDS-vs-DIGITS
 > cross-check** (filings state the amount twice — "2,770/- (Rupees Two
