@@ -10,7 +10,26 @@ import pandas as pd
 
 import config
 from ingest import renames
-from ingest.constituents import raw_close_panel
+
+
+def raw_daily_panel():
+    """DAILY raw (unadjusted) closes.
+
+    NOT ingest.constituents.raw_close_panel — that one returns MONTH-END
+    closes only, and using it here turned "5 trading days before the
+    record date" into five MONTHS before, inflating mean excess to
+    +42pp. Raw (not CA-adjusted) is still required: the tender price is
+    an as-reported rupee figure.
+    """
+    from pathlib import Path
+    frames = []
+    for f in sorted((config.DATA_DIR / "bhav").glob("*.parquet")):
+        d = pd.read_parquet(f)[["symbol", "date", "close"]]
+        frames.append(d)
+    px = pd.concat(frames, ignore_index=True)
+    px["symbol"] = renames.canonical(px["symbol"].astype(str))
+    px["date"] = pd.to_datetime(px["date"])
+    return px.pivot_table(index="date", columns="symbol", values="close")
 
 COST_RT, STCG = 0.005, 0.20
 SPLIT_RE = r"split|bonus|consolidat"
@@ -34,7 +53,7 @@ def main():
     ann = ev.dropna(subset=["announce_dt"]).copy()
     ann["announce_dt"] = pd.to_datetime(ann["announce_dt"])
 
-    close = raw_close_panel()
+    close = raw_daily_panel()
     dates = close.index
     bees = close["NIFTYBEES"] if "NIFTYBEES" in close.columns else None
     ca = ca_windows()
