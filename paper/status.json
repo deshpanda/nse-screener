@@ -1,10 +1,10 @@
 {
- "updated": "2026-08-31",
- "asof": "2026-08-31",
+ "updated": "2026-09-30",
+ "asof": "2026-09-30",
  "regime": "OFF",
  "stance": "100% cash \u2014 circuit-breaker open",
  "lowvol_names": 20,
- "entries": 3,
+ "entries": 4,
  "nifty_start": 271.69,
- "nifty_now": 274.87
+ "nifty_now": 258.5
 }
