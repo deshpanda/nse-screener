@@ -1,10 +1,10 @@
 {
- "updated": "2026-10-31",
- "asof": "2026-10-30",
- "regime": "OFF",
- "stance": "100% cash \u2014 circuit-breaker open",
+ "updated": "2026-11-04",
+ "asof": "2026-11-04",
+ "regime": "ON",
+ "stance": "regime flipped ON \u2014 portfolio forms at next month-end",
  "lowvol_names": 20,
  "entries": 5,
  "nifty_start": 271.69,
- "nifty_now": 262.89
+ "nifty_now": 272.81
 }
